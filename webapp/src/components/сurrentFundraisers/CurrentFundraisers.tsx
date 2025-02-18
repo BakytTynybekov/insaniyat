@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 import "./currentFundraisers.css";
 
-const fundraisers = [
+type fundRaise = {
+  id: number;
+  title: string;
+  description: string;
+  goal: number;
+  raised: number;
+  image: string;
+};
+
+const fundraisers: fundRaise[] = [
   {
     id: 1,
     title: "Образование для детей",

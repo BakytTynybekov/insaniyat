@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./awardSection.css";
 
-const awards = [
+type awardItem = {
+  id: number;
+  image: string;
+};
+
+const awards: awardItem[] = [
   {
     id: 1,
     image:
@@ -50,7 +55,7 @@ const AwardsSection = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % (awards.length - 2));
-    }, 100); // Автоматическая прокрутка каждые 5 секунд
+    }, 1500); // Автоматическая прокрутка каждые 1.5 секунд
 
     return () => clearInterval(interval);
   }, []);
