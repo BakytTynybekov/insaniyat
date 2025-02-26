@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Header.css";
 
 export const Header = () => {
@@ -22,6 +22,9 @@ export const Header = () => {
       <nav className={`menu ${isMenuOpen ? "open" : ""}`}>
         <ul>
           <li>
+            <a href="#funds ">Текущие сборы</a>
+          </li>
+          <li>
             <a href="#programs">Наши Программы</a>
           </li>
           <li>
@@ -30,10 +33,13 @@ export const Header = () => {
           <li>
             <a href="#contacts">Контакты</a>
           </li>
+          <li>
+            <a href="#news">Новости</a>
+          </li>
         </ul>
       </nav>
       <button className="theme-toggle" onClick={toggleTheme}>
-        {isDarkTheme ? "🌞" : "🌙"}
+        {isDarkTheme ? "🇷🇺" : "🇰🇬"}
       </button>
       <button className="menu-toggle" onClick={toggleMenu}>
         <span></span>

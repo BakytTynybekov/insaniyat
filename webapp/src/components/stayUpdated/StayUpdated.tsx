@@ -1,4 +1,3 @@
-import React from "react";
 import "./StayUpdated.css";
 
 const news = [
@@ -41,7 +40,7 @@ const news = [
 
 const StayUpdated = () => {
   return (
-    <section className="stay-updated">
+    <section id="news" className="stay-updated">
       <h2 className="section-title">Быть в курсе</h2>
       <div className="news-grid">
         {news.map((item) => (

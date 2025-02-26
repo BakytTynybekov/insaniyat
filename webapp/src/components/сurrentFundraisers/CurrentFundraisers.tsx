@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./currentFundraisers.css";
 
 type fundRaise = {
@@ -73,7 +73,7 @@ const CurrentFundraisers = () => {
   };
 
   return (
-    <section className="current-fundraisers">
+    <section id="funds" className="current-fundraisers">
       <h2 className="section-title">Текущие сборы</h2>
       <div className="slider">
         <button className="slider-button prev" onClick={prevSlide}>

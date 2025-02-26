@@ -27,7 +27,7 @@ export const OurPrograms = () => {
   console.log(data);
 
   return (
-    <section className="our-programs">
+    <section id="programs" className="our-programs">
       <h2 className="section-title">Наши программы</h2>
       <div className="slider">
         <button className="slider-button prev" onClick={prevSlide}>
