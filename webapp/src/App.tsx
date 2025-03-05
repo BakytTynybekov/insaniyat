@@ -3,8 +3,9 @@ import { DonationPage } from "./pages/DonationPage/DonationPage";
 import MainPage from "./pages/MainPage/MainPage";
 import { Header } from "./components/header/Header";
 import Footer from "./components/footer/Footer";
-import { getViewCampaingRoute, viewDonationParams } from "./lib/routes";
+import * as routes from "./lib/routes";
 import { useEffect } from "react";
+import { NewDonationPage } from "./pages/NewDonationPage/NewDonationPage";
 
 function App() {
   const location = useLocation();
@@ -17,8 +18,10 @@ function App() {
       <Header />
       <Routes>
         <Route path={"/"} element={<MainPage />} />
+        <Route path={routes.getNewDonationRoute()} element={<NewDonationPage />} />
+
         <Route
-          path={getViewCampaingRoute(viewDonationParams)}
+          path={routes.getViewDonationRoute(routes.viewDonationParams)}
           element={<DonationPage />}
         />
       </Routes>

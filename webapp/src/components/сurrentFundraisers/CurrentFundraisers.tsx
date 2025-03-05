@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./currentFundraisers.css";
 import { useNavigate } from "react-router";
-import { getViewCampaingRoute } from "../../lib/routes";
+import { getViewDonationRoute } from "../../lib/routes";
 import { trpc } from "../../lib/trpc";
 
 const CurrentFundraisers = () => {
@@ -50,7 +50,7 @@ const CurrentFundraisers = () => {
               <div className="slide-content">
                 <h3
                   onClick={() =>
-                    navigate(getViewCampaingRoute({ fundRaiser: fundraiser.title }))
+                    navigate(getViewDonationRoute({ fundRaiser: fundraiser.title }))
                   }
                   className="slide-title"
                 >
@@ -60,7 +60,7 @@ const CurrentFundraisers = () => {
                 <div className="progress-bar">
                   <div
                     className="progress"
-                    style={{ width: `${(fundraiser.raised / fundraiser.goal) * 100}%` }}
+                    style={{ width: `${(fundraiser.raised / +fundraiser.goal) * 100}%` }}
                   ></div>
                 </div>
                 <p className="progress-text">

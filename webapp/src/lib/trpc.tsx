@@ -1,7 +1,8 @@
-import type { TrpcRouter } from "@insaniyat/backend/src/trpc";
+import type { TrpcRouter } from "@insaniyat/backend/src/router";
 import { createTRPCReact, httpBatchLink } from "@trpc/react-query";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const trpc = createTRPCReact<TrpcRouter>();
 
 const queryClient = new QueryClient({

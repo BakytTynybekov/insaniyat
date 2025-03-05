@@ -1,0 +1,58 @@
+/* Базовые стили для кнопки */
+.button {
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Стили для primary кнопки */
+.button-primary {
+  background-color: #4caf50;
+  color: white;
+}
+
+.button-primary:hover {
+  background-color: #45a049;
+}
+
+.button-primary:disabled {
+  background-color: #a5d6a7;
+  cursor: not-allowed;
+}
+
+/* Стили для secondary кнопки */
+.button-secondary {
+  background-color: #2196f3;
+  color: white;
+}
+
+.button-secondary:hover {
+  background-color: #1e88e5;
+}
+
+.button-secondary:disabled {
+  background-color: #90caf9;
+  cursor: not-allowed;
+}
+
+/* Стили для danger кнопки */
+.button-danger {
+  background-color: #f44336;
+  color: white;
+}
+
+.button-danger:hover {
+  background-color: #e53935;
+}
+
+.button-danger:disabled {
+  background-color: #ef9a9a;
+  cursor: not-allowed;
+}
