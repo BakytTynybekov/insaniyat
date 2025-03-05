@@ -1,23 +1,20 @@
 import { useState } from "react";
 import "./Header.css";
+import { useNavigate } from "react-router";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(true);
+
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const toggleTheme = () => {
-    setIsDarkTheme(!isDarkTheme);
-    document.body.classList.toggle("light-theme", !isDarkTheme);
-  };
-
   return (
     <header className="header">
       <div className="logo">
-        <h1>Insaniyat</h1>
+        <h1 onClick={() => navigate("/")}>Insaniyat</h1>
       </div>
       <nav className={`menu ${isMenuOpen ? "open" : ""}`}>
         <ul>
@@ -25,7 +22,7 @@ export const Header = () => {
             <a href="#funds ">Текущие сборы</a>
           </li>
           <li>
-            <a href="#programs">Наши Программы</a>
+            <a href="#programs">Наши Направления</a>
           </li>
           <li>
             <a href="#about">О нас</a>
@@ -38,9 +35,9 @@ export const Header = () => {
           </li>
         </ul>
       </nav>
-      <button className="theme-toggle" onClick={toggleTheme}>
+      {/* <button className="theme-toggle" onClick={toggleTheme}>
         {isDarkTheme ? "🇷🇺" : "🇰🇬"}
-      </button>
+      </button> */}
       <button className="menu-toggle" onClick={toggleMenu}>
         <span></span>
         <span></span>

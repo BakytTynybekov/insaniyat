@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./ourPrograms.css";
+import "./ourPrograms.scss";
 import { trpc } from "../../lib/trpc";
 
 export const OurPrograms = () => {
@@ -24,7 +24,6 @@ export const OurPrograms = () => {
   const prevSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + programs.length) % programs.length);
   };
-  console.log(data);
 
   return (
     <section id="programs" className="our-programs">

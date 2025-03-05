@@ -1,18 +1,25 @@
-/* Базовые стили для темной темы */
-:root {
+/* :root {
   --primary-color: #007bff;
   --background-color: #1a1a1a;
   --text-color: #ffffff;
   --hover-color: #0056b3;
   --transition-speed: 0.3s;
+} */
+
+:root {
+  --primary-color: #007bff;
+  --background-color: #ffffff;
+  --text-color: #1a1a1a;
+  --hover-color: #007bff;
+  --transition-speed: 0.3s;
 }
 
-/* Стили для светлой темы */
+/* Стили для светлой темы
 body.light-theme {
   --background-color: #ffffff;
   --text-color: #1a1a1a;
   --hover-color: #007bff;
-}
+} */
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -43,6 +50,7 @@ body {
   color: var(--primary-color);
   text-transform: uppercase;
   letter-spacing: 2px;
+  cursor: pointer;
 }
 
 .menu ul {
