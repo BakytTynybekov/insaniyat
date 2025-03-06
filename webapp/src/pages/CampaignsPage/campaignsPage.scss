@@ -1,0 +1,21 @@
+/* Основные стили */
+
+.compaignsPage {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .compaignsPage-title {
+    text-align: center;
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 40px;
+  }
+
+  /* Стили для ленты сборов */
+  .fund-raiser-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+}

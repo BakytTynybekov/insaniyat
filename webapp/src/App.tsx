@@ -1,18 +1,13 @@
-import { Route, Routes, useLocation } from "react-router";
+import { Route, Routes } from "react-router";
 import { DonationPage } from "./pages/DonationPage/DonationPage";
 import MainPage from "./pages/MainPage/MainPage";
 import { Header } from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import * as routes from "./lib/routes";
-import { useEffect } from "react";
 import { NewDonationPage } from "./pages/NewDonationPage/NewDonationPage";
+import { CampaignsPage } from "./pages/CampaignsPage/CampaignsPage";
 
 function App() {
-  const location = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
   return (
     <>
       <Header />
@@ -20,6 +15,7 @@ function App() {
         <Route path={"/"} element={<MainPage />} />
         <Route path={routes.getNewDonationRoute()} element={<NewDonationPage />} />
 
+        <Route path={routes.getViewCampaignsPageRoute} element={<CampaignsPage />} />
         <Route
           path={routes.getViewDonationRoute(routes.viewDonationParams)}
           element={<DonationPage />}

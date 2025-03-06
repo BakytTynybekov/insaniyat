@@ -1,3 +1,4 @@
+import Button from "../Button/Button";
 import "./CollaborationSection.css";
 
 const CollaborationSection = () => {
@@ -9,7 +10,7 @@ const CollaborationSection = () => {
           Мы открыты для партнерства с организациями и волонтерами. Вместе мы сможем
           сделать больше!
         </p>
-        <button className="collaboration-button">Связаться с нами</button>
+        <Button variant="secondary" children="Связаться с нами" />
       </div>
     </section>
   );

@@ -2,6 +2,7 @@ import { useParams } from "react-router";
 import "./donationPage.css"; // Стили для компонента
 import type { viewDonationParams } from "../../lib/routes";
 import { trpc } from "../../lib/trpc";
+import Button from "../../components/Button/Button";
 
 export const DonationPage = () => {
   const { fundRaiser } = useParams() as viewDonationParams;
@@ -59,7 +60,7 @@ export const DonationPage = () => {
             Собрано {data.fundRaiser.raised.toLocaleString()} ₽ из{" "}
             {data.fundRaiser.goal.toLocaleString()} ₽
           </div>
-          <button className="donate-button">Помочь сейчас</button>
+          <Button variant="secondary" width="100%" children="Помочь сейчас" />
         </div>
 
         {/* Описание сбора */}

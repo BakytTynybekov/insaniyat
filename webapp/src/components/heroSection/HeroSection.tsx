@@ -1,6 +1,11 @@
+import { useNavigate } from "react-router";
+import Button from "../Button/Button";
 import "./heroSection.css";
+import { getViewCampaignsPageRoute } from "../../lib/routes";
 
 export const HeroSection = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="hero">
       <div className="hero-content">
@@ -9,7 +14,11 @@ export const HeroSection = () => {
           Присоединяйтесь к нам, чтобы изменить жизни тысяч людей. Ваша поддержка — это
           надежда для тех, кто в ней нуждается.
         </p>
-        <button className="hero-button">Сделать пожертвование</button>
+        <Button
+          onClick={() => navigate(getViewCampaignsPageRoute)}
+          variant="secondary"
+          children="Сделать пожертвование"
+        />
       </div>
     </section>
   );

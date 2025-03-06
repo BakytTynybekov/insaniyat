@@ -4,10 +4,16 @@ import { Input } from "../../components/Input/Input";
 import { Textarea } from "../../components/TextArea/Textarea";
 import Button from "../../components/Button/Button";
 import { withZodSchema } from "formik-validator-zod";
-import { z } from "zod";
 import { trpc } from "../../lib/trpc";
+import { zCreateIdeaTrpcInput } from "@insaniyat/backend/src/router/createFundRaiser/input";
+import { useState } from "react";
+import { Alert } from "../../components/Alert/Alert";
+import { FormItems } from "../../components/FormItems/FormItems";
 
 export const NewDonationPage = () => {
+  const [successMessageVisible, setSuccessMessageVisible] = useState(false);
+  const [submittingError, setSubmittingError] = useState<string | null>(null);
+
   const createFundraiser = trpc.createFundRaiser.useMutation();
   const formik = useFormik({
     initialValues: {
@@ -19,34 +25,37 @@ export const NewDonationPage = () => {
       raised: 0,
       image: "",
     },
-    validate: withZodSchema(
-      z.object({
-        id: z.number(),
-        title: z.string().min(1),
-        description: z.string().min(1),
-        text: z.string().min(100),
-        goal: z.string().min(1),
-        raised: z.number(),
-        image: z.string().min(1),
-      })
-    ),
+    validate: withZodSchema(zCreateIdeaTrpcInput),
 
     onSubmit: async (values) => {
-      await createFundraiser.mutateAsync(values);
+      try {
+        await createFundraiser.mutateAsync(values);
+        formik.resetForm();
+        setSuccessMessageVisible(true);
+        setTimeout(() => {
+          setSuccessMessageVisible(false);
+        }, 3000);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
+        setSubmittingError(error.message);
+        setTimeout(() => {
+          setSubmittingError(null);
+        }, 3000);
+      }
+
       console.log("Submitted", values);
     },
   });
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    formik.handleSubmit();
+  };
+
   return (
     <div className="new-fundraiser-page">
       <h1>Добавить новый сбор</h1>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          formik.handleSubmit();
-        }}
-        className="fundraiser-form"
-      >
+      <FormItems onSubmit={(e) => handleSubmit(e)}>
         <Input label={"Заголовок"} type="text" name="title" formik={formik} />
 
         <Textarea label="Описание" name="description" formik={formik} />
@@ -59,12 +68,21 @@ export const NewDonationPage = () => {
           formik={formik}
         />
         <Input label={"Ссылка на изображение"} type="url" name="image" formik={formik} />
-        {!formik.isValid && !!formik.submitCount && (
-          <div style={{ color: "red" }}>Some fields are invalid</div>
-        )}
 
-        <Button type="submit" children="Добавить сбор" />
-      </form>
+        {!formik.isValid && !!formik.submitCount && (
+          <Alert color="red" children="Some fields are invalid" />
+        )}
+        {submittingError && <Alert color="red" children={submittingError} />}
+
+        {successMessageVisible && <Alert color="green" children="Сбор создан!" />}
+
+        <Button
+          disabled={formik.isSubmitting}
+          type="submit"
+          children={formik.isSubmitting ? "loading..." : "Добавить сбор"}
+          width="100%"
+        />
+      </FormItems>
     </div>
   );
 };

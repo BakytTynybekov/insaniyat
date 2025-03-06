@@ -1,6 +1,5 @@
 /* Базовые стили для кнопки */
 .button {
-  width: 100%;
   padding: 10px 20px;
   font-size: 1rem;
   border: none;
@@ -13,6 +12,7 @@
 }
 
 /* Стили для primary кнопки */
+
 .button-primary {
   background-color: #4caf50;
   color: white;
@@ -29,17 +29,23 @@
 
 /* Стили для secondary кнопки */
 .button-secondary {
-  background-color: #2196f3;
-  color: white;
-}
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 
-.button-secondary:hover {
-  background-color: #1e88e5;
-}
-
-.button-secondary:disabled {
-  background-color: #90caf9;
-  cursor: not-allowed;
+  &:hover {
+    background-color: #1e88e5;
+  }
+  &disabled {
+    background-color: #90caf9;
+    cursor: not-allowed;
+  }
 }
 
 /* Стили для danger кнопки */

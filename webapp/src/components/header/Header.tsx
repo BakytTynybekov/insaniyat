@@ -19,7 +19,7 @@ export const Header = () => {
       <nav className={`menu ${isMenuOpen ? "open" : ""}`}>
         <ul>
           <li>
-            <a href="#funds ">Текущие сборы</a>
+            <a href="/campaigns">Текущие сборы</a>
           </li>
           <li>
             <a href="#programs">Наши Направления</a>

@@ -8,6 +8,7 @@ interface ButtonProps {
   disabled?: boolean; // Отключение кнопки
   className?: string; // Дополнительные классы для стилизации
   variant?: "primary" | "secondary" | "danger"; // Вариант стиля кнопки
+  width?: "100%";
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -17,6 +18,7 @@ const Button: React.FC<ButtonProps> = ({
   disabled = false,
   className = "",
   variant = "primary",
+  width = "",
 }) => {
   // Определяем классы для разных вариантов кнопки
   const variantClasses = {
@@ -30,6 +32,7 @@ const Button: React.FC<ButtonProps> = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
+      style={{ width: width }}
       className={`button ${variantClasses[variant]} ${className}`}
     >
       {children}

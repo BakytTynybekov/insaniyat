@@ -37,6 +37,7 @@ export const Input = ({
         name={name}
         id={name}
         required={required}
+        disabled={formik.isSubmitting}
       />
       {!!touched && !!error && <div style={{ color: "red" }}>{error}</div>}
     </div>
