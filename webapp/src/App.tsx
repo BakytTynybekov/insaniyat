@@ -6,6 +6,7 @@ import Footer from "./components/footer/Footer";
 import * as routes from "./lib/routes";
 import { NewDonationPage } from "./pages/NewDonationPage/NewDonationPage";
 import { CampaignsPage } from "./pages/CampaignsPage/CampaignsPage";
+import { ProgramsPage } from "./pages/ProgramsPage/ProgramsPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           path={routes.getViewDonationRoute(routes.viewDonationParams)}
           element={<DonationPage />}
         />
+        <Route path="/programs" element={<ProgramsPage />} />
       </Routes>
       <Footer />
     </>

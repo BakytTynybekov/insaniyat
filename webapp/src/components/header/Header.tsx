@@ -22,7 +22,7 @@ export const Header = () => {
             <a href="/campaigns">Текущие сборы</a>
           </li>
           <li>
-            <a href="#programs">Наши Направления</a>
+            <a href="/programs">Наши Направления</a>
           </li>
           <li>
             <a href="#about">О нас</a>
