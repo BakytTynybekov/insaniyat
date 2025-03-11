@@ -23,10 +23,7 @@ export const DonationPage = () => {
     return <span>Idea not found</span>;
   }
 
-  // Пример данных
-  const donationGoal = 1000000; // Цель сбора
-  const currentAmount = 450000; // Текущая сумма
-  const progress = (currentAmount / donationGoal) * 100; // Прогресс
+  const progress = (+data.fundRaiser.raised / +data.fundRaiser.goal) * 100;
 
   const donors = [
     { name: "Иван Иванов", amount: 10000, date: "2023-10-01" },

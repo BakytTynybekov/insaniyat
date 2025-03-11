@@ -9,12 +9,14 @@ import { zCreateIdeaTrpcInput } from "@insaniyat/backend/src/router/createFundRa
 import { useState } from "react";
 import { Alert } from "../../components/Alert/Alert";
 import { FormItems } from "../../components/FormItems/FormItems";
+import { Editor } from "@tinymce/tinymce-react";
 
 export const NewDonationPage = () => {
   const [successMessageVisible, setSuccessMessageVisible] = useState(false);
   const [submittingError, setSubmittingError] = useState<string | null>(null);
 
   const createFundraiser = trpc.createFundRaiser.useMutation();
+
   const formik = useFormik({
     initialValues: {
       id: 0,
@@ -59,8 +61,29 @@ export const NewDonationPage = () => {
         <Input label={"Заголовок"} type="text" name="title" formik={formik} />
 
         <Textarea label="Описание" name="description" formik={formik} />
-        <Textarea label="Текст" name="text" formik={formik} />
-
+        <Editor
+          apiKey="y2m291htufpadrdjbgkmyqtwtl9cnmn2x0civphbz6zk7xkg"
+          value={formik.values.text}
+          onEditorChange={(newContent) => {
+            formik.setFieldValue("text", newContent);
+          }}
+          onBlur={() => {
+            formik.setFieldTouched("text");
+          }}
+          init={{
+            height: 500,
+            menubar: false,
+            plugins: [
+              "advlist autolink lists link image charmap print preview anchor",
+              "searchreplace visualblocks code fullscreen",
+              "insertdatetime media table paste code help wordcount",
+            ],
+            toolbar:
+              "undo redo | blocks | formatselect | bold italic backcolor | \
+            alignleft aligncenter alignright alignjustify | \
+            bullist numlist outdent indent | removeformat | help",
+          }}
+        />
         <Input
           label={"Цель сбора (в рублях)"}
           type="number"
