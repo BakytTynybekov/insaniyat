@@ -3,10 +3,10 @@ import "./fundRaiserCard.scss";
 import Button from "../../components/Button/Button";
 
 interface FundRaiser {
-  id: number;
+  id: string;
   title: string;
+  status: string;
   description: string;
-  text: string;
   goal: string;
   raised: number;
   image: string;

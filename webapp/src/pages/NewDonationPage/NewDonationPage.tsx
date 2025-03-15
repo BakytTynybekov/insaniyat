@@ -5,7 +5,7 @@ import { Textarea } from "../../components/TextArea/Textarea";
 import Button from "../../components/Button/Button";
 import { withZodSchema } from "formik-validator-zod";
 import { trpc } from "../../lib/trpc";
-import { zCreateIdeaTrpcInput } from "@insaniyat/backend/src/router/createFundRaiser/input";
+import { zCreateFundRaiserTrpcInput } from "@insaniyat/backend/src/router/createFundRaiser/input";
 import { useState } from "react";
 import { Alert } from "../../components/Alert/Alert";
 import { FormItems } from "../../components/FormItems/FormItems";
@@ -19,15 +19,15 @@ export const NewDonationPage = () => {
 
   const formik = useFormik({
     initialValues: {
-      id: 0,
       title: "",
       description: "",
+      // programId: "1",
       text: "",
       goal: "",
       raised: 0,
       image: "",
     },
-    validate: withZodSchema(zCreateIdeaTrpcInput),
+    validate: withZodSchema(zCreateFundRaiserTrpcInput),
 
     onSubmit: async (values) => {
       try {
@@ -37,6 +37,8 @@ export const NewDonationPage = () => {
         setTimeout(() => {
           setSuccessMessageVisible(false);
         }, 3000);
+        console.log("Submitted", values);
+
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         setSubmittingError(error.message);
@@ -44,8 +46,6 @@ export const NewDonationPage = () => {
           setSubmittingError(null);
         }, 3000);
       }
-
-      console.log("Submitted", values);
     },
   });
 

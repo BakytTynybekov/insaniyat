@@ -1,6 +1,5 @@
 import { z } from "zod";
 import { trpc } from "../../lib/trpc";
-import { fundRaisers } from "../../lib/fundRaisers";
 
 export const getFundRaiserTrpcRoute = trpc.procedure
   .input(
@@ -8,10 +7,12 @@ export const getFundRaiserTrpcRoute = trpc.procedure
       fundRaiser: z.string(),
     })
   )
-  .query(({ input }) => {
-    const fundRaiser = fundRaisers.find(
-      (fundRaiser) => fundRaiser.title === input.fundRaiser
-    );
+  .query(async ({ ctx, input }) => {
+    const fundRaiser = await ctx.prisma.fundRaiser.findUnique({
+      where: {
+        title: input.fundRaiser,
+      },
+    });
 
-    return { fundRaiser: fundRaiser || null };
+    return { fundRaiser };
   });

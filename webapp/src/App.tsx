@@ -7,6 +7,7 @@ import * as routes from "./lib/routes";
 import { NewDonationPage } from "./pages/NewDonationPage/NewDonationPage";
 import { CampaignsPage } from "./pages/CampaignsPage/CampaignsPage";
 import { ProgramsPage } from "./pages/ProgramsPage/ProgramsPage";
+import { SignUpPage } from "./pages/SignUpPage/SignUpPage";
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
       <Routes>
         <Route path={"/"} element={<MainPage />} />
         <Route path={routes.getNewDonationRoute()} element={<NewDonationPage />} />
+        <Route path={routes.getSingUpRoute()} element={<SignUpPage />} />
 
-        <Route path={routes.getViewCampaignsPageRoute} element={<CampaignsPage />} />
+        <Route path={routes.getViewCampaignsRoute} element={<CampaignsPage />} />
         <Route
           path={routes.getViewDonationRoute(routes.viewDonationParams)}
           element={<DonationPage />}

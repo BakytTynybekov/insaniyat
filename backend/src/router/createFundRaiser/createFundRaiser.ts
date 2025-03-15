@@ -1,13 +1,20 @@
 import { trpc } from "../../lib/trpc";
-import { fundRaisers } from "../../lib/fundRaisers";
-import { zCreateIdeaTrpcInput } from "./input";
+import { zCreateFundRaiserTrpcInput } from "./input";
 
 export const createFundRaiserTrpcRoute = trpc.procedure
-  .input(zCreateIdeaTrpcInput)
-  .mutation(({ input }) => {
-    if (fundRaisers.find((fundRaiser) => fundRaiser.title === input.title)) {
-      throw Error("Сбор с таким именем уже существует!!!");
+  .input(zCreateFundRaiserTrpcInput)
+  .mutation(async ({ ctx, input }) => {
+    const exFundRaiser = await ctx.prisma.fundRaiser.findUnique({
+      where: {
+        title: input.title,
+      },
+    });
+
+    if (exFundRaiser) {
+      throw new Error("Сбор с таким именем уже существует!!!");
     }
-    fundRaisers.push(input);
+    await ctx.prisma.fundRaiser.create({
+      data: input,
+    });
     return true;
   });

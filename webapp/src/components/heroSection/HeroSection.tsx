@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import Button from "../Button/Button";
 import "./heroSection.css";
-import { getViewCampaignsPageRoute } from "../../lib/routes";
+import { getViewCampaignsRoute } from "../../lib/routes";
 
 export const HeroSection = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ export const HeroSection = () => {
           надежда для тех, кто в ней нуждается.
         </p>
         <Button
-          onClick={() => navigate(getViewCampaignsPageRoute)}
+          onClick={() => navigate(getViewCampaignsRoute)}
           variant="secondary"
           children="Сделать пожертвование"
         />

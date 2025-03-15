@@ -3,11 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "ts-node-dev --rs ./src/index.ts",
+    "dev": "ts-node-dev --rs --exit-child ./src/index.ts",
     "build": "rimraf ./dist && tsc --build ./tsconfig.json",
     "start": "node ./dist/index.js",
+    "prisma": "prisma",
     "pmd": "prisma migrate dev --schema=./src/prisma/schema.prisma",
     "pgc": "prisma generate --schema=./src/prisma/schema.prisma",
+    "pmr": "prisma migrate reset --schema=./src/prisma/schema.prisma",
     "types": "tsc --noEmit --project ./tsconfig.json",
     "prepare": "pnpm pgc"
   },
@@ -17,6 +19,8 @@
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "lodash": "^4.17.21",
+    "superjson": "^2.2.2",
+    "trpc-playground": "^1.0.4",
     "zod": "^3.24.2"
   },
   "devDependencies": {

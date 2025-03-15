@@ -1,6 +1,9 @@
 import { useState } from "react";
-import "./Header.css";
+import "./Header.scss";
 import { useNavigate } from "react-router";
+import Button from "../Button/Button";
+import { Link } from "react-router";
+import * as routes from "../../lib/routes";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,30 +22,40 @@ export const Header = () => {
       <nav className={`menu ${isMenuOpen ? "open" : ""}`}>
         <ul>
           <li>
-            <a href="/campaigns">Текущие сборы</a>
+            <Link to={routes.getViewCampaignsRoute}>Текущие сборы</Link>
           </li>
           <li>
-            <a href="/programs">Наши Направления</a>
+            <Link to="/programs">Наши Направления</Link>
           </li>
           <li>
-            <a href="#about">О нас</a>
+            <Link to="/about">О нас</Link>
           </li>
           <li>
-            <a href="#contacts">Контакты</a>
+            <Link to="/contacts">Контакты</Link>
           </li>
           <li>
-            <a href="#news">Новости</a>
+            <Link to="/news">Новости</Link>
           </li>
         </ul>
       </nav>
-      {/* <button className="theme-toggle" onClick={toggleTheme}>
-        {isDarkTheme ? "🇷🇺" : "🇰🇬"}
-      </button> */}
-      <button className="menu-toggle" onClick={toggleMenu}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+
+      <div className="buttons">
+        <Link to={routes.getViewCampaignsRoute} className="buttons_help">
+          <Button>Хочу помочь</Button>
+        </Link>
+
+        <Link to={routes.getSingUpRoute()} className="buttons_sign">
+          <Button className="sign-btn" variant="secondary">
+            Войти
+          </Button>
+        </Link>
+
+        <button className="menu-toggle" onClick={toggleMenu}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </header>
   );
 };

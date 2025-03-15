@@ -7,27 +7,41 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Program {
-    id          String       @id @default(uuid())
-    title       String       @unique
-    description String
-    image       String
-    fundraisers FundRaiser[]
-    createdAt   DateTime     @default(now())
-    updatedAt   DateTime     @updatedAt
+model User {
+    id        String   @id @default(uuid())
+    email     String   @unique
+    password  String
+    name      String
+    createdAt DateTime @default(now())
 }
 
+// model Program {
+//     id          String       @id @default(uuid())
+//     title       String       @unique
+//     description String
+//     image       String
+//     fundraisers FundRaiser[]
+//     createdAt   DateTime     @default(now())
+//     updatedAt   DateTime     @updatedAt
+// }
+
 model FundRaiser {
-    id          String   @id @default(uuid())
-    title       String   @unique
+    id          String     @id @default(uuid())
+    title       String     @unique
     description String
     text        String
-    goal        Float
+    goal        String
     raised      Float
+    status      StatusType @default(ACTIVE)
     image       String
     images      String[]
-    programId   String
-    program     Program  @relation(fields: [programId], references: [id])
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
+    // programId   String?
+    // program     Program?   @relation(fields: [programId], references: [id])
+    createdAt   DateTime   @default(now())
+    updatedAt   DateTime   @updatedAt
+}
+
+enum StatusType {
+    ACTIVE
+    COMPLETED
 }
