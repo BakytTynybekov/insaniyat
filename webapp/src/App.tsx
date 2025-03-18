@@ -8,6 +8,8 @@ import { NewDonationPage } from "./pages/NewDonationPage/NewDonationPage";
 import { CampaignsPage } from "./pages/CampaignsPage/CampaignsPage";
 import { ProgramsPage } from "./pages/ProgramsPage/ProgramsPage";
 import { SignUpPage } from "./pages/SignUpPage/SignUpPage";
+import { SignInPage } from "./pages/SignInPage/SignInPage";
+import { SignOutPage } from "./pages/SignOutPage/SignOutPage";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path={"/"} element={<MainPage />} />
         <Route path={routes.getNewDonationRoute()} element={<NewDonationPage />} />
         <Route path={routes.getSingUpRoute()} element={<SignUpPage />} />
+        <Route path={routes.getSignInRoute()} element={<SignInPage />} />
+        <Route path={routes.getSignOutRoute()} element={<SignOutPage />} />
 
         <Route path={routes.getViewCampaignsRoute} element={<CampaignsPage />} />
         <Route

@@ -1,18 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Header.scss";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import Button from "../Button/Button";
 import { Link } from "react-router";
 import * as routes from "../../lib/routes";
+import { trpc } from "../../lib/trpc";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const { data, isLoading, isFetching, isError } = trpc.getMe.useQuery();
+  const path = useLocation();
 
   const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [path]);
 
   return (
     <header className="header">
@@ -44,11 +52,19 @@ export const Header = () => {
           <Button>Хочу помочь</Button>
         </Link>
 
-        <Link to={routes.getSingUpRoute()} className="buttons_sign">
-          <Button className="sign-btn" variant="secondary">
-            Войти
-          </Button>
-        </Link>
+        {isLoading || isError || isFetching ? null : data.me ? (
+          <Link to={routes.getSignOutRoute()} className="buttons_sign">
+            <Button className="sign-btn" variant="danger">
+              Выход
+            </Button>
+          </Link>
+        ) : (
+          <Link to={routes.getSignInRoute()} className="buttons_sign">
+            <Button className="sign-btn" variant="secondary">
+              Вход
+            </Button>
+          </Link>
+        )}
 
         <button className="menu-toggle" onClick={toggleMenu}>
           <span></span>

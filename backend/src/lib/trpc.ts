@@ -1,9 +1,21 @@
-import { initTRPC } from "@trpc/server";
+import { inferAsyncReturnType, initTRPC } from "@trpc/server";
 import { type Express } from "express";
 import { type TrpcRouter } from "../router";
 import * as trpcExpress from "@trpc/server/adapters/express";
 import { type AppContext } from "./context";
-export const trpc = initTRPC.context<AppContext>().create();
+import { ExpressRequest } from "../utils/types";
+
+const getCreateTrpcContext =
+  (appContext: AppContext) =>
+  ({ req }: trpcExpress.CreateExpressContextOptions) => ({
+    ...appContext,
+    me: (req as ExpressRequest).user || null,
+  });
+
+type TrpcContext = inferAsyncReturnType<ReturnType<typeof getCreateTrpcContext>>;
+
+export const trpc = initTRPC.context<TrpcContext>().create();
+
 export const applyTrpcToExpressApp = async (
   expressApp: Express,
   appContext: AppContext,
@@ -13,7 +25,7 @@ export const applyTrpcToExpressApp = async (
     "/trpc",
     trpcExpress.createExpressMiddleware({
       router: trpcRouter,
-      createContext: () => appContext,
+      createContext: getCreateTrpcContext(appContext),
     })
   );
 };

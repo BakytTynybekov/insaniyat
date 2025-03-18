@@ -1,0 +1,26 @@
+.signIn-page {
+  display: grid;
+  justify-content: center;
+  margin-bottom: 50px;
+
+  a {
+    text-decoration: none;
+    color: var(--primary-color);
+
+    &:hover {
+      color: var(--hover-color);
+      transition: var(--transition-speed);
+    }
+  }
+
+  .not-have-acc {
+    display: grid;
+    margin-top: 20px;
+    text-align: center;
+    gap: 5px;
+  }
+
+  .forgot-pass {
+    display: flex;
+  }
+}

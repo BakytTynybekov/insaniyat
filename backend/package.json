@@ -10,15 +10,17 @@
     "pmd": "prisma migrate dev --schema=./src/prisma/schema.prisma",
     "pgc": "prisma generate --schema=./src/prisma/schema.prisma",
     "pmr": "prisma migrate reset --schema=./src/prisma/schema.prisma",
-    "types": "tsc --noEmit --project ./tsconfig.json",
-    "prepare": "pnpm pgc"
+    "types": "tsc --noEmit --project ./tsconfig.json"
   },
   "dependencies": {
     "@prisma/client": "^6.5.0",
     "@trpc/server": "^10.45.2",
     "cors": "^2.8.5",
     "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
     "superjson": "^2.2.2",
     "trpc-playground": "^1.0.4",
     "zod": "^3.24.2"
@@ -26,8 +28,11 @@
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.9",
     "@types/lodash": "^4.17.16",
     "@types/node": "^22.13.4",
+    "@types/passport": "^1.0.17",
+    "@types/passport-jwt": "^4.0.1",
     "prettier": "^3.5.1",
     "prisma": "^6.5.0",
     "rimraf": "^6.0.1",

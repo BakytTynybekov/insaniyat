@@ -2,8 +2,10 @@ import { trpc } from "../lib/trpc";
 import { createFundRaiserTrpcRoute } from "./createFundRaiser/createFundRaiser";
 import { getFundRaiserTrpcRoute } from "./getFundRaiser/getFundRaiser";
 import { getFundRaisersTrpcRoute } from "./getFundRaisers/getFundRaisers";
+import { getMeTrpcRoute } from "./getMe/getMe";
 import { getProgramsTrpcRoute } from "./getPrograms/getPrograms";
 import { signUpTrpcRoute } from "./signUp/signUp";
+import { signInTrpcRoute } from "./singIn/signIn";
 
 export const trpcRouter = trpc.router({
   getPrograms: getProgramsTrpcRoute,
@@ -11,6 +13,8 @@ export const trpcRouter = trpc.router({
   getFundRaiser: getFundRaiserTrpcRoute,
   createFundRaiser: createFundRaiserTrpcRoute,
   signUp: signUpTrpcRoute,
+  signIn: signInTrpcRoute,
+  getMe: getMeTrpcRoute,
 });
 
 export type TrpcRouter = typeof trpcRouter;

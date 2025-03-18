@@ -6,4 +6,7 @@ export const getViewDonationRoute = ({ fundRaiser }: { fundRaiser: string }) =>
   `/campaigns/${fundRaiser}`;
 
 export const getNewDonationRoute = () => "/campaigns/new";
-export const getSingUpRoute = () => "/signUp";
+export const getSingUpRoute = () => "/sign-up";
+
+export const getSignInRoute = () => "/sign-in";
+export const getSignOutRoute = () => "/sign-out";

@@ -1,59 +1,42 @@
 import { useFormik } from "formik";
-import "./signUpPage.scss";
+import "./signInPage.scss";
 import Button from "../../components/Button/Button";
 import { withZodSchema } from "formik-validator-zod";
 import { trpc } from "../../lib/trpc";
 import { useState } from "react";
 import { FormItems } from "../../components/FormItems/FormItems";
-import { zSignUpTrpcInput } from "@insaniyat/backend/src/router/signUp/input";
-import z from "zod";
+import { zSignInTrpcInput } from "@insaniyat/backend/src/router/singIn/input";
 import { Input } from "../../components/Input/Input";
 import { Alert } from "../../components/Alert/Alert";
+import { Link, useNavigate } from "react-router";
+import { getSignInRoute } from "../../lib/routes";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router";
 
-export const SignUpPage = () => {
+export const SignInPage = () => {
   const [submittingError, setSubmittingError] = useState<string | null>(null);
 
   const trpcUtils = trpc.useUtils();
 
   const navigate = useNavigate();
 
-  const signUp = trpc.signUp.useMutation();
+  const signIn = trpc.signIn.useMutation();
 
   const formik = useFormik({
     initialValues: {
-      name: "",
       email: "",
       password: "",
-      passwordAgain: "",
     },
-    validate: withZodSchema(
-      zSignUpTrpcInput
-        .extend({
-          passwordAgain: z.string().min(5),
-        })
-        .superRefine((val, ctx) => {
-          if (val.password !== val.passwordAgain) {
-            ctx.addIssue({
-              code: z.ZodIssueCode.custom,
-              message: "Пароли должны совпадать",
-              path: ["passwordAgain"],
-            });
-          }
-        })
-    ),
+    validate: withZodSchema(zSignInTrpcInput),
 
     onSubmit: async (values) => {
       try {
         setSubmittingError(null);
-        const { token } = await signUp.mutateAsync(values);
+        const { token } = await signIn.mutateAsync(values);
         Cookies.set("token", token, { expires: 9999 });
         trpcUtils.invalidate();
-
         navigate("/");
 
-        console.log("Registered", values);
+        console.log("Loggen", values);
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
@@ -68,18 +51,11 @@ export const SignUpPage = () => {
   };
 
   return (
-    <div className="signUp-page">
-      <h1>Регистрация</h1>
+    <div className="signIn-page">
+      <h1>Авторизация</h1>
       <FormItems width="400px" onSubmit={(e) => handleSubmit(e)}>
-        <Input type="text" label="ФИО" name="name" formik={formik} />
         <Input type="email" label="Почта" name="email" formik={formik} />
         <Input type="password" label="Пароль" name="password" formik={formik} />
-        <Input
-          type="password"
-          label="Повторите пароль"
-          name="passwordAgain"
-          formik={formik}
-        />
 
         {!formik.isValid && !!formik.submitCount && (
           <Alert color="red" children="Some fields are invalid" />
@@ -90,9 +66,13 @@ export const SignUpPage = () => {
           variant="secondary"
           disabled={formik.isSubmitting}
           type="submit"
-          children={formik.isSubmitting ? "loading..." : "Зарегистрироваться"}
+          children={formik.isSubmitting ? "loading..." : "Войти"}
           width="100%"
         />
+        <div className="not-have-acc">
+          <Link to={getSignInRoute()}>Зарегистрироваться</Link>
+          <Link to={"/sing-in"}>Восстановить пароль</Link>
+        </div>
       </FormItems>
     </div>
   );
