@@ -10,7 +10,7 @@ export const FormItems = ({
   width?: string;
 }) => {
   return (
-    <form style={{ width: width }} onSubmit={onSubmit} className={"formItems"}>
+    <form style={{ maxWidth: width }} onSubmit={onSubmit} className={"formItems"}>
       {children}
     </form>
   );

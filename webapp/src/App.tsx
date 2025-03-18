@@ -18,7 +18,7 @@ function App() {
       <Routes>
         <Route path={"/"} element={<MainPage />} />
         <Route path={routes.getNewDonationRoute()} element={<NewDonationPage />} />
-        <Route path={routes.getSingUpRoute()} element={<SignUpPage />} />
+        <Route path={routes.getSignUpRoute()} element={<SignUpPage />} />
         <Route path={routes.getSignInRoute()} element={<SignInPage />} />
         <Route path={routes.getSignOutRoute()} element={<SignOutPage />} />
 

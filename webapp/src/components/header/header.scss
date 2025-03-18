@@ -58,16 +58,10 @@
 
   .buttons {
     display: flex;
-    gap: 10px;
-
-    button {
-      padding: 14px 20px;
-    }
+    align-items: center;
 
     &_sign {
-      text-decoration: none;
-      color: inherit;
-      font-size: 16px;
+      color: black;
     }
 
     &_help {
@@ -80,39 +74,38 @@
 
   .menu-toggle {
     display: none;
-    flex-direction: column;
-    gap: 5px;
+
     background: none;
     border: none;
     cursor: pointer;
     padding: 0.5rem;
   }
 
-  .menu-toggle span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: var(--text-color);
-    transition: transform var(--transition-speed) ease,
-      opacity var(--transition-speed) ease;
-  }
+  .profile {
+    position: relative;
 
-  .menu-toggle.open span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
+    &-logo {
+      cursor: pointer;
+    }
 
-  .menu-toggle.open span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .menu-toggle.open span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+    button {
+      display: flex;
+      height: 40px;
+      width: 40px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: hsl(210 40% 96.1%);
+      padding: 10px;
+      border: none;
+      outline: none;
+    }
   }
 
   @media (max-width: 768px) {
     .menu {
       position: fixed;
-      top: 60px;
+      top: 85px;
       right: 0;
       width: 100%;
       height: calc(100vh - 60px);
@@ -126,6 +119,10 @@
 
     .menu.open {
       transform: translateX(0);
+    }
+
+    .buttons_help {
+      display: none;
     }
 
     .menu ul {

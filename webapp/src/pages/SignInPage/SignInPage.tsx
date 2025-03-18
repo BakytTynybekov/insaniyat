@@ -9,7 +9,7 @@ import { zSignInTrpcInput } from "@insaniyat/backend/src/router/singIn/input";
 import { Input } from "../../components/Input/Input";
 import { Alert } from "../../components/Alert/Alert";
 import { Link, useNavigate } from "react-router";
-import { getSignInRoute } from "../../lib/routes";
+import { getSignUpRoute } from "../../lib/routes";
 import Cookies from "js-cookie";
 
 export const SignInPage = () => {
@@ -53,7 +53,7 @@ export const SignInPage = () => {
   return (
     <div className="signIn-page">
       <h1>Авторизация</h1>
-      <FormItems width="400px" onSubmit={(e) => handleSubmit(e)}>
+      <FormItems width="500px" onSubmit={(e) => handleSubmit(e)}>
         <Input type="email" label="Почта" name="email" formik={formik} />
         <Input type="password" label="Пароль" name="password" formik={formik} />
 
@@ -70,7 +70,7 @@ export const SignInPage = () => {
           width="100%"
         />
         <div className="not-have-acc">
-          <Link to={getSignInRoute()}>Зарегистрироваться</Link>
+          <Link to={getSignUpRoute()}>Зарегистрироваться</Link>
           <Link to={"/sing-in"}>Восстановить пароль</Link>
         </div>
       </FormItems>
