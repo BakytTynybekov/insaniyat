@@ -82,7 +82,7 @@ export const Header = () => {
               className="profile-logo"
               onClick={() => setIsDropMenuOpen(!isDropMenuOpen)}
             >
-              {data.me.name.split(" ")[1][0]}
+              {data.me.name[0]}
             </button>
             {isDropMenuOpen && <DropDownMenu email={data.me.email} name={data.me.name} />}
           </div>

@@ -2,14 +2,17 @@ import { Passport } from "passport";
 import { ExtractJwt, Strategy as JWTStrategy } from "passport-jwt";
 import { type Express } from "express";
 import { type AppContext } from "./context";
+import * as dotenv from "dotenv";
+import { env } from "./env";
 
+dotenv.config();
 export const applyPassportToExpressApp = (expressApp: Express, ctx: AppContext): void => {
   const passport = new Passport();
 
   passport.use(
     new JWTStrategy(
       {
-        secretOrKey: "not-really-secret-jwt-key",
+        secretOrKey: env.JWT_SECRET,
         jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme("Bearer"),
       },
 

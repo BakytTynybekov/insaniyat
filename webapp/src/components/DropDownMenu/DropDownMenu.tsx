@@ -8,7 +8,7 @@ export const DropDownMenu = ({ name, email }: { name: string; email: string }) =
   return (
     <div className="dropDownMenu">
       <div className="dropDownMenu__accInfo">
-        <span className="dropDownMenu__accInfo-name">Привет, {name.split(" ")[0]} </span>
+        <span className="dropDownMenu__accInfo-name">Привет, {name} </span>
         <span className="dropDownMenu__accInfo-email">{email}</span>
       </div>
       <ul className="dropDownMenu__list">
