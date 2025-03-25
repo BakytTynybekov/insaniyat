@@ -37,7 +37,6 @@ export const NewDonationPage = () => {
         setTimeout(() => {
           setSuccessMessageVisible(false);
         }, 3000);
-        console.log("Submitted", values);
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {

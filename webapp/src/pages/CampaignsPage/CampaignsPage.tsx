@@ -19,10 +19,7 @@ export const CampaignsPage = () => {
   const fundraisers = data?.fundRaisers || [];
 
   const handleSupportClick = (title: string) => {
-    console.log(`Поддержать сбор с ID: ${title}`);
-
     navigate(getViewDonationRoute({ fundRaiser: title }));
-    // Здесь можно добавить логику для перехода на страницу сбора или открытия модального окна
   };
 
   return (

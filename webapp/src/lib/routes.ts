@@ -10,3 +10,8 @@ export const getSignUpRoute = () => "/sign-up";
 
 export const getSignInRoute = () => "/sign-in";
 export const getSignOutRoute = () => "/sign-out";
+export const reqResetPasswordRoute = () => "/reset-password";
+
+export const viewResetPasswordParams = { token: "token" };
+export const resetPasswordRoute = ({ token }: { token: string }) =>
+  `/reset-password?token=${encodeURIComponent(token)}`;

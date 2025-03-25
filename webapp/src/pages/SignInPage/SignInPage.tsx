@@ -36,8 +36,6 @@ export const SignInPage = () => {
         trpcUtils.invalidate();
         navigate("/");
 
-        console.log("Loggen", values);
-
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         setSubmittingError(error.message);
@@ -54,8 +52,20 @@ export const SignInPage = () => {
     <div className="signIn-page">
       <h1>Авторизация</h1>
       <FormItems width="500px" onSubmit={(e) => handleSubmit(e)}>
-        <Input type="email" label="Почта" name="email" formik={formik} />
-        <Input type="password" label="Пароль" name="password" formik={formik} />
+        <Input
+          autocomplete="email"
+          type="email"
+          label="Почта"
+          name="email"
+          formik={formik}
+        />
+        <Input
+          type="password"
+          autocomplete="current-password"
+          label="Пароль"
+          name="password"
+          formik={formik}
+        />
 
         {!formik.isValid && !!formik.submitCount && (
           <Alert color="red" children="Some fields are invalid" />
@@ -71,7 +81,7 @@ export const SignInPage = () => {
         />
         <div className="not-have-acc">
           <Link to={getSignUpRoute()}>Зарегистрироваться</Link>
-          <Link to={"/sing-in"}>Восстановить пароль</Link>
+          <Link to={"/reset-password"}>Восстановить пароль</Link>
         </div>
       </FormItems>
     </div>

@@ -8,12 +8,14 @@ export const Input = ({
   label,
   required = false,
   formik,
+  autocomplete,
 }: {
   required?: boolean;
   type: string;
   name: string;
   label: string;
   formik: FormikProps<any>;
+  autocomplete?: string;
 }) => {
   const value = formik.values[name];
   const error = formik.errors[name] as string | undefined;
@@ -27,6 +29,7 @@ export const Input = ({
       <input
         className="input"
         type={type}
+        autoComplete={autocomplete}
         onChange={(e) => {
           formik.setFieldValue(name, e.target.value);
         }}

@@ -26,8 +26,6 @@ export const DonationPage = () => {
 
   const progress = (+data?.fundRaiser.raised / +data.fundRaiser.goal) * 100 || 0;
 
-  console.log(data);
-
   const donors = [
     { name: "Иван Иванов", amount: 10000, date: "2023-10-01" },
     { name: "Анна Петрова", amount: 5000, date: "2023-10-02" },

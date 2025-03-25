@@ -52,9 +52,6 @@ export const SignUpPage = () => {
         trpcUtils.invalidate();
 
         navigate("/");
-
-        console.log("Registered", values);
-
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         setSubmittingError(error.message);
@@ -72,10 +69,23 @@ export const SignUpPage = () => {
       <h1>Регистрация</h1>
       <FormItems width="400px" onSubmit={(e) => handleSubmit(e)}>
         <Input type="text" label="ФИО" name="name" formik={formik} />
-        <Input type="email" label="Почта" name="email" formik={formik} />
-        <Input type="password" label="Пароль" name="password" formik={formik} />
+        <Input
+          autocomplete="email"
+          type="email"
+          label="Почта"
+          name="email"
+          formik={formik}
+        />
+        <Input
+          autocomplete="new-password"
+          type="password"
+          label="Пароль"
+          name="password"
+          formik={formik}
+        />
         <Input
           type="password"
+          autocomplete="new-password"
           label="Повторите пароль"
           name="passwordAgain"
           formik={formik}

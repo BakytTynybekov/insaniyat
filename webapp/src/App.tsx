@@ -10,6 +10,8 @@ import { ProgramsPage } from "./pages/ProgramsPage/ProgramsPage";
 import { SignUpPage } from "./pages/SignUpPage/SignUpPage";
 import { SignInPage } from "./pages/SignInPage/SignInPage";
 import { SignOutPage } from "./pages/SignOutPage/SignOutPage";
+import RequestPasswordReset from "./pages/RequestPasswordReset/RequestPasswordReset";
+import { ResetPassword } from "./pages/ResetPassword/ResetPassword";
 
 function App() {
   return (
@@ -21,6 +23,9 @@ function App() {
         <Route path={routes.getSignUpRoute()} element={<SignUpPage />} />
         <Route path={routes.getSignInRoute()} element={<SignInPage />} />
         <Route path={routes.getSignOutRoute()} element={<SignOutPage />} />
+
+        <Route path={"/reset-password/:token"} element={<ResetPassword />} />
+        <Route path={routes.reqResetPasswordRoute()} element={<RequestPasswordReset />} />
 
         <Route path={routes.getViewCampaignsRoute} element={<CampaignsPage />} />
         <Route
