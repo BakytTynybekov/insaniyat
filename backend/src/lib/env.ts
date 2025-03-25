@@ -14,8 +14,3 @@ const zEnv = z.object({
 });
 
 export const env = zEnv.parse(process.env);
-
-// SMTP_HOST=smtp.mail.ru
-// SMTP_PORT=465
-// SMTP_USER=bakyt.tynybekov.ss@mail.ru
-// SMTP_PASSWORD=d0jvvkiW94eF9rgyPNzs
