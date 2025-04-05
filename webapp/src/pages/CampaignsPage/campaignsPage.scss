@@ -4,6 +4,13 @@
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto 50px;
+  position: relative;
+
+  .compaigns-page-new {
+    position: absolute;
+    right: 0;
+    top: 50px;
+  }
 
   .compaignsPage-title {
     text-align: center;
@@ -14,8 +21,8 @@
 
   /* Стили для ленты сборов */
   .fund-raiser-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
   }
 }

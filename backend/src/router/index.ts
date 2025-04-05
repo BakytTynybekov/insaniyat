@@ -1,8 +1,11 @@
 import { trpc } from "../lib/trpc";
 import { createFundRaiserTrpcRoute } from "./createFundRaiser/createFundRaiser";
+import { createProgramTrpcRoute } from "./createProgram/createProgram";
 import { getFundRaiserTrpcRoute } from "./getFundRaiser/getFundRaiser";
+import { getFundraiserByDirectionTrpcRoute } from "./getFundraiserByDirection/getFundraiserByDirection";
 import { getFundRaisersTrpcRoute } from "./getFundRaisers/getFundRaisers";
 import { getMeTrpcRoute } from "./getMe/getMe";
+import { getProgramTrpcRoute } from "./getProgram/getProgram";
 import { getProgramsTrpcRoute } from "./getPrograms/getPrograms";
 import { reqPasswordResetRoute } from "./reqPasswordResetRoute/reqPasswordResetRoute";
 import { resetPasswordRoute } from "./resetPassword/resetPassword";
@@ -19,6 +22,9 @@ export const trpcRouter = trpc.router({
   getMe: getMeTrpcRoute,
   requestPasswordReset: reqPasswordResetRoute,
   resetPassword: resetPasswordRoute,
+  getProgram: getProgramTrpcRoute,
+  getFundraiserByDirection: getFundraiserByDirectionTrpcRoute,
+  createProgram: createProgramTrpcRoute,
 });
 
 export type TrpcRouter = typeof trpcRouter;

@@ -34,10 +34,9 @@ export const DonationPage = () => {
 
   return (
     <div className="donation-page">
-      {/* Hero-баннер */}
       <div className="hero-banner">
         <img
-          src={data.fundRaiser.image} // Замените на реальное фото
+          src={data.fundRaiser.image}
           alt={data.fundRaiser.title}
           className="hero-image"
         />
@@ -47,9 +46,7 @@ export const DonationPage = () => {
         </div>
       </div>
 
-      {/* Основной контент */}
       <div className="content-container">
-        {/* Прогресс-бар и кнопка */}
         <div className="progress-container">
           <div className="createdAt">
             Создано в: {format(new Date(data.fundRaiser.createdAt), "yyyy-MM-dd")}
@@ -65,15 +62,12 @@ export const DonationPage = () => {
           <Button variant="secondary" width="100%" children="Помочь сейчас" />
         </div>
 
-        {/* Описание сбора */}
-
         <div className="donation-description">
           <h2>О сборе</h2>
           <p>{data.fundRaiser.description}</p>
           <div dangerouslySetInnerHTML={{ __html: data.fundRaiser.text }} />
         </div>
 
-        {/* Список доноров */}
         <div className="donors-list">
           <h2>Последние доноры</h2>
           <ul>

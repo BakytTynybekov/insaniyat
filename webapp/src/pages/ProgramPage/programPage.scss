@@ -1,0 +1,29 @@
+.program-page {
+  h1 {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  &__inner {
+    display: grid;
+    align-items: start;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .open-campaigns {
+    margin: 40px 0;
+  }
+
+  .open-campaigns__inner {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+  }
+}

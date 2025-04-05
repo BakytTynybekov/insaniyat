@@ -2,7 +2,8 @@ import "./campaignsPage.scss";
 import { FundRaiserCard } from "../../components/fundRaiserCard/FundRaiserCard";
 import { useNavigate } from "react-router";
 import { trpc } from "../../lib/trpc";
-import { getViewDonationRoute } from "../../lib/routes";
+import { getNewDonationRoute, getViewDonationRoute } from "../../lib/routes";
+import Button from "../../components/Button/Button";
 
 export const CampaignsPage = () => {
   const navigate = useNavigate();
@@ -25,6 +26,13 @@ export const CampaignsPage = () => {
   return (
     <div className="compaignsPage">
       <h1 className="compaignsPage-title">Благотворительные сборы</h1>
+      <div className="compaigns-page-new">
+        <Button
+          variant="secondary"
+          children="+ Add"
+          onClick={() => navigate(getNewDonationRoute())}
+        />
+      </div>
 
       <div className="fund-raiser-list">
         {fundraisers?.map((fundRaiser) => (

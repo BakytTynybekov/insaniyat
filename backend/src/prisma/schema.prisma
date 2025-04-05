@@ -25,33 +25,41 @@ model PasswordResetToken {
     createdAt DateTime @default(now())
 }
 
-// model Program {
-//     id          String       @id @default(uuid())
-//     title       String       @unique
-//     description String
-//     image       String
-//     fundraisers FundRaiser[]
-//     createdAt   DateTime     @default(now())
-//     updatedAt   DateTime     @updatedAt
-// }
+model Program {
+    id          String       @id @default(uuid())
+    title       String       @unique
+    description String
+    content     String
+    image       String
+    fundraisers FundRaiser[]
+    createdAt   DateTime     @default(now())
+    updatedAt   DateTime     @updatedAt
+}
 
 model FundRaiser {
-    id          String     @id @default(uuid())
-    title       String     @unique
-    description String
-    text        String
-    goal        String
-    raised      Float
-    status      StatusType @default(ACTIVE)
-    image       String
-    images      String[]
-    // programId   String?
-    // program     Program?   @relation(fields: [programId], references: [id])
-    createdAt   DateTime   @default(now())
-    updatedAt   DateTime   @updatedAt
+    id           String     @id @default(uuid())
+    title        String     @unique
+    description  String
+    text         String
+    goal         String
+    raised       Float
+    status       StatusType @default(ACTIVE)
+    image        String
+    images       String[]
+    programTitle String?
+    program      Program?   @relation(fields: [programTitle], references: [title])
+    createdAt    DateTime   @default(now())
+    updatedAt    DateTime   @updatedAt
 }
 
 enum StatusType {
     ACTIVE
     COMPLETED
+    SUCCESSFUL
+}
+
+enum DIRECTION {
+    MEDICAL
+    EDUCATION
+    SOCIAL
 }

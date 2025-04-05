@@ -1,42 +1,34 @@
 import { useFormik } from "formik";
-import "./newDonationPage.scss"; // Стили для компонента
+import "./newProgramPage.scss"; // Стили для компонента
 import { Input } from "../../components/Input/Input";
 import { Textarea } from "../../components/TextArea/Textarea";
 import Button from "../../components/Button/Button";
 import { withZodSchema } from "formik-validator-zod";
 import { trpc } from "../../lib/trpc";
-import { zCreateFundRaiserTrpcInput } from "@insaniyat/backend/src/router/createFundRaiser/input";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Alert } from "../../components/Alert/Alert";
 import { FormItems } from "../../components/FormItems/FormItems";
 import { Editor } from "@tinymce/tinymce-react";
-import { Select } from "../../components/Select/Select";
+import { zCreateProgramTrpcInput } from "@insaniyat/backend/src/router/createProgram/input";
 
-export const NewDonationPage = () => {
+export const NewProgramPage = () => {
   const [successMessageVisible, setSuccessMessageVisible] = useState(false);
   const [submittingError, setSubmittingError] = useState<string | null>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [options, setOptions] = useState<string[] | any>(null);
 
-  const { data, error, isLoading, isFetching, isError } = trpc.getPrograms.useQuery();
-
-  const createFundraiser = trpc.createFundRaiser.useMutation();
+  const createProgram = trpc.createProgram.useMutation();
 
   const formik = useFormik({
     initialValues: {
       title: "",
       description: "",
-      programTitle: "",
-      text: "",
-      goal: "",
-      raised: 0,
+      content: "",
       image: "",
     },
-    validate: withZodSchema(zCreateFundRaiserTrpcInput),
+    validate: withZodSchema(zCreateProgramTrpcInput),
 
     onSubmit: async (values) => {
       try {
-        await createFundraiser.mutateAsync(values);
+        await createProgram.mutateAsync(values);
         formik.resetForm();
         setSuccessMessageVisible(true);
         setTimeout(() => {
@@ -54,42 +46,20 @@ export const NewDonationPage = () => {
     e.preventDefault();
     formik.handleSubmit();
   };
-  useEffect(() => {
-    const opt = data?.programs.map((program) => program.title);
-    setOptions(opt);
-  }, [data]);
-
-  if (isLoading || isFetching) {
-    return <span>Loading...</span>;
-  }
-
-  if (isError) {
-    return <span>Error: {error.message}</span>;
-  }
-
-  if (!data.programs || !data) {
-    return <span>Idea not found</span>;
-  }
 
   return (
     <div className="new-fundraiser-page">
-      <h1>Добавить новый сбор</h1>
+      <h1>Добавить новое направление</h1>
       <FormItems onSubmit={(e) => handleSubmit(e)}>
         <Input label={"Заголовок"} type="text" name="title" formik={formik} />
-        <Select
-          label="Направления"
-          name="programTitle"
-          required={true}
-          formik={formik}
-          options={options}
-        />
 
         <Textarea label="Описание" name="description" formik={formik} />
+        <label htmlFor="">Контент</label>
         <Editor
           apiKey="y2m291htufpadrdjbgkmyqtwtl9cnmn2x0civphbz6zk7xkg"
-          value={formik.values.text}
+          value={formik.values.content}
           onEditorChange={(newContent) => {
-            formik.setFieldValue("text", newContent);
+            formik.setFieldValue("content", newContent);
           }}
           onBlur={() => {
             formik.setFieldTouched("text");
@@ -104,15 +74,9 @@ export const NewDonationPage = () => {
             ],
             toolbar:
               "undo redo | blocks | formatselect | bold italic backcolor | \
-            alignleft aligncenter alignright alignjustify | \
-            bullist numlist outdent indent | removeformat | help",
+			alignleft aligncenter alignright alignjustify | \
+			bullist numlist outdent indent | removeformat | help",
           }}
-        />
-        <Input
-          label={"Цель сбора (в рублях)"}
-          type="number"
-          name="goal"
-          formik={formik}
         />
         <Input label={"Ссылка на изображение"} type="url" name="image" formik={formik} />
 
@@ -121,12 +85,12 @@ export const NewDonationPage = () => {
         )}
         {submittingError && <Alert color="red" children={submittingError} />}
 
-        {successMessageVisible && <Alert color="green" children="Сбор создан!" />}
+        {successMessageVisible && <Alert color="green" children="Направление создано!" />}
 
         <Button
           disabled={formik.isSubmitting}
           type="submit"
-          children={formik.isSubmitting ? "loading..." : "Добавить сбор"}
+          children={formik.isSubmitting ? "loading..." : "Добавить направление"}
           width="100%"
         />
       </FormItems>

@@ -4,6 +4,7 @@ export const zCreateFundRaiserTrpcInput = z.object({
   title: z.string().min(1),
   description: z.string().min(1),
   text: z.string().min(100),
+  programTitle: z.string().min(1),
   goal: z.string().min(1),
   raised: z.number(),
   image: z.string().min(1),
