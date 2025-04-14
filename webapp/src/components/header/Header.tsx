@@ -75,13 +75,10 @@ export const Header = () => {
 
         {isLoading || isError || isFetching ? null : data.me ? (
           <div
-            className={`profile ${isDropMenuOpen ? "profile-open" : "profile-close"}`}
+            className={`profile-btn ${isDropMenuOpen ? "profile-open" : "profile-close"}`}
             ref={dropdownRef}
           >
-            <button
-              className="profile-logo"
-              onClick={() => setIsDropMenuOpen(!isDropMenuOpen)}
-            >
+            <button className="profile-logo" onClick={() => navigate("profile/edit")}>
               {data.me.name[0]}
             </button>
             {isDropMenuOpen && <DropDownMenu email={data.me.email} name={data.me.name} />}

@@ -7,6 +7,7 @@ const zEnv = z.object({
   PORT: z.string().min(1),
   DATABASE_URL: z.string().min(1),
   JWT_SECRET: z.string().min(1),
+  PASSWORD_SALT: z.string().min(1),
   SMTP_HOST: z.string().min(1),
   SMTP_PORT: z.string().min(1),
   SMTP_USER: z.string().min(1),

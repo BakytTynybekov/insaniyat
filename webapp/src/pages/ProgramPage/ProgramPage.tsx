@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import { getViewDonationRoute, type viewProgramParams } from "../../lib/routes";
 import { trpc } from "../../lib/trpc";
 import { FundRaiserCard } from "../../components/fundRaiserCard/FundRaiserCard";
+import Button from "../../components/Button/Button";
 
 export const ProgramPage = () => {
   const { program } = useParams() as viewProgramParams;
@@ -34,6 +35,14 @@ export const ProgramPage = () => {
         <div>
           <img src={data.program.image} alt={data.program.title} />
         </div>
+      </div>
+      <div className="program-btns">
+        <Button variant="secondary" onClick={() => navigate("edit")}>
+          Изменить направление
+        </Button>
+        <Button variant="danger" onClick={() => navigate("edit")}>
+          Удалить направление
+        </Button>
       </div>
 
       {data && (

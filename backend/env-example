@@ -1,0 +1,9 @@
+PORT=3000
+DATABASE_URL=postgresql://insaniyat:insaniyat@localhost:5432/insaniyat?schema=myapp
+JWT_SECRET=not-really-secret-jwt-key
+PASSWORD_SALT='password-salt'
+
+SMTP_HOST=smtp.mail.ru
+SMTP_PORT=465
+SMTP_USER=example@ex.com
+SMTP_PASSWORD=ajsdlfaj

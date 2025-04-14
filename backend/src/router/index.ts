@@ -1,3 +1,4 @@
+import { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
 import { trpc } from "../lib/trpc";
 import { createFundRaiserTrpcRoute } from "./createFundRaiser/createFundRaiser";
 import { createProgramTrpcRoute } from "./createProgram/createProgram";
@@ -11,6 +12,7 @@ import { reqPasswordResetRoute } from "./reqPasswordResetRoute/reqPasswordResetR
 import { resetPasswordRoute } from "./resetPassword/resetPassword";
 import { signUpTrpcRoute } from "./signUp/signUp";
 import { signInTrpcRoute } from "./singIn/signIn";
+import { updateProgramTrpcRoute } from "./updateProgram/updateProgram";
 
 export const trpcRouter = trpc.router({
   getPrograms: getProgramsTrpcRoute,
@@ -25,6 +27,9 @@ export const trpcRouter = trpc.router({
   getProgram: getProgramTrpcRoute,
   getFundraiserByDirection: getFundraiserByDirectionTrpcRoute,
   createProgram: createProgramTrpcRoute,
+  updateProgram: updateProgramTrpcRoute,
 });
 
 export type TrpcRouter = typeof trpcRouter;
+export type TrpcRouterInput = inferRouterInputs<TrpcRouter>;
+export type TrpcRouterOutput = inferRouterOutputs<TrpcRouter>;

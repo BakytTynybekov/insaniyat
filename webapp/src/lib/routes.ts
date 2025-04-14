@@ -10,6 +10,11 @@ export type viewProgramParams = typeof viewProgramParams;
 export const getViewProgramRoute = ({ program }: { program: string }) =>
   `/programs/${program}`;
 
+export const editProgramRouteParams = { program: ":program" };
+export type EditProgramRouteParams = typeof editProgramRouteParams;
+export const getEditProgramRoute = ({ program }: EditProgramRouteParams) =>
+  `programs/${program}/edit`;
+
 export const getNewDonationRoute = () => "/campaigns/new";
 export const getNewProgramRoute = () => "/programs/new";
 export const getSignUpRoute = () => "/sign-up";

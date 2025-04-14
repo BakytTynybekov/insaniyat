@@ -14,6 +14,9 @@ import RequestPasswordReset from "./pages/RequestPasswordReset/RequestPasswordRe
 import { ResetPassword } from "./pages/ResetPassword/ResetPassword";
 import { ProgramPage } from "./pages/ProgramPage/ProgramPage";
 import { NewProgramPage } from "./pages/NewProgramPage/NewProgramPage";
+import { Profile } from "./pages/Profile/Profile";
+import { EditProfile } from "./pages/EditProfile/EditProfile";
+import { EditProgramPage } from "./pages/EditProgramPage/EditProgramPage";
 
 function App() {
   return (
@@ -21,8 +24,17 @@ function App() {
       <Header />
       <Routes>
         <Route path={"/"} element={<MainPage />} />
+        <Route path="/profile" element={<Profile />}>
+          <Route path="edit" element={<EditProfile />} />
+
+          <Route path="history" element={<div>History</div>} />
+        </Route>
         <Route path={routes.getNewDonationRoute()} element={<NewDonationPage />} />
         <Route path={routes.getNewProgramRoute()} element={<NewProgramPage />} />
+        <Route
+          path={routes.getEditProgramRoute(routes.editProgramRouteParams)}
+          element={<EditProgramPage />}
+        />
         <Route path={routes.getSignUpRoute()} element={<SignUpPage />} />
         <Route path={routes.getSignInRoute()} element={<SignInPage />} />
         <Route path={routes.getSignOutRoute()} element={<SignOutPage />} />
