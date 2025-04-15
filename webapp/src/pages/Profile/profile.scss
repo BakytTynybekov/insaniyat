@@ -82,3 +82,23 @@
   padding: 10px;
   margin: 20px 0;
 }
+
+@media screen and (max-width: 700px) {
+  .profile {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 0;
+
+    &__edit-item {
+      flex-wrap: wrap;
+      gap: 15px !important;
+    }
+  }
+  .profile__item-menu {
+    display: none;
+  }
+
+  .profile__item-page {
+    display: none;
+  }
+}

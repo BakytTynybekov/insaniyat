@@ -13,6 +13,7 @@ import { resetPasswordRoute } from "./resetPassword/resetPassword";
 import { signUpTrpcRoute } from "./signUp/signUp";
 import { signInTrpcRoute } from "./singIn/signIn";
 import { updateProgramTrpcRoute } from "./updateProgram/updateProgram";
+import { editProfileTrpcRoute } from "./EditProfile/EditProfile";
 
 export const trpcRouter = trpc.router({
   getPrograms: getProgramsTrpcRoute,
@@ -28,6 +29,7 @@ export const trpcRouter = trpc.router({
   getFundraiserByDirection: getFundraiserByDirectionTrpcRoute,
   createProgram: createProgramTrpcRoute,
   updateProgram: updateProgramTrpcRoute,
+  editProfile: editProfileTrpcRoute,
 });
 
 export type TrpcRouter = typeof trpcRouter;

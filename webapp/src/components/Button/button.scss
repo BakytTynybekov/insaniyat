@@ -3,7 +3,7 @@
   padding: 10px 20px;
   font-size: 1rem;
   border: none;
-  border-radius: 20px;
+  border-radius: 12px;
   cursor: pointer;
   transition: background-color 0.3s ease, opacity 0.3s ease;
   display: inline-flex;
@@ -16,7 +16,7 @@
 .button-primary {
   background-color: #4caf50;
   color: white;
-  border-radius: 30px;
+  border-radius: 12px;
 }
 
 .button-primary:hover {
@@ -33,7 +33,7 @@
   color: #ffffff;
   background-color: #007bff;
   border: none;
-  border-radius: 17px;
+  border-radius: 12px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
 
@@ -43,6 +43,17 @@
   &disabled {
     background-color: #90caf9;
     cursor: not-allowed;
+  }
+}
+
+.button-simple {
+  background-color: inherit;
+  color: inherit;
+  border: 1px hsl(0 0% 89.8%) solid;
+  transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
+
+  &:hover {
+    background-color: hsl(0 0% 89.8%);
   }
 }
 

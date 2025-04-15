@@ -7,8 +7,9 @@ interface ButtonProps {
   type?: "button" | "submit" | "reset"; // Тип кнопки
   disabled?: boolean; // Отключение кнопки
   className?: string; // Дополнительные классы для стилизации
-  variant?: "primary" | "secondary" | "danger"; // Вариант стиля кнопки
+  variant?: "primary" | "secondary" | "danger" | "simple"; // Вариант стиля кнопки
   width?: "100%";
+  fontSize?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -19,12 +20,14 @@ const Button: React.FC<ButtonProps> = ({
   className = "",
   variant = "primary",
   width = "",
+  fontSize,
 }) => {
   // Определяем классы для разных вариантов кнопки
   const variantClasses = {
     primary: "button-primary",
     secondary: "button-secondary",
     danger: "button-danger",
+    simple: "button-simple",
   };
 
   return (
@@ -32,7 +35,7 @@ const Button: React.FC<ButtonProps> = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      style={{ width: width }}
+      style={{ width: width, fontSize: fontSize }}
       className={`button ${variantClasses[variant]} ${className}`}
     >
       {children}

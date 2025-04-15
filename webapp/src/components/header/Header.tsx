@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import "./Header.scss";
 import { useLocation, useNavigate } from "react-router";
 import Button from "../Button/Button";
@@ -8,10 +8,18 @@ import { trpc } from "../../lib/trpc";
 import { DropDownMenu } from "../DropDownMenu/DropDownMenu";
 import { IoMdMenu } from "react-icons/io";
 import { CiUser } from "react-icons/ci";
+import { GeneralContext } from "../../lib/context";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropMenuOpen, setIsDropMenuOpen] = useState(false);
+  const context = useContext(GeneralContext);
+
+  if (!context) {
+    throw new Error("MyComponent must be used within a GeneralContextProvider");
+  }
+
+  const { setIsActive } = context;
 
   const dropdownRef = useRef<HTMLDivElement>(null); // Референс на контейнер меню
 
@@ -22,6 +30,15 @@ export const Header = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleAccClick = () => {
+    if (path.pathname.split("/")[1] === "profile") {
+      setIsActive(true);
+    } else {
+      navigate("profile/edit");
+      setIsActive(true);
+    }
   };
 
   useEffect(() => {
@@ -78,7 +95,7 @@ export const Header = () => {
             className={`profile-btn ${isDropMenuOpen ? "profile-open" : "profile-close"}`}
             ref={dropdownRef}
           >
-            <button className="profile-logo" onClick={() => navigate("profile/edit")}>
+            <button className="profile-logo" onClick={() => handleAccClick()}>
               {data.me.name[0]}
             </button>
             {isDropMenuOpen && <DropDownMenu email={data.me.email} name={data.me.name} />}

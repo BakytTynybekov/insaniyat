@@ -15,7 +15,7 @@ import { ResetPassword } from "./pages/ResetPassword/ResetPassword";
 import { ProgramPage } from "./pages/ProgramPage/ProgramPage";
 import { NewProgramPage } from "./pages/NewProgramPage/NewProgramPage";
 import { Profile } from "./pages/Profile/Profile";
-import { EditProfile } from "./pages/EditProfile/EditProfile";
+import { EditProfilePage } from "./pages/EditProfile/EditProfile";
 import { EditProgramPage } from "./pages/EditProgramPage/EditProgramPage";
 
 function App() {
@@ -25,7 +25,8 @@ function App() {
       <Routes>
         <Route path={"/"} element={<MainPage />} />
         <Route path="/profile" element={<Profile />}>
-          <Route path="edit" element={<EditProfile />} />
+          <Route path="edit" element={<EditProfilePage />} />
+          {/* <Route path="edit" element={<EditProfile />} /> */}
 
           <Route path="history" element={<div>History</div>} />
         </Route>
