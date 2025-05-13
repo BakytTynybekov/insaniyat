@@ -1,0 +1,64 @@
+.profile__subscriptions {
+  padding: 20x 10px;
+
+  &-header {
+    margin-bottom: 30px;
+    h1 {
+      font-size: 1.5rem;
+      line-height: 2rem;
+      margin: 0px;
+      font-weight: 500;
+    }
+  }
+
+  &-list {
+    padding: 0px 20px 30px;
+    border-bottom: 1px #282a2d solid;
+  }
+
+  &-history {
+    padding: 0px 20px 30px;
+  }
+
+  &-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border: 1px #e5e7eb solid;
+    border-radius: 12px;
+  }
+
+  &-info {
+    display: grid;
+    gap: 5px;
+  }
+
+  &-name {
+    color: rgb(23 26 36 / 64%);
+    font-size: 0.875rem;
+    line-height: 130%;
+    font-weight: 500;
+  }
+
+  &-summa {
+    font-size: 1.5rem;
+    line-height: 110%;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+    color: #171a24;
+  }
+
+  &-date {
+    font-size: 1rem;
+    line-height: 1.25rem;
+    color: rgb(23 26 36 / 64%);
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+    margin: 20px 0;
+    font-weight: 600;
+  }
+}

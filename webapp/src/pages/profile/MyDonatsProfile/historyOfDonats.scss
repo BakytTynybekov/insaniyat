@@ -1,0 +1,87 @@
+.profile__donats {
+  padding: 20x 10px;
+  &-header {
+    h1 {
+      font-size: 1.5rem;
+      line-height: 2rem;
+      margin: 0px;
+      font-weight: 500;
+    }
+  }
+
+  &-btn {
+    display: grid;
+    place-items: center;
+    button {
+      display: inline-block;
+      background-image: linear-gradient(135deg, #007bff, #4caf50);
+      border: 1px solid #339982;
+      border-radius: 10px;
+      color: #fff;
+      padding: 15px 20px;
+      margin: 20px 0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 1rem;
+
+      &:hover {
+        transform: translateY(1px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      &:active {
+        transform: translateY(2px);
+      }
+    }
+  }
+}
+
+.profile__donats-history {
+  display: grid;
+  gap: 20px;
+  &-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    padding: 1rem;
+    border: 1px #e5e7eb solid;
+    border-radius: 12px;
+  }
+}
+
+.profile__donats-date {
+  color: rgb(119 119 119);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.profile__donats-summa {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.profile__donats-status {
+  display: flex;
+  place-items: center;
+  border-radius: 20px;
+  padding: 0.15rem 1rem;
+  font-size: 12px;
+}
+
+.profile__donats-status-success {
+  background-color: rgb(219 255 221);
+  color: rgb(0 128 0);
+  border: 1px solid rgb(0 191 0 / 20%);
+}
+
+.profile__donats-status-error {
+  background-color: rgb(255 219 219);
+  color: rgb(191 0 0);
+  border: 1px solid rgb(255 0 0 / 20%);
+}
+
+.profile__donats-status-pending {
+  background-color: rgb(255 246 219);
+  color: rgb(191 112 0);
+  border: 1px solid rgb(255 191 0 / 20%);
+}

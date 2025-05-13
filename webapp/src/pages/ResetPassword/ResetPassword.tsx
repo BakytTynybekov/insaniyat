@@ -1,7 +1,6 @@
 import { FormItems } from "../../components/FormItems/FormItems";
 import { Input } from "../../components/Input/Input";
 import "./resetPassword.scss";
-import { trpc } from "../../lib/trpc";
 import { useFormik } from "formik";
 import { withZodSchema } from "formik-validator-zod";
 import { Alert } from "../../components/Alert/Alert";
@@ -10,6 +9,8 @@ import Button from "../../components/Button/Button";
 import { useNavigate, useParams } from "react-router";
 import { z } from "zod";
 import { getSignInRoute } from "../../lib/routes";
+import { trpc } from "../../lib/trpc";
+import { Loader } from "../../components/Loader/Loader";
 
 export const ResetPassword = () => {
   const [submittingError, setSubmittingError] = useState<string | null>(null);
@@ -58,7 +59,7 @@ export const ResetPassword = () => {
           <Button
             disabled={formik.isSubmitting}
             type="submit"
-            children={formik.isSubmitting ? "loading..." : "Продолжить"}
+            children={formik.isSubmitting ? <Loader type="section" /> : "Продолжить"}
             variant="secondary"
           />
         </FormItems>

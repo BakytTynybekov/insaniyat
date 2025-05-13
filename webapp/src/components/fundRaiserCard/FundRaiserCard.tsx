@@ -1,19 +1,10 @@
 import React from "react";
 import "./fundRaiserCard.scss";
 import Button from "../../components/Button/Button";
-
-interface FundRaiser {
-  id: string;
-  title: string;
-  status: string;
-  description: string;
-  goal: string;
-  raised: number;
-  image: string;
-}
+import { type Fundraiser } from "../../pages/fundraisers/CampaignsPage/CampaignsPage";
 
 interface FundRaiserCardProps {
-  fundRaiser: FundRaiser;
+  fundRaiser: Fundraiser;
   onClick?: () => void;
 }
 

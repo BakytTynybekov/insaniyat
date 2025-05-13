@@ -3,6 +3,7 @@ import { type FormikProps } from "formik";
 import "./input.scss";
 
 export const Input = ({
+  placeholder,
   type,
   name,
   label,
@@ -10,10 +11,11 @@ export const Input = ({
   formik,
   autocomplete,
 }: {
+  placeholder?: string;
   required?: boolean;
   type: string;
   name: string;
-  label: string;
+  label?: string;
   formik: FormikProps<any>;
   autocomplete?: string;
 }) => {
@@ -27,6 +29,7 @@ export const Input = ({
         {label}
       </label>
       <input
+        placeholder={placeholder}
         className="input"
         type={type}
         autoComplete={autocomplete}

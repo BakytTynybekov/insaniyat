@@ -1,19 +1,20 @@
 import { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
 import { trpc } from "../lib/trpc";
-import { createFundRaiserTrpcRoute } from "./createFundRaiser/createFundRaiser";
-import { createProgramTrpcRoute } from "./createProgram/createProgram";
-import { getFundRaiserTrpcRoute } from "./getFundRaiser/getFundRaiser";
-import { getFundraiserByDirectionTrpcRoute } from "./getFundraiserByDirection/getFundraiserByDirection";
-import { getFundRaisersTrpcRoute } from "./getFundRaisers/getFundRaisers";
-import { getMeTrpcRoute } from "./getMe/getMe";
-import { getProgramTrpcRoute } from "./getProgram/getProgram";
-import { getProgramsTrpcRoute } from "./getPrograms/getPrograms";
-import { reqPasswordResetRoute } from "./reqPasswordResetRoute/reqPasswordResetRoute";
-import { resetPasswordRoute } from "./resetPassword/resetPassword";
-import { signUpTrpcRoute } from "./signUp/signUp";
-import { signInTrpcRoute } from "./singIn/signIn";
-import { updateProgramTrpcRoute } from "./updateProgram/updateProgram";
 import { editProfileTrpcRoute } from "./EditProfile/EditProfile";
+import { signInTrpcRoute } from "./auth/singIn/signIn";
+import { signUpTrpcRoute } from "./auth/signUp/signUp";
+import { getProgramsTrpcRoute } from "./programs/getPrograms/getPrograms";
+import { getProgramTrpcRoute } from "./programs/getProgram/getProgram";
+import { updateProgramTrpcRoute } from "./programs/updateProgram/updateProgram";
+import { getFundRaisersTrpcRoute } from "./fundRaisers/getFundRaisers/getFundRaisers";
+import { createFundRaiserTrpcRoute } from "./fundRaisers/createFundRaiser/createFundRaiser";
+import { getFundRaiserTrpcRoute } from "./fundRaisers/getFundRaiser/getFundRaiser";
+import { getFundraiserByDirectionTrpcRoute } from "./fundRaisers/getFundraiserByDirection/getFundraiserByDirection";
+import { createProgramTrpcRoute } from "./programs/createProgram/createProgram";
+import { getMeTrpcRoute } from "./auth/getMe/getMe";
+import { reqPasswordResetRoute } from "./auth/reqPasswordResetRoute/reqPasswordResetRoute";
+import { resetPasswordRoute } from "./auth/resetPassword/resetPassword";
+import { updatePasswordTrpcRoute } from "./auth/updatePassword";
 
 export const trpcRouter = trpc.router({
   getPrograms: getProgramsTrpcRoute,
@@ -30,6 +31,7 @@ export const trpcRouter = trpc.router({
   createProgram: createProgramTrpcRoute,
   updateProgram: updateProgramTrpcRoute,
   editProfile: editProfileTrpcRoute,
+  updatePassword: updatePasswordTrpcRoute,
 });
 
 export type TrpcRouter = typeof trpcRouter;

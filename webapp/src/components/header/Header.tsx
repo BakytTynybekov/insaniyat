@@ -1,18 +1,25 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./Header.scss";
 import { useLocation, useNavigate } from "react-router";
 import Button from "../Button/Button";
 import { Link } from "react-router";
 import * as routes from "../../lib/routes";
 import { trpc } from "../../lib/trpc";
-import { DropDownMenu } from "../DropDownMenu/DropDownMenu";
 import { IoMdMenu } from "react-icons/io";
 import { CiUser } from "react-icons/ci";
-import { GeneralContext } from "../../lib/context";
+import { GeneralContext, useMe } from "../../lib/context";
+import { MdKeyboardArrowDown } from "react-icons/md";
+import { Loader } from "../Loader/Loader";
+
+// Данные для dropdown меню
 
 export const Header = () => {
+  const me = useMe();
+  const getProgramsResult = trpc.getPrograms.useQuery();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDropMenuOpen, setIsDropMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
   const context = useContext(GeneralContext);
 
   if (!context) {
@@ -21,9 +28,6 @@ export const Header = () => {
 
   const { setIsActive } = context;
 
-  const dropdownRef = useRef<HTMLDivElement>(null); // Референс на контейнер меню
-
-  const { data, isLoading, isFetching, isError } = trpc.getMe.useQuery();
   const path = useLocation();
 
   const navigate = useNavigate();
@@ -43,22 +47,72 @@ export const Header = () => {
 
   useEffect(() => {
     setIsMenuOpen(false);
-    setIsDropMenuOpen(false);
   }, [path]);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsDropMenuOpen(false);
-      }
-    };
+  if (getProgramsResult.isLoading) {
+    return <Loader type="page" />;
+  }
 
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  const menuItems = [
+    {
+      title: "Текущие сборы",
+      link: routes.getViewCampaignsRoute,
+    },
+    {
+      title: "Наши Направления",
+      link: "/programs",
+      submenu: getProgramsResult.data?.programs.map((program) => ({
+        title: program.title,
+        link: `/programs/${program.title}`,
+      })),
+    },
+    {
+      title: "О нас",
+      link: "/about",
+      submenu: [
+        {
+          title: "Контакты",
+          link: "/contacts",
+        },
+        {
+          title: "Учредительные документы",
+          link: "/documents",
+        },
+        {
+          title: "Новости",
+          link: "/news",
+        },
+      ],
+    },
+    {
+      title: "Помощь",
+      link: "/contacts",
+      submenu: [
+        {
+          title: "Как получить?",
+          link: "/get-help",
+        },
+        {
+          title: "Часто задаваемые вопросы",
+          link: "/questions",
+        },
+      ],
+    },
+    {
+      title: "Отчеты",
+      link: "/otchety",
+      submenu: [
+        {
+          title: "Ежемесячные поступления",
+          link: "monthly-receipts",
+        },
+        {
+          title: "Ежемесячные отчеты",
+          link: "monthly-reports",
+        },
+      ],
+    },
+  ];
 
   return (
     <header className="header">
@@ -67,21 +121,41 @@ export const Header = () => {
       </div>
       <nav className={`menu ${isMenuOpen ? "open" : ""}`}>
         <ul>
-          <li>
-            <Link to={routes.getViewCampaignsRoute}>Текущие сборы</Link>
-          </li>
-          <li>
-            <Link to="/programs">Наши Направления</Link>
-          </li>
-          <li>
-            <Link to="/about">О нас</Link>
-          </li>
-          <li>
-            <Link to="/contacts">Контакты</Link>
-          </li>
-          <li>
-            <Link to="/news">Новости</Link>
-          </li>
+          {menuItems.map((item, i) => (
+            <li
+              key={i}
+              className={`menu-item ${item.submenu ? "has-submenu" : ""}`}
+              onMouseEnter={() => item.submenu && setActiveDropdown(item.title)}
+              onMouseLeave={() => item.submenu && setActiveDropdown(null)}
+            >
+              <Link
+                className={`menu-link ${item.submenu ? "menu-link-with-submenu" : ""}`}
+                to={item.link}
+              >
+                {item.title}
+                {item.submenu && <MdKeyboardArrowDown className="dropdown-icon" />}
+              </Link>
+
+              {item.submenu && (
+                <div
+                  className={`dropdown-menu ${
+                    activeDropdown === item.title ? "active" : ""
+                  }`}
+                >
+                  {item.submenu.map((subItem) => (
+                    <Link
+                      key={subItem.title}
+                      to={subItem.link}
+                      className="dropdown-item"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {subItem.title}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </li>
+          ))}
         </ul>
       </nav>
 
@@ -90,15 +164,11 @@ export const Header = () => {
           <Button>Хочу помочь</Button>
         </Link>
 
-        {isLoading || isError || isFetching ? null : data.me ? (
-          <div
-            className={`profile-btn ${isDropMenuOpen ? "profile-open" : "profile-close"}`}
-            ref={dropdownRef}
-          >
+        {me ? (
+          <div className={`profile-btn`}>
             <button className="profile-logo" onClick={() => handleAccClick()}>
-              {data.me.name[0]}
+              {me.name[0]}
             </button>
-            {isDropMenuOpen && <DropDownMenu email={data.me.email} name={data.me.name} />}
           </div>
         ) : (
           <Link to={routes.getSignInRoute()} className="buttons_sign">

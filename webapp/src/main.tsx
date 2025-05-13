@@ -8,12 +8,12 @@ import { GeneralContextProvider } from "./lib/context.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <GeneralContextProvider>
-      <TrpcProvider>
+    <TrpcProvider>
+      <GeneralContextProvider>
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </TrpcProvider>
-    </GeneralContextProvider>
+      </GeneralContextProvider>
+    </TrpcProvider>
   </StrictMode>
 );

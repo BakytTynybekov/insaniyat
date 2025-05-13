@@ -3,11 +3,12 @@ import { Input } from "../../components/Input/Input";
 import "./requestPasswordReset.scss";
 import { trpc } from "../../lib/trpc";
 import { useFormik } from "formik";
-import { zReqPasswordResetRouteInput } from "@insaniyat/backend/src/router/reqPasswordResetRoute/input";
 import { withZodSchema } from "formik-validator-zod";
 import { Alert } from "../../components/Alert/Alert";
 import { useState } from "react";
 import Button from "../../components/Button/Button";
+import { zReqPasswordResetRouteInput } from "@insaniyat/backend/src/router/auth/reqPasswordResetRoute/input";
+import { Loader } from "../../components/Loader/Loader";
 
 const RequestPasswordReset = () => {
   const [submittingError, setSubmittingError] = useState<string | null>(null);
@@ -64,7 +65,7 @@ const RequestPasswordReset = () => {
           <Button
             disabled={formik.isSubmitting}
             type="submit"
-            children={formik.isSubmitting ? "loading..." : "Продолжить"}
+            children={formik.isSubmitting ? <Loader type="section" /> : "Продолжить"}
             variant="secondary"
           />
         </FormItems>

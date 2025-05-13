@@ -1,0 +1,143 @@
+.getHelp {
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 35px;
+    color: #0f5648;
+    margin: 30px 0 0;
+  }
+  &__title {
+    h2,
+    p {
+      font-size: 18px;
+      margin: 5px 0;
+      max-width: 60%;
+    }
+
+    p {
+      font-size: 15px;
+      color: #707070;
+    }
+  }
+}
+
+.getHelp__mainReq {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin: 40px 0;
+  background-color: #0f5648;
+  color: white;
+  padding: 20px;
+  border-radius: 25px;
+
+  &-alert {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    span {
+      font-size: 50px;
+    }
+
+    p {
+      margin: 0;
+      font-size: 20px;
+      text-align: center;
+      font-size: 25px;
+      font-weight: 500;
+    }
+  }
+}
+
+.getHelp__requirities {
+  &-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+
+    margin: 30px 0;
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-width: 350px;
+      padding: 20px 30px;
+      border-radius: 15px;
+      border: 1px solid #d3d3d3;
+      background-color: #fbfbfb;
+      box-sizing: border-box;
+
+      span {
+        background-color: #0f5648;
+        display: inline-block;
+        width: fit-content;
+        font-size: 40px;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 15px;
+      }
+
+      h4 {
+        color: #2a2f37;
+        font-size: 20px;
+      }
+
+      p {
+        color: #707070;
+        font-size: 16px;
+      }
+
+      h4,
+      p {
+        font-weight: 400;
+        font-family: "Inter", serif;
+        margin: 0;
+      }
+    }
+  }
+}
+
+.getHelp__button {
+  display: block;
+  margin: 10px;
+  .button {
+    background-color: rgb(15, 86, 72);
+  }
+
+  .button:hover {
+    background-color: rgba(15, 86, 72, 0.8);
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .getHelp__mainReq {
+    grid-template-columns: 1fr;
+    gap: 10px;
+
+    &-alert {
+      justify-content: center;
+    }
+  }
+
+  .getHelp__requirities-list-item {
+    max-width: 200px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .getHelp__requirities-list-item {
+    max-width: 400px;
+  }
+}
