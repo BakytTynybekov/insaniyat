@@ -4,6 +4,8 @@ import { MdLogout } from "react-icons/md";
 import { getSignOutRoute } from "../../../lib/routes";
 import { FaFileDownload, FaHistory, FaRegUser } from "react-icons/fa";
 import { useAppContext, useMe } from "../../../lib/context";
+import { Loader } from "../../../components/Loader/Loader";
+import { trpc } from "../../../lib/trpc";
 
 export const Profile = () => {
   const context = useAppContext();
@@ -15,9 +17,23 @@ export const Profile = () => {
   const { isActive, setIsActive } = context;
 
   const me = useMe();
-
   if (!me) {
     return <span>Only for authorized</span>;
+  }
+  const { data, error, isLoading, isError } = trpc.getUsersDonations.useQuery({
+    userId: me.id,
+  });
+
+  if (isLoading) {
+    return <Loader type="page" />;
+  }
+
+  if (isError) {
+    return <span>Error:{error.message}</span>;
+  }
+
+  if (!data) {
+    return <span>Error</span>;
   }
 
   return (
@@ -33,7 +49,7 @@ export const Profile = () => {
             <span>Ваш вклад</span>
             <div className="sum_box">
               <i className="icon-heart-outline"></i>
-              <strong>0 Р</strong>
+              <strong>{data.totalDonated.amount} Р</strong>
             </div>
           </div>{" "}
         </div>

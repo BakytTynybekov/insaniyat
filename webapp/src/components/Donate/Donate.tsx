@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useFormik } from "formik";
-import * as zod from "zod";
 import { useState } from "react";
 import "./donate.scss";
 import "react-tabs/style/react-tabs.css";
@@ -7,44 +7,50 @@ import { IoQrCodeOutline } from "react-icons/io5";
 import { Input } from "../Input/Input";
 import Button from "../Button/Button";
 import qrPhoto from "../../assets/images/qrCode.png";
+import { useMe } from "../../lib/context";
+import { withZodSchema } from "formik-validator-zod";
+import { trpc } from "../../lib/trpc";
+import { Alert } from "../Alert/Alert";
+import { zCreateDonationTrpcInput } from "@insaniyat/backend/src/router/donation/createDonation/input";
 
-const donationSchema = zod.object({
-  amount: zod.string().min(1),
-  paymentType: zod.enum(["one-time", "monthly"]),
-  name: zod.string().min(2, "Имя должно содержать минимум 2 символа"),
-  email: zod.string().email("Введите корректный email"),
-});
-
-type DonationFormValues = zod.infer<typeof donationSchema>;
+enum paymentType {
+  ONE_TIME = "ONE_TIME",
+  MONTHLY = "MONTHLY",
+}
 
 export const DonationForm = () => {
-  const [donationType, setDonationType] = useState<"one-time" | "monthly">("one-time");
+  const [donationType, setDonationType] = useState<paymentType>(paymentType.ONE_TIME);
   const [paymentMethod, setPaymentMethod] = useState<"online" | "qrCode" | "transfer">(
     "online"
   );
+  const [successMessageVisible, setSuccessMessageVisible] = useState(false);
+  const [submittingError, setSubmittingError] = useState<string | null>(null);
+  const me = useMe();
+  const createDonation = trpc.createDonation.useMutation();
 
-  const formik = useFormik<DonationFormValues>({
+  const formik = useFormik({
     initialValues: {
       amount: "100",
-      paymentType: "one-time",
-      name: "",
-      email: "",
+      paymentType: paymentType.ONE_TIME,
+      name: me?.name || "",
+      email: me?.email || "",
     },
-    validate: (values) => {
-      try {
-        donationSchema.parse(values);
-        return {};
-      } catch (error) {
-        if (error instanceof zod.ZodError) {
-          return error.formErrors.fieldErrors;
-        }
-      }
-    },
+    validate: withZodSchema(zCreateDonationTrpcInput),
     onSubmit: async (values) => {
       try {
         console.log(values);
-      } catch (error) {
+        await createDonation.mutateAsync(values);
+        setSuccessMessageVisible(true);
+
+        setTimeout(() => {
+          setSuccessMessageVisible(false);
+        }, 3000);
+      } catch (error: any) {
         console.log(error);
+        setSubmittingError(error.message);
+        setTimeout(() => {
+          setSubmittingError(null);
+        }, 3000);
       }
     },
   });
@@ -55,7 +61,7 @@ export const DonationForm = () => {
     formik.setFieldValue("amount", amount);
   };
 
-  const handleDonationTypeChange = (type: "one-time" | "monthly") => {
+  const handleDonationTypeChange = (type: paymentType) => {
     formik.setFieldValue("paymentType", type);
   };
 
@@ -127,9 +133,9 @@ export const DonationForm = () => {
           <h2>2. Тип пожертвования</h2>
           <div className="donate__type-options">
             <label
-              onClick={() => handleDonationTypeChange("monthly")}
+              onClick={() => handleDonationTypeChange(paymentType.MONTHLY)}
               className={`donate__type-option ${
-                donationType === "monthly" ? "donate__type-option--active" : ""
+                donationType === paymentType.MONTHLY ? "donate__type-option--active" : ""
               }`}
             >
               <input
@@ -137,26 +143,26 @@ export const DonationForm = () => {
                 name="donationType"
                 value="monthly"
                 className="donate__type-input"
-                checked={donationType === "monthly"}
-                onChange={() => setDonationType("monthly")}
+                checked={donationType === paymentType.MONTHLY}
+                onChange={() => setDonationType(paymentType.MONTHLY)}
               />
               <span className="donate__type-custom-radio"></span>
               <span className="donate__type-label">Ежемесячно</span>
             </label>
 
             <label
-              onClick={() => handleDonationTypeChange("one-time")}
+              onClick={() => handleDonationTypeChange(paymentType.ONE_TIME)}
               className={`donate__type-option ${
-                donationType === "one-time" ? "donate__type-option--active" : ""
+                donationType === paymentType.ONE_TIME ? "donate__type-option--active" : ""
               }`}
             >
               <input
                 type="radio"
                 name="donationType"
-                value="one-time"
+                value={paymentType.ONE_TIME}
                 className="donate__type-input"
-                checked={donationType === "one-time"}
-                onChange={() => setDonationType("one-time")}
+                checked={donationType === paymentType.ONE_TIME}
+                onChange={() => setDonationType(paymentType.ONE_TIME)}
               />
               <span className="donate__type-custom-radio"></span>
               <span className="donate__type-label">Единоразово</span>
@@ -176,6 +182,11 @@ export const DonationForm = () => {
           </div>
         </div>
         <div className="donate__submit">
+          {submittingError && <Alert color="red" children={submittingError} />}
+
+          {successMessageVisible && (
+            <Alert color="green" children="Пожертвование создано!" />
+          )}
           <Button variant="secondary" type="submit" children="Пожертвовать" />
           <div>
             Нажимая на кнопку “Пожертвовать”, вы соглашаетесь с условиями{" "}

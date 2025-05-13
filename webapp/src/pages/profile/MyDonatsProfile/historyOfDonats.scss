@@ -68,19 +68,19 @@
   font-size: 12px;
 }
 
-.profile__donats-status-success {
+.profile__donats-status-SUCCESS {
   background-color: rgb(219 255 221);
   color: rgb(0 128 0);
   border: 1px solid rgb(0 191 0 / 20%);
 }
 
-.profile__donats-status-error {
+.profile__donats-status-ERROR {
   background-color: rgb(255 219 219);
   color: rgb(191 0 0);
   border: 1px solid rgb(255 0 0 / 20%);
 }
 
-.profile__donats-status-pending {
+.profile__donats-status-LOADING {
   background-color: rgb(255 246 219);
   color: rgb(191 112 0);
   border: 1px solid rgb(255 191 0 / 20%);

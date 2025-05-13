@@ -15,6 +15,30 @@ model User {
     isAdmin            Boolean              @default(false)
     createdAt          DateTime             @default(now())
     PasswordResetToken PasswordResetToken[]
+    donations          Donation[]
+    subscriptions      Subscription[]
+}
+
+model Donation {
+    id          String        @id @default(uuid())
+    userId      String?
+    email       String
+    name        String
+    amount      Float
+    paymentType paymentType   @default(ONE_TIME)
+    status      paymentStatus @default(LOADING)
+    user        User?         @relation(fields: [userId], references: [id])
+    createdAt   DateTime      @default(now())
+}
+
+model Subscription {
+    id        String   @id @default(uuid())
+    userId    String?
+    email     String
+    name      String
+    amount    Float
+    user      User?    @relation(fields: [userId], references: [id])
+    createdAt DateTime @default(now())
 }
 
 model PasswordResetToken {
@@ -57,11 +81,21 @@ enum StatusType {
     ACTIVE
     COMPLETED
     SUCCESSFUL
-    DELETED
 }
 
 enum DIRECTION {
     MEDICAL
     EDUCATION
     SOCIAL
+}
+
+enum paymentType {
+    ONE_TIME
+    MONTHLY
+}
+
+enum paymentStatus {
+    LOADING
+    ERROR
+    SUCCESS
 }
