@@ -46,46 +46,61 @@ export const Profile = () => {
               Профиль
             </NavLink>
           </li>
-          <li className="profile_list-item">
-            <NavLink to="donats" className="profile__list-item-link">
-              <span>
-                <FaHistory />
-              </span>
-              История пожертвований
-            </NavLink>
-          </li>
-          <li className="profile_list-item">
-            <NavLink to="subscriptions" className="profile__list-item-link">
-              <span>
-                <FaHistory />
-              </span>
-              Мои подписки
-            </NavLink>
-          </li>
-          {/* <li className="profile_list-item">
-            <NavLink to="" className="profile__list-item-link">
-              <span>
-                <FaAward />
-              </span>
-              Мои достижения
-            </NavLink>
-          </li> */}
-          <li className="profile_list-item">
-            <Link to="" className="profile__list-item-link">
-              <span>
-                <FaFileDownload />
-              </span>
-              Публичная оферта
-            </Link>
-          </li>
-          <li className="profile_list-item">
-            <Link to="" className="profile__list-item-link">
-              <span>
-                <FaFileDownload />
-              </span>
-              Политика конфиденциальности
-            </Link>
-          </li>
+          {me.isAdmin ? (
+            <>
+              <li className="profile_list-item">
+                <NavLink to="all-donats" className="profile__list-item-link">
+                  Все пожертвования
+                </NavLink>
+              </li>
+              <li className="profile_list-item">
+                <NavLink to="/programs/new" className="profile__list-item-link">
+                  Добавить направление
+                </NavLink>
+              </li>
+              <li className="profile_list-item">
+                <NavLink to="/campaigns/new" className="profile__list-item-link">
+                  Добавить сбор
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className="profile_list-item">
+                <NavLink to="donats" className="profile__list-item-link">
+                  <span>
+                    <FaHistory />
+                  </span>
+                  История пожертвований
+                </NavLink>
+              </li>
+              <li className="profile_list-item">
+                <NavLink to="subscriptions" className="profile__list-item-link">
+                  <span>
+                    <FaHistory />
+                  </span>
+                  Мои подписки
+                </NavLink>
+              </li>
+
+              <li className="profile_list-item">
+                <Link to="" className="profile__list-item-link">
+                  <span>
+                    <FaFileDownload />
+                  </span>
+                  Публичная оферта
+                </Link>
+              </li>
+              <li className="profile_list-item">
+                <Link to="" className="profile__list-item-link">
+                  <span>
+                    <FaFileDownload />
+                  </span>
+                  Политика конфиденциальности
+                </Link>
+              </li>
+            </>
+          )}
           <li className="profile_list-item">
             <Link to={getSignOutRoute()} className="profile__list-item-link">
               <span>

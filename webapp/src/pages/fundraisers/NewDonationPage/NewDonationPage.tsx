@@ -13,6 +13,7 @@ import { Select } from "../../../components/Select/Select";
 import { NotFoundPage } from "../../other/NotFoundPage/NotFoundPage";
 import { zCreateFundRaiserTrpcInput } from "@insaniyat/backend/src/router/fundRaisers/createFundRaiser/input";
 import { Loader } from "../../../components/Loader/Loader";
+import { useMe } from "../../../lib/context";
 
 export const NewDonationPage = () => {
   const [successMessageVisible, setSuccessMessageVisible] = useState(false);
@@ -21,6 +22,7 @@ export const NewDonationPage = () => {
   const [options, setOptions] = useState<string[] | any>(null);
 
   const { data, error, isLoading, isFetching, isError } = trpc.getPrograms.useQuery();
+  const me = useMe();
 
   const createFundraiser = trpc.createFundRaiser.useMutation();
 
@@ -71,6 +73,15 @@ export const NewDonationPage = () => {
 
   if (!data.programs || !data) {
     return <NotFoundPage message="Programs are not found" />;
+  }
+
+  if (!me?.isAdmin) {
+    return (
+      <div className="new-fundraiser-page">
+        <h1>Добавить новый сбор</h1>
+        <Alert color="red" children="У вас нет доступа к этой странице" />
+      </div>
+    );
   }
 
   return (

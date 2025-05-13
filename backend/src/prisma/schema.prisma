@@ -12,6 +12,7 @@ model User {
     email              String               @unique
     password           String
     name               String
+    isAdmin            Boolean              @default(false)
     createdAt          DateTime             @default(now())
     PasswordResetToken PasswordResetToken[]
 }
@@ -56,6 +57,7 @@ enum StatusType {
     ACTIVE
     COMPLETED
     SUCCESSFUL
+    DELETED
 }
 
 enum DIRECTION {

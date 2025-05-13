@@ -12,6 +12,7 @@ const zEnv = z.object({
   SMTP_PORT: z.string().min(1),
   SMTP_USER: z.string().min(1),
   SMTP_PASSWORD: z.string().min(1),
+  INITIAL_ADMIN_PASSWORD: z.string().min(1),
 });
 
 export const env = zEnv.parse(process.env);

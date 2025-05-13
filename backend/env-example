@@ -7,3 +7,6 @@ SMTP_HOST=smtp.mail.ru
 SMTP_PORT=465
 SMTP_USER=example@ex.com
 SMTP_PASSWORD=ajsdlfaj
+
+INITIAL_ADMIN_PASSWORD=123
+

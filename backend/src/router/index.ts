@@ -15,6 +15,8 @@ import { getMeTrpcRoute } from "./auth/getMe/getMe";
 import { reqPasswordResetRoute } from "./auth/reqPasswordResetRoute/reqPasswordResetRoute";
 import { resetPasswordRoute } from "./auth/resetPassword/resetPassword";
 import { updatePasswordTrpcRoute } from "./auth/updatePassword";
+import { deleteFundRaiserTrpcRoute } from "./fundRaisers/deleteFundRaiser";
+import { deleteProgramTrpcRoute } from "./programs/deleteProgram";
 
 export const trpcRouter = trpc.router({
   getPrograms: getProgramsTrpcRoute,
@@ -32,6 +34,8 @@ export const trpcRouter = trpc.router({
   updateProgram: updateProgramTrpcRoute,
   editProfile: editProfileTrpcRoute,
   updatePassword: updatePasswordTrpcRoute,
+  deleteFundRaiser: deleteFundRaiserTrpcRoute,
+  deleteProgram: deleteProgramTrpcRoute,
 });
 
 export type TrpcRouter = typeof trpcRouter;

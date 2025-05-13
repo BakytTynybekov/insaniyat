@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useParams } from "react-router";
 import "./donationPage.scss";
 import type { viewDonationParams } from "../../../lib/routes";
@@ -6,14 +7,37 @@ import { format } from "date-fns";
 import { DonationForm } from "../../../components/Donate/Donate";
 import { NotFoundPage } from "../../other/NotFoundPage/NotFoundPage";
 import { Loader } from "../../../components/Loader/Loader";
+import Button from "../../../components/Button/Button";
+import { useMe } from "../../../lib/context";
+import { useFormik } from "formik";
+import { Alert } from "../../../components/Alert/Alert";
+import { useState } from "react";
 
 export const DonationPage = () => {
+  const me = useMe();
+  const [submittingError, setSubmittingError] = useState<string | null>(null);
+
   const { fundRaiser } = useParams() as viewDonationParams;
 
   const { data, error, isLoading, isFetching, isError } = trpc.getFundRaiser.useQuery({
     fundRaiser,
   });
+  const trpcUtils = trpc.useUtils();
+  const deleteFundraiser = trpc.deleteFundRaiser.useMutation();
 
+  const formik = useFormik({
+    initialValues: [],
+
+    onSubmit: async () => {
+      try {
+        console.log("hello");
+        await deleteFundraiser.mutateAsync({ fundraiserId: data!.fundRaiser!.id });
+        await trpcUtils.getFundRaiser.refetch({ fundRaiser });
+      } catch (error: any) {
+        setSubmittingError(error.message);
+      }
+    },
+  });
   if (isLoading || isFetching) {
     return <Loader type="page" />;
   }
@@ -33,6 +57,15 @@ export const DonationPage = () => {
     { name: "Анна Петрова", amount: 5000, date: "2023-10-02" },
     { name: "Сергей Сидоров", amount: 15000, date: "2023-10-03" },
   ];
+
+  const handleDelete = async (e: any) => {
+    e.preventDefault();
+    if (!me?.isAdmin) {
+      setSubmittingError("У вас нет доступа");
+    } else {
+      formik.handleSubmit();
+    }
+  };
 
   return (
     <div className="donation-page">
@@ -70,6 +103,12 @@ export const DonationPage = () => {
           <h2>О сборе</h2>
           <p>{data.fundRaiser.description}</p>
           <div dangerouslySetInnerHTML={{ __html: data.fundRaiser.text }} />
+          {me?.isAdmin && (
+            <form onSubmit={(e) => handleDelete(e)}>
+              <Button children="Удалить сбор" type="submit" />
+              {submittingError && <Alert color="red">{submittingError}</Alert>}
+            </form>
+          )}
         </div>
 
         <div className="donors-list">

@@ -6,14 +6,33 @@ import { FundRaiserCard } from "../../../components/fundRaiserCard/FundRaiserCar
 import Button from "../../../components/Button/Button";
 import { NotFoundPage } from "../../other/NotFoundPage/NotFoundPage";
 import { Loader } from "../../../components/Loader/Loader";
+import { useMe } from "../../../lib/context";
+import { useState } from "react";
+import { Alert } from "../../../components/Alert/Alert";
 
 export const ProgramPage = () => {
   const { program } = useParams() as viewProgramParams;
+  const [submittingError, setSubmittingError] = useState<string | null>(null);
+
   const navigate = useNavigate();
+  const me = useMe();
+  const deleteProgram = trpc.deleteProgram.useMutation();
+  const trpcUtils = trpc.useUtils();
 
   const { data, error, isLoading, isFetching, isError } = trpc.getProgram.useQuery({
     program,
   });
+
+  const handleDelete = async (programId: string) => {
+    try {
+      await deleteProgram.mutateAsync({ programId });
+      await trpcUtils.getProgram.refetch({ program });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      setSubmittingError(error.message);
+      console.log(error.message);
+    }
+  };
 
   if (isLoading || isFetching) {
     return <Loader type="page" />;
@@ -38,14 +57,18 @@ export const ProgramPage = () => {
           <img src={data.program.image} alt={data.program.title} />
         </div>
       </div>
-      <div className="program-btns">
-        <Button variant="secondary" onClick={() => navigate("edit")}>
-          Изменить направление
-        </Button>
-        <Button variant="danger" onClick={() => navigate("edit")}>
-          Удалить направление
-        </Button>
-      </div>
+      {me?.isAdmin && (
+        <div className="program-btns">
+          <Button variant="secondary" onClick={() => navigate("edit")}>
+            Изменить направление
+          </Button>
+          {submittingError && <Alert color="red" children={submittingError} />}
+
+          <Button variant="danger" onClick={() => handleDelete(data!.program!.id)}>
+            Удалить направление
+          </Button>
+        </div>
+      )}
 
       {data && (
         <div className="open-campaigns">

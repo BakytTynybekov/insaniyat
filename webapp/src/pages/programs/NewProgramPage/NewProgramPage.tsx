@@ -11,11 +11,12 @@ import { FormItems } from "../../../components/FormItems/FormItems";
 import { Editor } from "@tinymce/tinymce-react";
 import { zCreateProgramTrpcInput } from "@insaniyat/backend/src/router/programs/createProgram/input";
 import { Loader } from "../../../components/Loader/Loader";
+import { useMe } from "../../../lib/context";
 
 export const NewProgramPage = () => {
   const [successMessageVisible, setSuccessMessageVisible] = useState(false);
   const [submittingError, setSubmittingError] = useState<string | null>(null);
-
+  const me = useMe();
   const createProgram = trpc.createProgram.useMutation();
 
   const formik = useFormik({
@@ -47,6 +48,15 @@ export const NewProgramPage = () => {
     e.preventDefault();
     formik.handleSubmit();
   };
+
+  if (!me?.isAdmin) {
+    return (
+      <div className="new-fundraiser-page">
+        <h1>Добавить новое направление</h1>
+        <Alert color="red" children="У вас нет доступа к этой странице" />
+      </div>
+    );
+  }
 
   return (
     <div className="new-fundraiser-page">

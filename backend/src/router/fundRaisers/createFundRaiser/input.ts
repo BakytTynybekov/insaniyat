@@ -3,7 +3,7 @@ import { z } from "zod";
 export const zCreateFundRaiserTrpcInput = z.object({
   title: z.string().min(1),
   description: z.string().min(1),
-  text: z.string().min(100),
+  text: z.string().min(1),
   programTitle: z.string().min(1),
   goal: z.string().min(1),
   raised: z.number(),
