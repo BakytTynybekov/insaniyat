@@ -168,3 +168,23 @@
 .donor-date {
   color: #777;
 }
+
+.fundraiser-status {
+  display: grid;
+  place-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10000;
+  background-color: rgba($color: #000000, $alpha: 0.75);
+
+  &__inner {
+    width: 80%;
+    max-width: 500px;
+    border-radius: 15px;
+    background-color: #fff;
+    padding: 20px 40px;
+  }
+}

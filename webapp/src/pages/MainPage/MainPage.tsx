@@ -5,7 +5,7 @@ import CollaborationSection from "../../components/сollaborationSection/Collabo
 // import CurrentFundraisers from "../../components/сurrentFundraisers/CurrentFundraisers";
 import { CampaignsPage } from "../fundraisers/CampaignsPage/CampaignsPage";
 import { ProgramsPage } from "../programs/ProgramsPage/ProgramsPage";
-
+//
 const MainPage = () => {
   return (
     <>

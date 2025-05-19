@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+import { ru } from "date-fns/locale";
 import { Loader } from "../../../components/Loader/Loader";
 import { useMe } from "../../../lib/context";
 import { trpc } from "../../../lib/trpc";
@@ -38,7 +40,8 @@ export const MyDonatsProfilePage = () => {
           <div key={donation.id} className="profile__donats-history-item">
             <div className="profile__donats-info">
               <div className="profile__donats-date">
-                Ваше пожертвование {donation.createdAt}
+                Ваше пожертвование{" "}
+                {format(donation.createdAt, "dd MMMM yyyy HH:mm", { locale: ru })}
               </div>
               <div className="profile__donats-summa">{donation.amount} R.</div>
             </div>

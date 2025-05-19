@@ -14,11 +14,22 @@ export const signUpTrpcRoute = trpc.procedure
     if (exUser) {
       throw new Error("Пользователь с такой почтой уже существует!!!");
     }
+
     const user = await ctx.prisma.user.create({
       data: {
         email: input.email,
         password: getPasswordHash(input.password),
         name: input.name,
+      },
+    });
+
+    const donations = await ctx.prisma.donation.updateMany({
+      where: {
+        email: input.email,
+        userId: null,
+      },
+      data: {
+        userId: user.id,
       },
     });
 

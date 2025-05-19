@@ -18,7 +18,7 @@ enum paymentType {
   MONTHLY = "MONTHLY",
 }
 
-export const DonationForm = () => {
+export const DonationForm = ({ fundRaiserId }: { fundRaiserId: string }) => {
   const [donationType, setDonationType] = useState<paymentType>(paymentType.ONE_TIME);
   const [paymentMethod, setPaymentMethod] = useState<"online" | "qrCode" | "transfer">(
     "online"
@@ -34,6 +34,7 @@ export const DonationForm = () => {
       paymentType: paymentType.ONE_TIME,
       name: me?.name || "",
       email: me?.email || "",
+      fundRaiserId: fundRaiserId,
     },
     validate: withZodSchema(zCreateDonationTrpcInput),
     onSubmit: async (values) => {

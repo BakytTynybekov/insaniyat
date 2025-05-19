@@ -12,33 +12,26 @@ import { useMe } from "../../../lib/context";
 import { useFormik } from "formik";
 import { Alert } from "../../../components/Alert/Alert";
 import { useState } from "react";
+import { Select } from "../../../components/Select/Select";
+import { withZodSchema } from "formik-validator-zod";
+import { StatusType } from "@insaniyat/backend/src/utils/types";
+import { z } from "zod";
 
 export const DonationPage = () => {
   const me = useMe();
   const [submittingError, setSubmittingError] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const { fundRaiser } = useParams() as viewDonationParams;
 
   const { data, error, isLoading, isFetching, isError } = trpc.getFundRaiser.useQuery({
     fundRaiser,
   });
+  const allDonations = trpc.getAllDonations.useQuery();
   const trpcUtils = trpc.useUtils();
   const deleteFundraiser = trpc.deleteFundRaiser.useMutation();
 
-  const formik = useFormik({
-    initialValues: [],
-
-    onSubmit: async () => {
-      try {
-        console.log("hello");
-        await deleteFundraiser.mutateAsync({ fundraiserId: data!.fundRaiser!.id });
-        await trpcUtils.getFundRaiser.refetch({ fundRaiser });
-      } catch (error: any) {
-        setSubmittingError(error.message);
-      }
-    },
-  });
-  if (isLoading || isFetching) {
+  if (isLoading || isFetching || allDonations.isLoading) {
     return <Loader type="page" />;
   }
 
@@ -58,15 +51,19 @@ export const DonationPage = () => {
     { name: "Сергей Сидоров", amount: 15000, date: "2023-10-03" },
   ];
 
-  const handleDelete = async (e: any) => {
-    e.preventDefault();
-    if (!me?.isAdmin) {
-      setSubmittingError("У вас нет доступа");
-    } else {
-      formik.handleSubmit();
+  const handleDelete = async () => {
+    try {
+      await deleteFundraiser.mutateAsync({ fundraiserId: data!.fundRaiser!.id });
+      await trpcUtils.getFundRaiser.refetch({ fundRaiser });
+    } catch (error: any) {
+      setSubmittingError(error.message);
+      console.log(error.message);
     }
   };
 
+  if (allDonations) {
+    console.log(allDonations.data, allDonations.isLoading, "all");
+  }
   return (
     <div className="donation-page">
       <div className="hero-banner">
@@ -95,7 +92,7 @@ export const DonationPage = () => {
             {data.fundRaiser.goal?.toLocaleString()} ₽
           </div>
           <>
-            <DonationForm />
+            <DonationForm fundRaiserId={data.fundRaiser.id} />
           </>
         </div>
 
@@ -104,10 +101,34 @@ export const DonationPage = () => {
           <p>{data.fundRaiser.description}</p>
           <div dangerouslySetInnerHTML={{ __html: data.fundRaiser.text }} />
           {me?.isAdmin && (
-            <form onSubmit={(e) => handleDelete(e)}>
-              <Button children="Удалить сбор" type="submit" />
+            <>
               {submittingError && <Alert color="red">{submittingError}</Alert>}
-            </form>
+              <Button
+                onClick={() => handleDelete()}
+                children="Удалить сбор"
+                type="submit"
+                variant="danger"
+              />{" "}
+              <Button
+                onClick={() => setIsModalOpen(true)}
+                type="button"
+                children="Изменить статус"
+              />
+              {isModalOpen && (
+                <div className="fundraiser-status" onClick={() => setIsModalOpen(false)}>
+                  <div
+                    onClick={(e) => e.stopPropagation()}
+                    className="fundraiser-status__inner"
+                  >
+                    <h3>Изменить статус сбора</h3>
+                    <ChangeStatusComponent
+                      fundId={data.fundRaiser.id}
+                      cancelClick={() => setIsModalOpen(false)}
+                    />
+                  </div>
+                </div>
+              )}
+            </>
           )}
         </div>
 
@@ -125,5 +146,54 @@ export const DonationPage = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+const ChangeStatusComponent = ({
+  cancelClick,
+  fundId,
+}: {
+  cancelClick: () => void;
+  fundId: string;
+}) => {
+  const changeStatus = trpc.changeFundRaiserStatus.useMutation();
+  const formik = useFormik({
+    initialValues: {
+      status: StatusType.ACTIVE,
+    },
+    validate: withZodSchema(
+      z.object({
+        status: z.string().min(1),
+      })
+    ),
+
+    onSubmit: async (values) => {
+      try {
+        await changeStatus.mutateAsync({
+          status: values.status,
+          fundraiserId: fundId,
+        });
+      } catch (error: any) {
+        console.log(error);
+      }
+    },
+  });
+
+  return (
+    <form>
+      <Select
+        formik={formik}
+        name="status"
+        options={Object.values(StatusType)}
+        label="Выберите статус"
+      />
+      <Button
+        onClick={() => cancelClick()}
+        type="button"
+        variant="simple"
+        children="Отмена"
+      />{" "}
+      <Button type="submit" variant="secondary" children="Сохранить" />
+    </form>
   );
 };

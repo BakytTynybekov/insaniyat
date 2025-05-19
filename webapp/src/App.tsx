@@ -6,7 +6,6 @@ import Footer from "./components/footer/Footer";
 import * as routes from "./lib/routes";
 import { NewDonationPage } from "./pages/fundraisers/NewDonationPage/NewDonationPage";
 import { CampaignsPage } from "./pages/fundraisers/CampaignsPage/CampaignsPage";
-import { ProgramsPage } from "./pages/programs/ProgramsPage/ProgramsPage";
 import { SignUpPage } from "./pages/auth/SignUpPage/SignUpPage";
 import RequestPasswordReset from "./pages/RequestPasswordReset/RequestPasswordReset";
 import { ResetPassword } from "./pages/ResetPassword/ResetPassword";
@@ -21,6 +20,8 @@ import { GetHelp } from "./pages/other/GetHelp/GetHelp";
 import { NotFoundPage } from "./pages/other/NotFoundPage/NotFoundPage";
 import { SignOutPage } from "./pages/auth/SignOutPage/SignOutPage";
 import { SignInPage } from "./pages/auth/SignInPage/SignInPage";
+import { AllDonations } from "./pages/profile/allDonations/AllDonations";
+import { ProgramsPage } from "./pages/programs/ProgramsPage/ProgramsPage";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
 
           <Route path="donats" element={<MyDonatsProfilePage />} />
           <Route path="subscriptions" element={<MySubscriptionsPage />} />
+          <Route path="all-donats" element={<AllDonations />} />
         </Route>
         <Route path={routes.getNewDonationRoute()} element={<NewDonationPage />} />
         <Route path={routes.getNewProgramRoute()} element={<NewProgramPage />} />

@@ -12,11 +12,15 @@
   }
 
   &-list {
+    display: grid;
+    gap: 10px;
     padding: 0px 20px 30px;
     border-bottom: 1px #282a2d solid;
   }
 
   &-history {
+    display: grid;
+    gap: 10px;
     padding: 0px 20px 30px;
   }
 

@@ -7,4 +7,5 @@ export const zCreateDonationTrpcInput = z.object({
   name: z.string().min(2, "Имя должно содержать минимум 2 символа"),
   email: z.string().email("Введите корректный email"),
   userId: z.string().min(1).optional(),
+  fundRaiserId: z.string().min(1),
 });
