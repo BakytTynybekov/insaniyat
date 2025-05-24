@@ -65,17 +65,13 @@ export const DonationPage = () => {
     console.log(allDonations.data, allDonations.isLoading, "all");
   }
   return (
-    <div className="donation-page">
+    <div className="donation-page page">
       <div className="hero-banner">
         <img
           src={data.fundRaiser.image}
           alt={data.fundRaiser.title}
           className="hero-image"
         />
-        <div className="hero-overlay">
-          {/* <h1 className="hero-title">{data.fundRaiser.title}</h1>
-          <p className="hero-subtitle">Ваша помощь может изменить жизни</p> */}
-        </div>
       </div>
 
       <div className="content-container">

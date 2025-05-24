@@ -5,7 +5,7 @@ import Button from "../../../components/Button/Button";
 
 export const GetHelp = () => {
   return (
-    <div className="getHelp">
+    <div className="getHelp page">
       <div className="container">
         <div className="getHelp__inner">
           <div className="getHelp__title">

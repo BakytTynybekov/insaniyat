@@ -26,7 +26,7 @@ export const MonthlyReports: React.FC = () => {
   }
 
   return (
-    <div className="monthly-reports">
+    <div className="monthly-reports page">
       <div className="hero-section">
         <div className="hero-content">
           <h1>

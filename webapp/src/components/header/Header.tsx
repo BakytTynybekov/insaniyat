@@ -74,13 +74,14 @@ export const Header = () => {
           title: "Контакты",
           link: "/contacts",
         },
-        {
-          title: "Учредительные документы",
-          link: "/documents",
-        },
+
         {
           title: "Новости",
           link: "/news",
+        },
+        {
+          title: "Учредительные документы",
+          link: "/documents",
         },
       ],
     },

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import Button from "../Button/Button";
-import "./heroSection.css";
+import "./heroSection.scss";
 import { getViewCampaignsRoute } from "../../lib/routes";
 
 export const HeroSection = () => {

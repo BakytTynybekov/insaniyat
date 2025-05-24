@@ -20,7 +20,7 @@ export const ProgramsPage: React.FC = () => {
     return <NotFoundPage title="" message="Programs are not found" />;
   }
   return (
-    <div className="programs-page">
+    <div className="programs-page page">
       <h1 className="page-title">Наши Направления</h1>
 
       <div className="programs-list">

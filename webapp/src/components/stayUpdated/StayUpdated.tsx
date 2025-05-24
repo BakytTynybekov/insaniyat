@@ -1,4 +1,5 @@
-import "./StayUpdated.css";
+import { useInView } from "react-intersection-observer";
+import "./stayUpdated.scss";
 
 const news = [
   {
@@ -39,8 +40,13 @@ const news = [
 ];
 
 const StayUpdated = () => {
+  const [newsRef, newsView] = useInView({ threshold: 0.3, triggerOnce: true });
   return (
-    <section id="news" className="stay-updated">
+    <section
+      id="news"
+      className={`stay-updated ${newsView ? "visible" : ""}`}
+      ref={newsRef}
+    >
       <h2 className="section-title">Быть в курсе</h2>
       <div className="news-grid">
         {news.map((item) => (

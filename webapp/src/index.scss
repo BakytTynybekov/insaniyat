@@ -1,0 +1,106 @@
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #4caf50;
+  --background-color: #ffffff;
+  --text-color: #1a1a1a;
+  --hover-color: #0056b3;
+  --transition-speed: 0.3s;
+}
+
+// Переменные
+$primary-color: #4a6fa5;
+$secondary-color: #ff7e5f;
+$accent-color: #e63946;
+$light-color: #f8f9fa;
+$dark-color: #343a40;
+$text-color: #333;
+$border-radius: 12px;
+$box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+$transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Montserrat", "Open Sans", sans-serif;
+  color: $text-color;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+.page {
+  margin-top: 80px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: 3.2rem;
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+}
+
+h2 {
+  font-size: 2.1rem;
+  margin-bottom: 20px;
+  position: relative;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+
+  .section-subtitle {
+    font-size: 1.2rem;
+    color: lighten($text-color, 30%);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+}
+
+.section-footer {
+  text-align: center;
+  margin-top: 40px;
+}
+
+//
+
+// Адаптивность
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+}

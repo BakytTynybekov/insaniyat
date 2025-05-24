@@ -258,6 +258,9 @@
 
 @media screen and (max-width: 700px) {
   .donate {
+    &__paymentMethods-list {
+      flex-wrap: wrap;
+    }
     .donate__amount {
       &-btns {
         grid-template-columns: 1fr 1fr 1fr;

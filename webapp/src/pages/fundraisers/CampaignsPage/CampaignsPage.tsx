@@ -34,7 +34,7 @@ export const CampaignsPage = () => {
   };
 
   return (
-    <div className="compaignsPage">
+    <div className="compaignsPage page">
       <h1 className="compaignsPage-title">Благотворительные сборы</h1>
 
       <div className="fund-raiser-list">

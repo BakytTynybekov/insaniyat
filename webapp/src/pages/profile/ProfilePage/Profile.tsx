@@ -37,7 +37,7 @@ export const Profile = () => {
   }
 
   return (
-    <div className="profile">
+    <div className="profile page">
       <div
         className={`profile__item ${isActive ? "" : "profile__item-menu"}`}
         onClick={() => setIsActive(false)}

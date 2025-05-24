@@ -85,7 +85,7 @@ export const NewDonationPage = () => {
   }
 
   return (
-    <div className="new-fundraiser-page">
+    <div className="new-fundraiser-page page">
       <h1>Добавить новый сбор</h1>
       <FormItems onSubmit={(e) => handleSubmit(e)}>
         <Input label={"Заголовок"} type="text" name="title" formik={formik} />

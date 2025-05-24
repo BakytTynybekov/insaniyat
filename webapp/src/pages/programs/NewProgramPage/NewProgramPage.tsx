@@ -12,6 +12,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import { zCreateProgramTrpcInput } from "@insaniyat/backend/src/router/programs/createProgram/input";
 import { Loader } from "../../../components/Loader/Loader";
 import { useMe } from "../../../lib/context";
+import { NotFoundPage } from "../../other/NotFoundPage/NotFoundPage";
 
 export const NewProgramPage = () => {
   const [successMessageVisible, setSuccessMessageVisible] = useState(false);
@@ -50,16 +51,11 @@ export const NewProgramPage = () => {
   };
 
   if (!me?.isAdmin) {
-    return (
-      <div className="new-fundraiser-page">
-        <h1>Добавить новое направление</h1>
-        <Alert color="red" children="У вас нет доступа к этой странице" />
-      </div>
-    );
+    return <NotFoundPage />;
   }
 
   return (
-    <div className="new-fundraiser-page">
+    <div className="new-fundraiser-page page">
       <h1>Добавить новое направление</h1>
       <FormItems onSubmit={(e) => handleSubmit(e)}>
         <Input label={"Заголовок"} type="text" name="title" formik={formik} />

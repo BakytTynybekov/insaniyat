@@ -27,12 +27,18 @@ import { MonthlyReports } from "./pages/reports/MonthlyReports";
 import { NewReportSpendings } from "./pages/reports/NewReportSpendings";
 import { NewReportIncomes } from "./pages/reports/NewReportIncomes";
 
+import { Contacts } from "./pages/other/Contacts/Contacts";
+import { News } from "./pages/other/News";
+
 function App() {
   return (
     <>
       <Header />
       <Routes>
         <Route path={"/"} element={<MainPage />} />
+
+        <Route path={"/contacts"} element={<Contacts />} />
+        <Route path={"/news"} element={<News />} />
         <Route path="/profile" element={<Profile />}>
           <Route path="edit" element={<EditProfilePage />} />
           {/* <Route path="edit" element={<EditProfile />} /> */}

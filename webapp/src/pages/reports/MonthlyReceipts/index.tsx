@@ -27,7 +27,7 @@ export const MonthlyDonations: React.FC = () => {
   }
 
   return (
-    <div className="monthly-donations">
+    <div className="monthly-donations page">
       <div className="hero-section">
         <div className="hero-content">
           <h1>

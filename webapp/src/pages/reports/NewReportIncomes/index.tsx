@@ -79,7 +79,7 @@ export const NewReportIncomes = () => {
   }
 
   return (
-    <div className="new-fundraiser-page">
+    <div className="new-fundraiser-page page">
       <h1>Добавить новый отчет по расходам</h1>
       <FormItems onSubmit={(e) => handleSubmit(e)}>
         <Select
