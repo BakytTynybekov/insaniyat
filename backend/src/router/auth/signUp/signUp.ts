@@ -23,7 +23,7 @@ export const signUpTrpcRoute = trpc.procedure
       },
     });
 
-    const donations = await ctx.prisma.donation.updateMany({
+    await ctx.prisma.donation.updateMany({
       where: {
         email: input.email,
         userId: null,

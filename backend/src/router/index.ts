@@ -22,6 +22,10 @@ import { getUserDonationsTrpcRoute } from "./donation/getUsersDonations";
 import { getUserSubscriptionsTrpcRoute } from "./donation/getUsersSubscriptions";
 import { changeFundRaiserStatusTrpcRoute } from "./fundRaisers/changeStatus";
 import { getAllDonationsTrpcRoute } from "./donation/getAllDonations";
+import { createSpendingsReportTrpcRoute } from "./reports/createSpendingReport";
+import { createIncomeReportTrpcRoute } from "./reports/createIncomeReport";
+import { getIncomeReportTrpcRoute } from "./reports/getIncomeReport";
+import { getSpendingsReportTrpcRoute } from "./reports/getSpendingsReport";
 
 export const trpcRouter = trpc.router({
   getPrograms: getProgramsTrpcRoute,
@@ -46,6 +50,10 @@ export const trpcRouter = trpc.router({
   getUsersSubscriptions: getUserSubscriptionsTrpcRoute,
   changeFundRaiserStatus: changeFundRaiserStatusTrpcRoute,
   getAllDonations: getAllDonationsTrpcRoute,
+  createSpendingsReport: createSpendingsReportTrpcRoute,
+  createIncomeReport: createIncomeReportTrpcRoute,
+  getIncomeReport: getIncomeReportTrpcRoute,
+  getSpendingsReport: getSpendingsReportTrpcRoute,
 });
 
 export type TrpcRouter = typeof trpcRouter;

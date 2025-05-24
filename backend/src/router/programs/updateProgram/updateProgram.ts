@@ -8,7 +8,9 @@ export const updateProgramTrpcRoute = trpc.procedure
     if (!ctx.me) {
       throw new Error("Unauthorized");
     }
-
+    if (!ctx.me?.isAdmin) {
+      throw new Error("Доступ для вас закрыт!");
+    }
     let program = await ctx.prisma.program.findUnique({
       where: {
         title: programExTitle,

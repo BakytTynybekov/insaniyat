@@ -77,6 +77,31 @@ model FundRaiser {
     updatedAt    DateTime   @updatedAt
 }
 
+model IncomeReport {
+    id            String   @id @default(uuid())
+    month         String
+    year          String
+    totalReceived Float
+    fileUrl       String
+    createdAt     DateTime @default(now())
+
+    @@unique([year, month])
+}
+
+model SpendinsReport {
+    id                 String   @id @default(uuid())
+    month              String
+    year               String
+    totalReceived      Float
+    totalSpent         Float
+    fileUrl            String
+    beneficiariesCount String
+    description        String
+    createdAt          DateTime @default(now())
+
+    @@unique([year, month])
+}
+
 enum StatusType {
     ACTIVE
     COMPLETED

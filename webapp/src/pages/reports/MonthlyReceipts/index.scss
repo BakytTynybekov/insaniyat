@@ -1,0 +1,375 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap");
+
+$primary-color: #4361ee;
+$secondary-color: #3f37c9;
+$accent-color: #4cc9f0;
+$light-bg: #f8f9fa;
+$dark-text: #2b2d42;
+$light-text: #8d99ae;
+
+.monthly-donations {
+  font-family: "Montserrat", sans-serif;
+  color: $dark-text;
+  background-color: #fff;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+
+  .hero-section {
+    background: linear-gradient(135deg, darken($primary-color, 10%), $secondary-color);
+    color: white;
+    padding: 5rem 2rem 8rem;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 3rem;
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+
+      .hero-title {
+        display: block;
+        font-family: "Playfair Display", serif;
+        font-size: 3.5rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 0.5rem;
+      }
+
+      .hero-accent {
+        display: block;
+        font-family: "Playfair Display", serif;
+        font-size: 4.5rem;
+        color: rgba(255, 255, 255, 0.9);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.3rem;
+        font-weight: 400;
+        max-width: 600px;
+        opacity: 0.9;
+        margin-bottom: 2rem;
+      }
+
+      .hero-decoration {
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 400px;
+        height: 400px;
+
+        .decoration-circle {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          border: 2px dashed rgba(255, 255, 255, 0.15);
+          animation: rotate 60s linear infinite;
+        }
+
+        .decoration-wave {
+          position: absolute;
+          top: 50px;
+          left: 50px;
+          width: 300px;
+          height: 300px;
+          background: radial-gradient(
+            circle,
+            rgba(76, 201, 240, 0.2) 0%,
+            transparent 70%
+          );
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+
+  .controls-container {
+    background-color: $light-bg;
+    padding: 1.5rem 0;
+    margin-bottom: 3rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+
+    .controls {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+
+      .year-selector {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        label {
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          color: $dark-text;
+
+          i {
+            color: $primary-color;
+          }
+        }
+
+        .styled-select {
+          appearance: none;
+          background-color: white;
+          border: 2px solid #e9ecef;
+          border-radius: 8px;
+          padding: 0.6rem 1.7rem 0.6rem 1rem;
+          font-size: 1rem;
+          font-weight: 500;
+          color: $dark-text;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%234361ee' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+          background-repeat: no-repeat;
+          background-position: right 0.75rem center;
+          background-size: 12px;
+
+          &:hover {
+            border-color: $primary-color;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+          }
+
+          &:focus {
+            outline: none;
+            border-color: $primary-color;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+          }
+        }
+      }
+
+      .stats-summary {
+        display: flex;
+        gap: 2rem;
+
+        .summary-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          span {
+            font-size: 0.9rem;
+            color: $light-text;
+            margin-bottom: 0.3rem;
+          }
+
+          strong {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+
+  .reports-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+
+    .reports-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+
+      .report-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        position: relative;
+        z-index: 1;
+
+        &:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        &.hovered {
+          .card-decoration {
+            .deco-wave {
+              transform: translateX(0);
+              opacity: 1;
+            }
+
+            .deco-dots {
+              opacity: 1;
+            }
+          }
+        }
+
+        .card-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1.5rem;
+          background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+          position: relative;
+          overflow: hidden;
+
+          .month-badge {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: $primary-color;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+
+            span {
+              font-size: 1rem;
+              font-weight: 500;
+              color: $light-text;
+            }
+          }
+
+          .amount-display {
+            display: flex;
+            align-items: baseline;
+            color: $dark-text;
+
+            .amount {
+              font-size: 2rem;
+              font-weight: 700;
+              margin-right: 0.3rem;
+            }
+
+            .currency {
+              font-size: 1.2rem;
+              font-weight: 600;
+              color: $light-text;
+            }
+          }
+        }
+
+        .card-footer {
+          display: block;
+          padding: 1rem 1.5rem;
+          background-color: #f8f9fa;
+          border-top: 1px solid #e9ecef;
+
+          .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: $primary-color;
+            color: white;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+
+            &::before {
+              content: "";
+              position: absolute;
+              top: -50%;
+              left: -50%;
+              width: 200%;
+              height: 200%;
+              background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0.3),
+                rgba(255, 255, 255, 0)
+              );
+              transform: rotate(30deg);
+              transition: all 0.5s ease;
+            }
+
+            &:hover {
+              background-color: darken($primary-color, 5%);
+              box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+
+              &::before {
+                transform: translateX(100%) rotate(30deg);
+              }
+            }
+
+            .file-format {
+              font-size: 0.7rem;
+              background-color: rgba(0, 0, 0, 0.1);
+              padding: 0.1rem 0.4rem;
+              border-radius: 4px;
+              margin-left: 0.3rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .monthly-donations {
+    .hero-section {
+      padding: 3rem 1.5rem 6rem;
+
+      .hero-content {
+        .hero-title {
+          font-size: 2.5rem;
+        }
+
+        .hero-accent {
+          font-size: 3rem;
+        }
+
+        .hero-subtitle {
+          font-size: 1.1rem;
+        }
+
+        .hero-decoration {
+          width: 250px;
+          height: 250px;
+          top: -30px;
+          right: -30px;
+
+          .decoration-wave {
+            width: 200px;
+            height: 200px;
+            top: 25px;
+            left: 25px;
+          }
+        }
+      }
+    }
+    .controls-container {
+      .controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        padding: 0 1.5rem;
+
+        .stats-summary {
+          justify-content: space-between;
+          width: 80%;
+        }
+      }
+    }
+  }
+}

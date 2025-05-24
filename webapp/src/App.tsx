@@ -22,6 +22,10 @@ import { SignOutPage } from "./pages/auth/SignOutPage/SignOutPage";
 import { SignInPage } from "./pages/auth/SignInPage/SignInPage";
 import { AllDonations } from "./pages/profile/allDonations/AllDonations";
 import { ProgramsPage } from "./pages/programs/ProgramsPage/ProgramsPage";
+import { MonthlyDonations } from "./pages/reports/MonthlyReceipts";
+import { MonthlyReports } from "./pages/reports/MonthlyReports";
+import { NewReportSpendings } from "./pages/reports/NewReportSpendings";
+import { NewReportIncomes } from "./pages/reports/NewReportIncomes";
 
 function App() {
   return (
@@ -61,6 +65,10 @@ function App() {
         />
         <Route path="/programs" element={<ProgramsPage />} />
         <Route path="/get-help" element={<GetHelp />} />
+        <Route path="/monthly-receipts/new" element={<NewReportIncomes />} />
+        <Route path="/monthly-receipts" element={<MonthlyDonations />} />
+        <Route path="/monthly-reports/new" element={<NewReportSpendings />} />
+        <Route path="/monthly-reports" element={<MonthlyReports />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />

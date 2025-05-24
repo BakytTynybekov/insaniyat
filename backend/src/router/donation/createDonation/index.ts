@@ -17,7 +17,7 @@ export const createDonationTrpcRoute = trpc.procedure
     if (!fundraiser) {
       throw new Error("Fundraiser not found");
     }
-    const fundRaiserUpdate = await ctx.prisma.fundRaiser.update({
+    await ctx.prisma.fundRaiser.update({
       where: {
         id: input.fundRaiserId,
       },
@@ -47,7 +47,7 @@ export const createDonationTrpcRoute = trpc.procedure
         });
 
         if (input.paymentType === "MONTHLY") {
-          const subscription = await ctx.prisma.subscription.create({
+          await ctx.prisma.subscription.create({
             data: {
               amount: +input.amount,
               email: userEmail || input.email,
@@ -62,7 +62,7 @@ export const createDonationTrpcRoute = trpc.procedure
     }
 
     if (input.paymentType === "MONTHLY") {
-      const subscription = await ctx.prisma.subscription.create({
+      await ctx.prisma.subscription.create({
         data: {
           amount: +input.amount,
           email: userEmail || input.email,

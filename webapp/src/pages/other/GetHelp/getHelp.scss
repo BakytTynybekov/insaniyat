@@ -7,7 +7,7 @@
 
   h1 {
     font-size: 35px;
-    color: #0f5648;
+    color: #3f37c9;
     margin: 30px 0 0;
   }
   &__title {
@@ -29,7 +29,7 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   margin: 40px 0;
-  background-color: #0f5648;
+  background-color: #3f37c9;
   color: white;
   padding: 20px;
   border-radius: 25px;
@@ -75,7 +75,7 @@
       box-sizing: border-box;
 
       span {
-        background-color: #0f5648;
+        background-color: #3f37c9;
         display: inline-block;
         width: fit-content;
         font-size: 40px;
@@ -108,11 +108,13 @@
   display: block;
   margin: 10px;
   .button {
-    background-color: rgb(15, 86, 72);
+    background-color: #3f37c9;
   }
 
   .button:hover {
-    background-color: rgba(15, 86, 72, 0.8);
+    filter: brightness(1.2);
+    transform: translateY(2px);
+    transition: all 0.3s;
   }
 
   a {

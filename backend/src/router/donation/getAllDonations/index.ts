@@ -1,6 +1,6 @@
 import { trpc } from "../../../lib/trpc";
 
-export const getAllDonationsTrpcRoute = trpc.procedure.query(async ({ ctx, input }) => {
+export const getAllDonationsTrpcRoute = trpc.procedure.query(async ({ ctx }) => {
   if (!ctx.me?.isAdmin) {
     throw new Error("UNAUTHORIZED");
   }
