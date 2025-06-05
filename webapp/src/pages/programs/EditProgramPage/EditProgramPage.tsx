@@ -15,6 +15,7 @@ import Button from "../../../components/Button/Button";
 import { useMe } from "../../../lib/context";
 import { zUpdateProgramTrpcInput } from "@insaniyat/backend/src/router/programs/updateProgram/input";
 import { Loader } from "../../../components/Loader/Loader";
+import { ImageUpload } from "../../../components/UploadToCloudinary";
 
 const EditProgramComponent = ({
   program,
@@ -78,7 +79,10 @@ const EditProgramComponent = ({
 				  bullist numlist outdent indent | removeformat | help",
           }}
         />
-        <Input label={"Ссылка на изображение"} type="url" name="image" formik={formik} />
+        <div>
+          <b>Изображение</b>
+        </div>
+        <ImageUpload name="image" formik={formik} type={"image"} preset={"large"} />
 
         {!formik.isValid && !!formik.submitCount && (
           <Alert color="red" children="Some fields are invalid" />

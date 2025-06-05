@@ -13,6 +13,7 @@ import { zCreateProgramTrpcInput } from "@insaniyat/backend/src/router/programs/
 import { Loader } from "../../../components/Loader/Loader";
 import { useMe } from "../../../lib/context";
 import { NotFoundPage } from "../../other/NotFoundPage/NotFoundPage";
+import { ImageUpload } from "../../../components/UploadToCloudinary";
 
 export const NewProgramPage = () => {
   const [successMessageVisible, setSuccessMessageVisible] = useState(false);
@@ -85,7 +86,10 @@ export const NewProgramPage = () => {
 			bullist numlist outdent indent | removeformat | help",
           }}
         />
-        <Input label={"Ссылка на изображение"} type="url" name="image" formik={formik} />
+        <div>
+          <b>Изображение</b>
+        </div>
+        <ImageUpload name="image" formik={formik} type={"image"} preset={"large"} />
 
         {!formik.isValid && !!formik.submitCount && (
           <Alert color="red" children="Some fields are invalid" />

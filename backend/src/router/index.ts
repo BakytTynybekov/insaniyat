@@ -26,6 +26,7 @@ import { createSpendingsReportTrpcRoute } from "./reports/createSpendingReport";
 import { createIncomeReportTrpcRoute } from "./reports/createIncomeReport";
 import { getIncomeReportTrpcRoute } from "./reports/getIncomeReport";
 import { getSpendingsReportTrpcRoute } from "./reports/getSpendingsReport";
+import { prepareCloudinaryUploadTrpcRoute } from "./upload/prepareCloudinaryUpload";
 
 export const trpcRouter = trpc.router({
   getPrograms: getProgramsTrpcRoute,
@@ -54,6 +55,7 @@ export const trpcRouter = trpc.router({
   createIncomeReport: createIncomeReportTrpcRoute,
   getIncomeReport: getIncomeReportTrpcRoute,
   getSpendingsReport: getSpendingsReportTrpcRoute,
+  prepareCloudinaryUpload: prepareCloudinaryUploadTrpcRoute,
 });
 
 export type TrpcRouter = typeof trpcRouter;

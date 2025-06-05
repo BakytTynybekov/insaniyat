@@ -9,6 +9,8 @@ import { Loader } from "../../../components/Loader/Loader";
 import { useMe } from "../../../lib/context";
 import { useState } from "react";
 import { Alert } from "../../../components/Alert/Alert";
+import { env } from "../../../lib/env";
+import { getCloudinaryUploadUrl } from "@insaniyat/shared/src/cloudinary";
 
 export const ProgramPage = () => {
   const { program } = useParams() as viewProgramParams;
@@ -54,7 +56,15 @@ export const ProgramPage = () => {
         <div dangerouslySetInnerHTML={{ __html: data.program.content }} />
 
         <div>
-          <img src={data.program.image} alt={data.program.title} />
+          <img
+            src={getCloudinaryUploadUrl(
+              env.VITE_CLOUDINARY_CLOUD_NAME,
+              data.program.image,
+              "image",
+              "large"
+            )}
+            alt={data.program.title}
+          />
         </div>
       </div>
       {me?.isAdmin && (

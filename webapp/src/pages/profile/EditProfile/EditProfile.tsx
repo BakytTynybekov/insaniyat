@@ -11,6 +11,12 @@ import { useState } from "react";
 import { Alert } from "../../../components/Alert/Alert";
 import { useMe } from "../../../lib/context";
 import { zUpdatePasswordTrpcInput } from "@insaniyat/backend/src/router/auth/updatePassword/input";
+import { zPasswordsMustBeTheSame } from "@insaniyat/shared/src/zod";
+import { AvatarUpload } from "../../../components/UploadToCloudinary";
+import { zUpdateProfileTrpcInput } from "@insaniyat/backend/src/router/EditProfile/input";
+import { getAvatarUrl } from "@insaniyat/shared/src/cloudinary";
+import { env } from "../../../lib/env";
+// import { UploadToCloudinary } from "../../../components/UploadToCloudinary";
 
 export const EditProfileComponent = ({
   me,
@@ -27,13 +33,9 @@ export const EditProfileComponent = ({
     initialValues: {
       name: me.name,
       email: me.email,
+      avatar: me.avatar,
     },
-    validate: withZodSchema(
-      z.object({
-        name: z.string().min(1),
-        email: z.string().min(1),
-      })
-    ),
+    validate: withZodSchema(zUpdateProfileTrpcInput),
 
     onSubmit: async (values) => {
       try {
@@ -55,15 +57,16 @@ export const EditProfileComponent = ({
     e.preventDefault();
     formik.handleSubmit();
   };
+  console.log(getAvatarUrl(env.VITE_CLOUDINARY_CLOUD_NAME, "avatar", "small"));
 
   return (
     <div className="profile__edit-block">
       <h2>Профиль</h2>
       <div className="profile__edit-name profile__edit-block-item">
         <div className="avatarka">
-          <span className="avatarka-img">{me.name[0]}</span>
           <div className="avatarka-info">
             <h4>Аватарка</h4>
+            <AvatarUpload name="avatar" type="image" preset={"large"} formik={formik} />
             <span>Форматы: JPEG, PNG, WEBP, GIF. Макс. размер: 10 МБ.</span>
           </div>
         </div>
@@ -105,15 +108,7 @@ const UpdatePasswordComponent = () => {
         .extend({
           newPasswordAgain: z.string().min(1),
         })
-        .superRefine((val, ctx) => {
-          if (val.newPassword !== val.newPasswordAgain) {
-            ctx.addIssue({
-              code: z.ZodIssueCode.custom,
-              message: "Passwords must be the same",
-              path: ["newPasswordAgain"],
-            });
-          }
-        })
+        .superRefine(zPasswordsMustBeTheSame("newPassword", "newPasswordAgain"))
     ),
     onSubmit: async ({ newPassword, oldPassword }) => {
       try {

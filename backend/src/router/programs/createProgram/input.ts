@@ -1,8 +1,9 @@
+import { zStringRequired } from "@insaniyat/shared/src/zod";
 import { z } from "zod";
 
 export const zCreateProgramTrpcInput = z.object({
-  title: z.string().min(1),
-  description: z.string().min(1),
+  title: zStringRequired,
+  description: zStringRequired,
   content: z.string().min(100),
-  image: z.string().min(1),
+  image: zStringRequired,
 });

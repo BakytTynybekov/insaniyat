@@ -1,6 +1,6 @@
-import { z } from "zod";
 import { zCreateProgramTrpcInput } from "../createProgram/input";
+import { zStringRequired } from "@insaniyat/shared/src/zod";
 
 export const zUpdateProgramTrpcInput = zCreateProgramTrpcInput.extend({
-  programExTitle: z.string().min(1),
+  programExTitle: zStringRequired,
 });

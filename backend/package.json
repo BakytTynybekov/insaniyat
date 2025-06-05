@@ -13,9 +13,12 @@
     "types": "tsc --noEmit --project ./tsconfig.json"
   },
   "dependencies": {
+    "@insaniyat/webapp": "workspace:*",
+    "@insaniyat/shared": "workspace:*",
     "@prisma/client": "^6.5.0",
     "@trpc/server": "^10.45.2",
     "bcryptjs": "^3.0.2",
+    "cloudinary": "^2.6.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",

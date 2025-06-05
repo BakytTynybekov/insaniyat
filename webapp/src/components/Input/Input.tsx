@@ -10,6 +10,7 @@ export const Input = ({
   required = false,
   formik,
   autocomplete,
+  className = "",
 }: {
   placeholder?: string;
   required?: boolean;
@@ -18,19 +19,23 @@ export const Input = ({
   label?: string;
   formik: FormikProps<any>;
   autocomplete?: string;
+  className?: string;
 }) => {
   const value = formik.values[name];
   const error = formik.errors[name] as string | undefined;
   const touched = formik.touched[name];
 
   return (
-    <div style={{ marginBottom: 10, display: "flex", flexDirection: "column" }}>
+    <div
+      className="className"
+      style={{ marginBottom: 10, display: "flex", flexDirection: "column" }}
+    >
       <label className="label" htmlFor={name}>
         {label}
       </label>
       <input
         placeholder={placeholder}
-        className="input"
+        className={`input ${className}`}
         type={type}
         autoComplete={autocomplete}
         onChange={(e) => {

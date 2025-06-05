@@ -6,12 +6,12 @@ import { trpc } from "../../../lib/trpc";
 import { useState } from "react";
 import { FormItems } from "../../../components/FormItems/FormItems";
 import { zSignUpTrpcInput } from "@insaniyat/backend/src/router/auth/signUp/input";
-import z from "zod";
 import { Input } from "../../../components/Input/Input";
 import { Alert } from "../../../components/Alert/Alert";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router";
 import { Loader } from "../../../components/Loader/Loader";
+import { zPasswordsMustBeTheSame, zStringRequired } from "@insaniyat/shared/src/zod";
 
 export const SignUpPage = () => {
   const [submittingError, setSubmittingError] = useState<string | null>(null);
@@ -32,17 +32,9 @@ export const SignUpPage = () => {
     validate: withZodSchema(
       zSignUpTrpcInput
         .extend({
-          passwordAgain: z.string().min(5),
+          passwordAgain: zStringRequired,
         })
-        .superRefine((val, ctx) => {
-          if (val.password !== val.passwordAgain) {
-            ctx.addIssue({
-              code: z.ZodIssueCode.custom,
-              message: "Пароли должны совпадать",
-              path: ["passwordAgain"],
-            });
-          }
-        })
+        .superRefine(zPasswordsMustBeTheSame("password", "passwordAgain"))
     ),
 
     onSubmit: async (values) => {
@@ -66,9 +58,9 @@ export const SignUpPage = () => {
   };
 
   return (
-    <div className="signUp-page">
+    <div className="signUp-page page">
       <h1>Регистрация</h1>
-      <FormItems width="400px" onSubmit={(e) => handleSubmit(e)}>
+      <FormItems width="600px" onSubmit={(e) => handleSubmit(e)}>
         <Input type="text" label="ФИО" name="name" formik={formik} />
         <Input
           autocomplete="email"

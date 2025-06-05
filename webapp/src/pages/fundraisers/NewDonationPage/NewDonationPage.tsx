@@ -14,6 +14,7 @@ import { NotFoundPage } from "../../other/NotFoundPage/NotFoundPage";
 import { zCreateFundRaiserTrpcInput } from "@insaniyat/backend/src/router/fundRaisers/createFundRaiser/input";
 import { Loader } from "../../../components/Loader/Loader";
 import { useMe } from "../../../lib/context";
+import { ImageUpload } from "../../../components/UploadToCloudinary";
 
 export const NewDonationPage = () => {
   const [successMessageVisible, setSuccessMessageVisible] = useState(false);
@@ -127,7 +128,10 @@ export const NewDonationPage = () => {
           name="goal"
           formik={formik}
         />
-        <Input label={"Ссылка на изображение"} type="url" name="image" formik={formik} />
+        <div>
+          <b>Изображение</b>
+        </div>
+        <ImageUpload name="image" formik={formik} type={"image"} preset={"large"} />
 
         {!formik.isValid && !!formik.submitCount && (
           <Alert color="red" children="Some fields are invalid" />

@@ -2,6 +2,8 @@ import React from "react";
 import "./fundRaiserCard.scss";
 import Button from "../../components/Button/Button";
 import { type Fundraiser } from "../../pages/fundraisers/CampaignsPage/CampaignsPage";
+import { getCloudinaryUploadUrl } from "@insaniyat/shared/src/cloudinary";
+import { env } from "../../lib/env";
 
 interface FundRaiserCardProps {
   fundRaiser: Fundraiser;
@@ -16,7 +18,16 @@ export const FundRaiserCard: React.FC<FundRaiserCardProps> = ({
 
   return (
     <div className="fund-raiser-card">
-      <img src={fundRaiser.image} alt={fundRaiser.title} className="fund-raiser-image" />
+      <img
+        src={getCloudinaryUploadUrl(
+          env.VITE_CLOUDINARY_CLOUD_NAME,
+          fundRaiser.image,
+          "image",
+          "large"
+        )}
+        alt={fundRaiser.title}
+        className="fund-raiser-image"
+      />
       <div className="fund-raiser-content">
         <h2 className="fund-raiser-title" onClick={onClick}>
           {fundRaiser.title}

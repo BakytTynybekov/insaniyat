@@ -79,6 +79,16 @@ export const Profile = () => {
                   Добавить сбор
                 </NavLink>
               </li>
+              <li className="profile_list-item">
+                <NavLink to="/monthly-receipts/new" className="profile__list-item-link">
+                  Добавить отчет (поступления)
+                </NavLink>
+              </li>
+              <li className="profile_list-item">
+                <NavLink to="/monthly-reports/new" className="profile__list-item-link">
+                  Добавить отчет (расходы)
+                </NavLink>
+              </li>
             </>
           ) : (
             <>

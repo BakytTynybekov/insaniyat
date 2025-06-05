@@ -1,10 +1,11 @@
 import { z } from "zod";
 import { trpc } from "../../../lib/trpc";
+import { zStringRequired } from "@insaniyat/shared/src/zod";
 
 export const getFundRaiserTrpcRoute = trpc.procedure
   .input(
     z.object({
-      fundRaiser: z.string(),
+      fundRaiser: zStringRequired,
     })
   )
   .query(async ({ ctx, input }) => {

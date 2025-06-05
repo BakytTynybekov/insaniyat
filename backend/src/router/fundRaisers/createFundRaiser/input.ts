@@ -1,12 +1,13 @@
+import { zStringRequired } from "@insaniyat/shared/src/zod";
 import { z } from "zod";
 
 export const zCreateFundRaiserTrpcInput = z.object({
-  title: z.string().min(1),
-  description: z.string().min(1),
-  text: z.string().min(1),
-  programTitle: z.string().min(1),
-  goal: z.string().min(1),
+  title: zStringRequired,
+  description: zStringRequired,
+  text: zStringRequired,
+  programTitle: zStringRequired,
+  goal: zStringRequired,
   raised: z.number(),
-  image: z.string().min(1),
+  image: zStringRequired,
   images: z.array(z.string()).optional(),
 });

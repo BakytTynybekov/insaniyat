@@ -1,18 +1,22 @@
 import * as dotenv from "dotenv";
 import { z } from "zod";
+import { zEnvNonemptyTrimmed } from "@insaniyat/shared/src/zod";
 
 dotenv.config();
-
 const zEnv = z.object({
-  PORT: z.string().min(1),
-  DATABASE_URL: z.string().min(1),
-  JWT_SECRET: z.string().min(1),
-  PASSWORD_SALT: z.string().min(1),
-  SMTP_HOST: z.string().min(1),
-  SMTP_PORT: z.string().min(1),
-  SMTP_USER: z.string().min(1),
-  SMTP_PASSWORD: z.string().min(1),
-  INITIAL_ADMIN_PASSWORD: z.string().min(1),
+  PORT: zEnvNonemptyTrimmed,
+  DATABASE_URL: zEnvNonemptyTrimmed,
+  JWT_SECRET: zEnvNonemptyTrimmed,
+  PASSWORD_SALT: zEnvNonemptyTrimmed,
+  WEBAPP_URL: zEnvNonemptyTrimmed,
+  SMTP_HOST: zEnvNonemptyTrimmed,
+  SMTP_PORT: zEnvNonemptyTrimmed,
+  SMTP_USER: zEnvNonemptyTrimmed,
+  SMTP_PASSWORD: zEnvNonemptyTrimmed,
+  INITIAL_ADMIN_PASSWORD: zEnvNonemptyTrimmed,
+  CLOUDINARY_API_KEY: zEnvNonemptyTrimmed,
+  CLOUDINARY_API_SECRET: zEnvNonemptyTrimmed,
+  CLOUDINARY_CLOUD_NAME: zEnvNonemptyTrimmed,
 });
 
 export const env = zEnv.parse(process.env);

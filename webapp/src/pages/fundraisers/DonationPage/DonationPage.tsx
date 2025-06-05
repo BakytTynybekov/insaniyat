@@ -16,6 +16,8 @@ import { Select } from "../../../components/Select/Select";
 import { withZodSchema } from "formik-validator-zod";
 import { StatusType } from "@insaniyat/backend/src/utils/types";
 import { z } from "zod";
+import { getCloudinaryUploadUrl } from "@insaniyat/shared/src/cloudinary";
+import { env } from "../../../lib/env";
 
 export const DonationPage = () => {
   const me = useMe();
@@ -67,11 +69,18 @@ export const DonationPage = () => {
   return (
     <div className="donation-page page">
       <div className="hero-banner">
-        <img
-          src={data.fundRaiser.image}
-          alt={data.fundRaiser.title}
-          className="hero-image"
-        />
+        {
+          <img
+            src={getCloudinaryUploadUrl(
+              env.VITE_CLOUDINARY_CLOUD_NAME,
+              data.fundRaiser.image,
+              "image",
+              "large"
+            )}
+            alt={data.fundRaiser.title}
+            className="hero-image"
+          />
+        }
       </div>
 
       <div className="content-container">

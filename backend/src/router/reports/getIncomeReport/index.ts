@@ -1,10 +1,11 @@
 import { z } from "zod";
 import { trpc } from "../../../lib/trpc";
+import { zStringRequired } from "@insaniyat/shared/src/zod";
 
 export const getIncomeReportTrpcRoute = trpc.procedure
   .input(
     z.object({
-      year: z.string(),
+      year: zStringRequired,
     })
   )
   .query(async ({ input, ctx }) => {

@@ -2,7 +2,6 @@
   "name": "@insaniyat/webapp",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -12,6 +11,7 @@
   },
   "dependencies": {
     "@insaniyat/backend": "workspace:*",
+    "@insaniyat/shared": "workspace:*",
     "@tanstack/react-query": "^4.35.3",
     "@tinymce/tinymce-react": "^6.0.0",
     "@trpc/client": "^10.45.2",

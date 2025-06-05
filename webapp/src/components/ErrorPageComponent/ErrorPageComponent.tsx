@@ -10,7 +10,7 @@ export const ErrorPageComponent = ({
   children?: React.ReactNode;
 }) => {
   return (
-    <div>
+    <div className="errorPage page">
       <h1>{title}</h1>
       <Alert color="red">{message}</Alert>
       {children}

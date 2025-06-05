@@ -1,6 +1,8 @@
+import { zStringRequired } from "@insaniyat/shared/src/zod";
 import { z } from "zod";
 
 export const zUpdateProfileTrpcInput = z.object({
-  email: z.string().min(1),
+  email: zStringRequired,
   name: z.string().max(50).default(""),
+  avatar: z.string().nullable(),
 });

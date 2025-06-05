@@ -6,10 +6,11 @@ import { Loader } from "../../../components/Loader/Loader";
 import { NotFoundPage } from "../../other/NotFoundPage/NotFoundPage";
 
 export const MonthlyDonations: React.FC = () => {
-  const [selectedYear, setSelectedYear] = useState<string>(
-    new Date().getFullYear().toString()
-  );
+  const currentYear = new Date().getFullYear().toString();
+
+  const [selectedYear, setSelectedYear] = useState<string>(currentYear);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+
   const { data, error, isLoading, isFetching, isError } = trpc.getIncomeReport.useQuery({
     year: selectedYear,
   });
@@ -55,9 +56,9 @@ export const MonthlyDonations: React.FC = () => {
               onChange={(e) => setSelectedYear(e.target.value)}
               className="styled-select"
             >
-              <option value="2023">2025</option>
-              <option value="2022">2024</option>
-              <option value="2021">2023</option>
+              <option value={currentYear}>{currentYear}</option>
+              <option value={+currentYear - 1}>{+currentYear - 1}</option>
+              <option value={+currentYear - 2}>{+currentYear - 2}</option>
             </select>
           </div>
           <div className="stats-summary">

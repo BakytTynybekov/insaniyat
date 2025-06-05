@@ -50,7 +50,7 @@ export const SignInPage = () => {
   };
 
   return (
-    <div className="signIn-page">
+    <div className="signIn-page page">
       <h1>Авторизация</h1>
       <FormItems width="500px" onSubmit={(e) => handleSubmit(e)}>
         <Input

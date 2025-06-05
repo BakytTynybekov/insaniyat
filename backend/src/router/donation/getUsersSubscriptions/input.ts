@@ -1,5 +1,6 @@
+import { zStringRequired } from "@insaniyat/shared/src/zod";
 import { z } from "zod";
 
 export const zGetUserSubscriptionsTrpcInput = z.object({
-  userId: z.string().min(1),
+  userId: zStringRequired,
 });

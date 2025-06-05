@@ -2,6 +2,10 @@ PORT=3000
 DATABASE_URL=postgresql://insaniyat:insaniyat@localhost:5432/insaniyat?schema=myapp
 JWT_SECRET=not-really-secret-jwt-key
 PASSWORD_SALT='password-salt'
+WEBAPP_URL=http://localhost:8000
+CLOUDINARY_API_KEY=!!!SECRET!!!
+CLOUDINARY_API_SECRET=!!!SECRET!!!
+CLOUDINARY_CLOUD_NAME=dl1hq1vib
 
 SMTP_HOST=smtp.mail.ru
 SMTP_PORT=465
