@@ -5,5 +5,5 @@ export const zCreateIncomeReportTrpcInput = z.object({
   month: zStringRequired,
   year: zStringRequired,
   totalReceived: z.number().min(1),
-  fileUrl: z.string().url(),
+  fileUrl: zStringRequired,
 });

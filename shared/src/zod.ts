@@ -15,12 +15,10 @@ export const zStringRequired = z
   .min(1, "Please, fill it");
 export const zStringOptional = z.string().optional();
 export const zEmailRequired = zStringRequired.email();
-export const zNickRequired = zStringRequired.regex(
-  /^[a-z0-9-]+$/,
-  "Nick may contain only lowercase letters, numbers and dashes"
-);
+
 export const zStringMin = (min: number) =>
   zStringRequired.min(min, `Text should be at least ${min} characters long`);
+
 export const zPasswordsMustBeTheSame =
   (passwordFieldName: string, passwordAgainFieldName: string) =>
   (val: any, ctx: z.RefinementCtx) => {

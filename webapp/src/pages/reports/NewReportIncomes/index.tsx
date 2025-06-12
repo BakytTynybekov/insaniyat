@@ -11,6 +11,8 @@ import { Select } from "../../../components/Select/Select";
 import { trpc } from "../../../lib/trpc";
 import { NotFoundPage } from "../../other/NotFoundPage/NotFoundPage";
 import { useMe } from "../../../lib/context";
+import { UploadToS3 } from "../../../components/UploadToS3";
+import { zStringRequired } from "@insaniyat/shared/src/zod";
 
 export const NewReportIncomes = () => {
   const [successMessageVisible, setSuccessMessageVisible] = useState(false);
@@ -42,10 +44,10 @@ export const NewReportIncomes = () => {
     },
     validate: withZodSchema(
       z.object({
-        month: z.string().min(1),
-        year: z.string().min(1),
-        totalReceived: z.string().min(1),
-        fileUrl: z.string().url(),
+        month: zStringRequired,
+        year: zStringRequired,
+        totalReceived: zStringRequired,
+        fileUrl: zStringRequired,
       })
     ),
 
@@ -65,6 +67,9 @@ export const NewReportIncomes = () => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         setSubmittingError(error.message);
+        setTimeout(() => {
+          setSubmittingError(null);
+        }, 3000);
       }
     },
   });
@@ -104,13 +109,8 @@ export const NewReportIncomes = () => {
           name="totalReceived"
           formik={formik}
         />
-        <Input
-          required={true}
-          label={"Ссылка на файл"}
-          type="text"
-          name="fileUrl"
-          formik={formik}
-        />
+        <label htmlFor="">Загрузить файл</label>
+        <UploadToS3 name="fileUrl" formik={formik} label="" />
         {!formik.isValid && !!formik.submitCount && (
           <Alert color="red" children="Some fields are invalid" />
         )}

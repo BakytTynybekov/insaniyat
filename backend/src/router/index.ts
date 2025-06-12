@@ -27,6 +27,9 @@ import { createIncomeReportTrpcRoute } from "./reports/createIncomeReport";
 import { getIncomeReportTrpcRoute } from "./reports/getIncomeReport";
 import { getSpendingsReportTrpcRoute } from "./reports/getSpendingsReport";
 import { prepareCloudinaryUploadTrpcRoute } from "./upload/prepareCloudinaryUpload";
+import { prepareS3UploadTrpcRoute } from "./upload/prepareS3Upload";
+import { deleteIncomeReportTrpcRoute } from "./reports/deleteIncomReport";
+import { deleteSpendingReportTrpcRoute } from "./reports/deleteSpendingReport";
 
 export const trpcRouter = trpc.router({
   getPrograms: getProgramsTrpcRoute,
@@ -56,6 +59,9 @@ export const trpcRouter = trpc.router({
   getIncomeReport: getIncomeReportTrpcRoute,
   getSpendingsReport: getSpendingsReportTrpcRoute,
   prepareCloudinaryUpload: prepareCloudinaryUploadTrpcRoute,
+  prepareS3Upload: prepareS3UploadTrpcRoute,
+  deleteIncomeReport: deleteIncomeReportTrpcRoute,
+  deleteSpendingReport: deleteSpendingReportTrpcRoute,
 });
 
 export type TrpcRouter = typeof trpcRouter;

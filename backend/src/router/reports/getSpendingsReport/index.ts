@@ -13,6 +13,9 @@ export const getSpendingsReportTrpcRoute = trpc.procedure
       where: {
         year: input.year,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
 
     const totalSumReceived = await ctx.prisma.spendinsReport.aggregate({

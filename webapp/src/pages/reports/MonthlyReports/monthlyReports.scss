@@ -328,6 +328,7 @@ $light-text: #8d99ae;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            margin-bottom: 10px;
 
             &::before {
               content: "";

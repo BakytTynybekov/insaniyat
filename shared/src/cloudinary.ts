@@ -1,8 +1,9 @@
 type CloudinaryUploadType = {
   folder: string;
-  transformation: string;
+  transformation?: string;
   format: string;
   presets: Record<string, string>;
+  // resource_type?: "image" | "raw"; // Добавляем поддержку разных типов файлов
 };
 
 export const cloudinaryUploadTypes = {
@@ -24,6 +25,15 @@ export const cloudinaryUploadTypes = {
       large: "w_1000,h_1000,c_limit,q_80",
     },
   },
+  // pdf: {
+  //   folder: "pdfs",
+  //   format: "pdf",
+  //   resource_type: "raw",
+  //   presets: {
+  //     original: "",
+  //     thumbnail: "w_200,h_200,c_fit",
+  //   },
+  // },
 } satisfies Record<string, CloudinaryUploadType>;
 
 type CloudinaryUploadTypes = typeof cloudinaryUploadTypes;

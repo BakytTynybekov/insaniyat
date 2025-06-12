@@ -8,5 +8,5 @@ export const zCreateSpendingsReportTrpcInput = z.object({
   totalSpent: z.number().min(1),
   beneficiariesCount: zStringRequired,
   description: zStringRequired,
-  fileUrl: z.string().url(),
+  fileUrl: zStringRequired,
 });

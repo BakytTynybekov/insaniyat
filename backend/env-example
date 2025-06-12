@@ -1,8 +1,9 @@
 PORT=3000
 DATABASE_URL=postgresql://insaniyat:insaniyat@localhost:5432/insaniyat?schema=myapp
-JWT_SECRET=not-really-secret-jwt-key
-PASSWORD_SALT='password-salt'
+JWT_SECRET=secret
+PASSWORD_SALT='secret'
 WEBAPP_URL=http://localhost:8000
+
 CLOUDINARY_API_KEY=!!!SECRET!!!
 CLOUDINARY_API_SECRET=!!!SECRET!!!
 CLOUDINARY_CLOUD_NAME=dl1hq1vib
@@ -10,7 +11,14 @@ CLOUDINARY_CLOUD_NAME=dl1hq1vib
 SMTP_HOST=smtp.mail.ru
 SMTP_PORT=465
 SMTP_USER=example@ex.com
-SMTP_PASSWORD=ajsdlfaj
+SMTP_PASSWORD=secret
 
 INITIAL_ADMIN_PASSWORD=123
+
+
+S3_ACCESS_KEY_ID=secret
+S3_SECRET_ACCESS_KEY=secret
+S3_BUCKET_NAME=s3-insaniyat
+S3_REGION=ru-7
+S3_URL=""
 

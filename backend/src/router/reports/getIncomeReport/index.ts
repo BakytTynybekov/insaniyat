@@ -13,6 +13,9 @@ export const getIncomeReportTrpcRoute = trpc.procedure
       where: {
         year: input.year,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
 
     const totalSum = await ctx.prisma.incomeReport.aggregate({
