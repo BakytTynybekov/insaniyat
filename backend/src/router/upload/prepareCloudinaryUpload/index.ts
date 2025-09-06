@@ -2,7 +2,7 @@ import { v2 as cloudinary } from "cloudinary";
 import { zPrepareCloundinaryUploadTrpcInput } from "./input";
 import { trpc } from "../../../lib/trpc";
 import { env } from "../../../lib/env";
-import { cloudinaryUploadTypes } from "@insaniyat/shared/src/cloudinary";
+import { cloudinaryUploadTypes } from "../../../lib/cloudinaryShared";
 
 export const prepareCloudinaryUploadTrpcRoute = trpc.procedure
   .input(zPrepareCloundinaryUploadTrpcInput)

@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, ReactNode, useContext, useState } from "react";
 import { trpc } from "./trpc";
-import { TrpcRouterOutput } from "@insaniyat/backend/src/router";
+import { type TrpcRouterOutput } from "@insaniyat/backend/src/router";
 import { Loader } from "../components/Loader/Loader";
 
 type GeneralContextType = {

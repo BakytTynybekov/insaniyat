@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { trpc } from "../../../lib/trpc";
-import { zStringRequired } from "@insaniyat/shared/src/zod";
+import { zStringRequired } from "../../../lib/zod";
 
 export const getProgramTrpcRoute = trpc.procedure
   .input(

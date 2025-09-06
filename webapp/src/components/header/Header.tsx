@@ -10,8 +10,8 @@ import { CiUser } from "react-icons/ci";
 import { GeneralContext, useMe } from "../../lib/context";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { Loader } from "../Loader/Loader";
-import { getCloudinaryUploadUrl } from "@insaniyat/shared/src/cloudinary";
 import { env } from "../../lib/env";
+import { getCloudinaryUploadUrl } from "@insaniyat/backend/src/lib/cloudinaryShared";
 
 // Данные для dropdown меню
 

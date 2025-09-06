@@ -1,16 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import {
-  CloudinaryUploadPresetName,
-  CloudinaryUploadTypeName,
-  getCloudinaryUploadUrl,
-} from "@insaniyat/shared/src/cloudinary";
+
 import { trpc } from "../../lib/trpc";
 import { FormikProps } from "formik";
 import { useRef, useState } from "react";
 import "./index.scss";
 import { env } from "../../lib/env";
 import { FiUpload, FiTrash2, FiUser, FiImage } from "react-icons/fi";
+import { CloudinaryUploadPresetName, CloudinaryUploadTypeName, getCloudinaryUploadUrl } from '@insaniyat/backend/src/lib/cloudinaryShared';
 
 const useUploadToCloudinary = (type: CloudinaryUploadTypeName) => {
   const prepareCloudinaryUpload = trpc.prepareCloudinaryUpload.useMutation();

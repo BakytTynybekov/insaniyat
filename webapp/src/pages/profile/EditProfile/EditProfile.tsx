@@ -6,16 +6,16 @@ import "./editProfile.scss";
 import Button from "../../../components/Button/Button";
 import { FaLock } from "react-icons/fa";
 import { trpc } from "../../../lib/trpc";
-import { TrpcRouterOutput } from "@insaniyat/backend/src/router";
+import { type TrpcRouterOutput } from "@insaniyat/backend/src/router";
 import { useState } from "react";
 import { Alert } from "../../../components/Alert/Alert";
 import { useMe } from "../../../lib/context";
 import { zUpdatePasswordTrpcInput } from "@insaniyat/backend/src/router/auth/updatePassword/input";
-import { zPasswordsMustBeTheSame } from "@insaniyat/shared/src/zod";
 import { AvatarUpload } from "../../../components/UploadToCloudinary";
 import { zUpdateProfileTrpcInput } from "@insaniyat/backend/src/router/EditProfile/input";
-import { getAvatarUrl } from "@insaniyat/shared/src/cloudinary";
 import { env } from "../../../lib/env";
+import { zPasswordsMustBeTheSame } from "@insaniyat/backend/src/lib/zod";
+import { getAvatarUrl } from "@insaniyat/backend/src/lib/cloudinaryShared";
 // import { UploadToCloudinary } from "../../../components/UploadToCloudinary";
 
 export const EditProfileComponent = ({

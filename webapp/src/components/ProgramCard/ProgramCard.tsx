@@ -3,7 +3,7 @@ import Button from "../Button/Button";
 import { useNavigate } from "react-router";
 import "./programCard.scss";
 import { env } from "../../lib/env";
-import { getCloudinaryUploadUrl } from "@insaniyat/shared/src/cloudinary";
+import { getCloudinaryUploadUrl } from "@insaniyat/backend/src/lib/cloudinaryShared";
 
 interface Program {
   id: string;

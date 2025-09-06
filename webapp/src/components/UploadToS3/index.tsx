@@ -3,7 +3,7 @@ import { FormikProps } from "formik";
 import { trpc } from "../../lib/trpc";
 import { useRef, useState } from "react";
 import Button from "../Button/Button";
-import { getS3UploadName, getS3UploadUrl } from "@insaniyat/shared/src/s3";
+import { getS3UploadName, getS3UploadUrl } from "@insaniyat/backend/src/lib/s3Shared";
 
 export const UseUploadToS3 = () => {
   const prepareS3Upload = trpc.prepareS3Upload.useMutation();

@@ -1,4 +1,4 @@
-import { zEmailRequired, zStringRequired } from "@insaniyat/shared/src/zod";
+import { zEmailRequired, zStringRequired } from "../../../lib/zod";
 import { z } from "zod";
 
 export const zSignUpTrpcInput = z.object({

@@ -1,5 +1,5 @@
-import { zStringRequired } from "@insaniyat/shared/src/zod";
 import { z } from "zod";
+import { zStringRequired } from "../../../lib/zod";
 
 export const zCreateIncomeReportTrpcInput = z.object({
   month: zStringRequired,

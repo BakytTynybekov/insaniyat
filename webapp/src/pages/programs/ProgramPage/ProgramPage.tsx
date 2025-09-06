@@ -10,7 +10,7 @@ import { useMe } from "../../../lib/context";
 import { useState } from "react";
 import { Alert } from "../../../components/Alert/Alert";
 import { env } from "../../../lib/env";
-import { getCloudinaryUploadUrl } from "@insaniyat/shared/src/cloudinary";
+import { getCloudinaryUploadUrl } from "@insaniyat/backend/src/lib/cloudinaryShared";
 
 export const ProgramPage = () => {
   const { program } = useParams() as viewProgramParams;

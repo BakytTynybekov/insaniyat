@@ -1,13 +1,11 @@
 import * as dotenv from "dotenv";
 import { z } from "zod";
-import {
-  zEnvNonemptyTrimmed,
-  zEnvNonemptyTrimmedRequiredOnNotLocal,
-} from "@insaniyat/shared/src/zod";
+import { zEnvNonemptyTrimmed, zEnvNonemptyTrimmedRequiredOnNotLocal } from "../lib/zod";
 
 dotenv.config();
 const zEnv = z.object({
   PORT: zEnvNonemptyTrimmed,
+  HOST_ENV: zEnvNonemptyTrimmed,
   DATABASE_URL: zEnvNonemptyTrimmed,
   JWT_SECRET: zEnvNonemptyTrimmed,
   PASSWORD_SALT: zEnvNonemptyTrimmed,

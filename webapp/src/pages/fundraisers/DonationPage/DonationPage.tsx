@@ -16,8 +16,8 @@ import { Select } from "../../../components/Select/Select";
 import { withZodSchema } from "formik-validator-zod";
 import { StatusType } from "@insaniyat/backend/src/utils/types";
 import { z } from "zod";
-import { getCloudinaryUploadUrl } from "@insaniyat/shared/src/cloudinary";
 import { env } from "../../../lib/env";
+import { getCloudinaryUploadUrl } from "@insaniyat/backend/src/lib/cloudinaryShared";
 
 export const DonationPage = () => {
   const me = useMe();

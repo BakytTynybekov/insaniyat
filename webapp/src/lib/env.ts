@@ -1,4 +1,4 @@
-import { zEnvNonemptyTrimmed } from "@insaniyat/shared/src/zod";
+import { zEnvNonemptyTrimmed } from "@insaniyat/backend/src/lib/zod";
 import { z } from "zod";
 
 export const zEnv = z.object({

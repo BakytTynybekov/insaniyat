@@ -1,10 +1,10 @@
-import {
-  zEmailRequired,
-  zStringOptional,
-  zStringRequired,
-} from "@insaniyat/shared/src/zod";
-import { paymentType } from "@prisma/client";
+import { zEmailRequired, zStringOptional, zStringRequired } from "../../../lib/zod";
 import { z } from "zod";
+
+const paymentType = {
+  ONE_TIME: "ONE_TIME",
+  MONTHLY: "MONTHLY",
+} as const;
 
 export const zCreateDonationTrpcInput = z.object({
   amount: zStringRequired,

@@ -11,7 +11,7 @@ import { Alert } from "../../../components/Alert/Alert";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router";
 import { Loader } from "../../../components/Loader/Loader";
-import { zPasswordsMustBeTheSame, zStringRequired } from "@insaniyat/shared/src/zod";
+import { zPasswordsMustBeTheSame, zStringRequired } from "@insaniyat/backend/src/lib/zod";
 
 export const SignUpPage = () => {
   const [submittingError, setSubmittingError] = useState<string | null>(null);

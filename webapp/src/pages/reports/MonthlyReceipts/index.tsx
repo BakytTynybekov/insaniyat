@@ -4,10 +4,10 @@ import { FaCalendar, FaDownload, FaFileAlt, FaSearch } from "react-icons/fa";
 import { trpc } from "../../../lib/trpc";
 import { Loader } from "../../../components/Loader/Loader";
 import { NotFoundPage } from "../../other/NotFoundPage/NotFoundPage";
-import { getS3UploadUrl } from "@insaniyat/shared/src/s3";
 import { useMe } from "../../../lib/context";
 import Button from "../../../components/Button/Button";
 import { Alert } from "../../../components/Alert/Alert";
+import { getS3UploadUrl } from "@insaniyat/backend/src/lib/s3Shared";
 
 export const MonthlyDonations: React.FC = () => {
   const currentYear = new Date().getFullYear().toString();

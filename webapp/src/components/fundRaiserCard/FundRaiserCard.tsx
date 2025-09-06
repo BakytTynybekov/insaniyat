@@ -2,8 +2,8 @@ import React from "react";
 import "./fundRaiserCard.scss";
 import Button from "../../components/Button/Button";
 import { type Fundraiser } from "../../pages/fundraisers/CampaignsPage/CampaignsPage";
-import { getCloudinaryUploadUrl } from "@insaniyat/shared/src/cloudinary";
 import { env } from "../../lib/env";
+import { getCloudinaryUploadUrl } from "@insaniyat/backend/src/lib/cloudinaryShared";
 
 interface FundRaiserCardProps {
   fundRaiser: Fundraiser;

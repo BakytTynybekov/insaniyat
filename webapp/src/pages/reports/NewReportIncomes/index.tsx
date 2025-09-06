@@ -12,7 +12,7 @@ import { trpc } from "../../../lib/trpc";
 import { NotFoundPage } from "../../other/NotFoundPage/NotFoundPage";
 import { useMe } from "../../../lib/context";
 import { UploadToS3 } from "../../../components/UploadToS3";
-import { zStringRequired } from "@insaniyat/shared/src/zod";
+import { zStringRequired } from "@insaniyat/backend/src/lib/zod";
 
 export const NewReportIncomes = () => {
   const [successMessageVisible, setSuccessMessageVisible] = useState(false);

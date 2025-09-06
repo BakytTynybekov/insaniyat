@@ -4,7 +4,7 @@ import { trpc } from "../../../lib/trpc";
 import { useState } from "react";
 import { useFormik } from "formik";
 import { pick } from "lodash";
-import { TrpcRouterOutput } from "@insaniyat/backend/src/router";
+import { type TrpcRouterOutput } from "@insaniyat/backend/src/router";
 import { withZodSchema } from "formik-validator-zod";
 import { FormItems } from "../../../components/FormItems/FormItems";
 import { Input } from "../../../components/Input/Input";
