@@ -7,6 +7,7 @@
     "build": "rimraf ./dist && tsc --build ./tsconfig.json",
     "start": "node ./dist/index.js",
     "prisma": "prisma",
+    "postinstall": "prisma generate",
     "pmd": "prisma migrate dev --schema=./src/prisma/schema.prisma",
     "pgc": "prisma generate --schema=./src/prisma/schema.prisma",
     "pmr": "prisma migrate reset --schema=./src/prisma/schema.prisma",
