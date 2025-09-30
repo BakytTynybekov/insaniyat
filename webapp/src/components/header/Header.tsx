@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import "./Header.scss";
+import "./header.scss";
 import { useLocation, useNavigate } from "react-router";
 import Button from "../Button/Button";
 import { Link } from "react-router";
