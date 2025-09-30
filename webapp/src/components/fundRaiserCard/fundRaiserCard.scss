@@ -5,7 +5,7 @@
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  max-width: 400px;
+  max-width: 350px;
 }
 
 .fund-raiser-card:hover {
@@ -71,4 +71,29 @@
 
 .fund-raiser-button:hover {
   background-color: #5aa8a2;
+}
+
+@media (max-width: 768px) {
+  .fund-raiser-card {
+    max-width: 300px;
+  }
+  .fund-raiser-description {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 15px;
+  }
+
+  .fund-raiser-button {
+    padding: 8px;
+
+    font-size: 14px;
+  }
+
+  .fund-raiser-title {
+    font-size: 20px;
+  }
+
+  .fund-raiser-content {
+    padding: 10px;
+  }
 }

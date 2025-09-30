@@ -18,7 +18,7 @@ const MainPage = () => {
         const value = num.getAttribute("data-value")?.toString() || 0;
         gsap.to(num, {
           innerText: value,
-          duration: 2,
+          duration: 5,
           scrollTrigger: {
             trigger: statsRef.current,
             start: "top 160%",
