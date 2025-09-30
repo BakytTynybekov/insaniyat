@@ -43,23 +43,22 @@ const startServer = async () => {
   await applyServeWebApp(expressApp);
 
   // 7. Запуск сервера
-  expressApp.listen(env.PORT, () => {
-    console.log(`Server running on http://localhost:${env.PORT}`);
+  const port = env.PORT || 3000;
+
+  expressApp.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
     console.log("Test routes:");
-    console.log(`- http://localhost:${env.PORT}/api/test`);
-    console.log(`- http://localhost:${env.PORT}/ping`);
+    console.log(`- http://localhost:${port}/api/test`);
+    console.log(`- http://localhost:${port}/ping`);
   });
 
   return { app: expressApp, context: ctx };
 };
 
-// Запуск только если не в production (для Vercel)
-if (process.env.NODE_ENV !== "production") {
-  startServer().catch((err) => {
-    console.error("Server startup error:", err);
-    process.exit(1);
-  });
-}
+startServer().catch((err) => {
+  console.error("Server startup error:", err);
+  process.exit(1);
+});
 
 // Экспорт для Vercel
 export default startServer;
