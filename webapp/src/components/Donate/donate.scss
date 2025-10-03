@@ -216,6 +216,10 @@
     grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 30px;
+
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &-photo {
