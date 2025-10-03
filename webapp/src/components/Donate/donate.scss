@@ -211,6 +211,7 @@
 .donate__qrCode {
   display: none;
   padding: 15px 30px 40px;
+
   &-info {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -228,6 +229,10 @@
     img {
       width: 300px;
       cursor: pointer;
+
+      @media (max-width: 500px) {
+        width: 200px;
+      }
     }
 
     div {
@@ -260,7 +265,16 @@
   }
 }
 
+@media screen and (max-width: 900px) {
+  .donate__qrCode-info > .donate__qrCode-text {
+    order: 999;
+  }
+}
+
 @media screen and (max-width: 700px) {
+  .donate__qrCode-info > .donate__qrCode-text {
+    order: 999;
+  }
   .donate {
     &__paymentMethods-list {
       flex-wrap: wrap;
