@@ -1,19 +1,23 @@
 .program-page {
+  padding: 20px 50px;
+
+  @media (max-width: 700px) {
+    padding: 20px;
+  }
   h1 {
     text-align: center;
     margin-bottom: 40px;
   }
 
   &__inner {
-    display: grid;
-    align-items: start;
-    grid-template-columns: 1fr 1fr;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 40px;
-
     img {
-      width: 100%;
+      float: right;
+      width: 400px;
+      display: table;
+
+      @media (max-width: 400px) {
+        width: 250px;
+      }
     }
   }
 

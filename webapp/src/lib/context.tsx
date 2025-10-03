@@ -2,7 +2,6 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import { trpc } from "./trpc";
 import { type TrpcRouterOutput } from "@insaniyat/backend/src/router";
-import { Loader } from "../components/Loader/Loader";
 
 type GeneralContextType = {
   isActive: boolean;
@@ -13,7 +12,7 @@ export const GeneralContext = createContext<GeneralContextType | null>(null);
 
 export const GeneralContextProvider = ({ children }: { children: ReactNode }) => {
   const [isActive, setIsActive] = useState<boolean>(false);
-  const { data, error, isLoading, isError } = trpc.getMe.useQuery();
+  const { data } = trpc.getMe.useQuery();
 
   const value: GeneralContextType = {
     isActive,
@@ -23,13 +22,15 @@ export const GeneralContextProvider = ({ children }: { children: ReactNode }) =>
 
   return (
     <GeneralContext.Provider value={value}>
-      {isLoading ? (
+      {/* {isLoading ? (
         <Loader type="page" />
       ) : isError ? (
         <p>Error: {error.message}</p>
       ) : (
         children
-      )}
+      )} */}
+
+      {children}
     </GeneralContext.Provider>
   );
 };

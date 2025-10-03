@@ -55,6 +55,11 @@ $gradient: linear-gradient(135deg, $primary 0%, $secondary 100%);
         width: 300px;
         height: 300px;
       }
+
+      @media (max-width: 500px) {
+        width: 200px;
+        height: 200px;
+      }
     }
 
     .visual-icons {
@@ -72,6 +77,12 @@ $gradient: linear-gradient(135deg, $primary 0%, $secondary 100%);
         background: white;
         border-radius: 50%;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+        @media (max-width: 568px) {
+          font-size: 1.5rem;
+          width: 40px;
+          height: 40px;
+        }
 
         &:nth-child(1) {
           top: 0;
@@ -140,8 +151,8 @@ $gradient: linear-gradient(135deg, $primary 0%, $secondary 100%);
         }
 
         .item-icon {
-          width: 60px;
-          height: 60px;
+          width: 40px;
+          height: 40px;
           background: white;
           border-radius: 50%;
           @include flex-center;
@@ -149,11 +160,18 @@ $gradient: linear-gradient(135deg, $primary 0%, $secondary 100%);
           margin-right: 1.5rem;
           box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
           transition: all 0.3s ease;
+          @media (max-width: 568px) {
+            font-size: 1rem;
+          }
         }
 
         h3 {
           font-size: 1.2rem;
           margin-bottom: 0.5rem;
+
+          @media (max-width: 568px) {
+            font-size: 1rem;
+          }
         }
 
         p {
@@ -185,6 +203,10 @@ $gradient: linear-gradient(135deg, $primary 0%, $secondary 100%);
       color: $primary;
       margin-bottom: 0.5rem;
       line-height: 1;
+
+      @media (max-width: 568px) {
+        font-size: 2.5rem;
+      }
     }
 
     .stat-label {

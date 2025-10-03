@@ -53,19 +53,19 @@ export const ProgramPage = () => {
     <div className="program-page page">
       <h1>{data.program.title}</h1>
       <div className="program-page__inner">
-        <div dangerouslySetInnerHTML={{ __html: data.program.content }} />
-
-        <div>
-          <img
-            src={getCloudinaryUploadUrl(
-              env.VITE_CLOUDINARY_CLOUD_NAME,
-              data.program.image,
-              "image",
-              "large"
-            )}
-            alt={data.program.title}
-          />
-        </div>
+        <img
+          src={getCloudinaryUploadUrl(
+            env.VITE_CLOUDINARY_CLOUD_NAME,
+            data.program.image,
+            "image",
+            "large"
+          )}
+          alt={data.program.title}
+        />
+        <div
+          className="program-page__content"
+          dangerouslySetInnerHTML={{ __html: data.program.content }}
+        />
       </div>
       {me?.isAdmin && (
         <div className="program-btns">

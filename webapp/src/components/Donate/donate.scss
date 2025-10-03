@@ -293,3 +293,19 @@
     }
   }
 }
+
+@media screen and (max-width: 500px) {
+  .donate {
+    .donate__amount {
+      &-btns {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .donate__type {
+      &-options {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}

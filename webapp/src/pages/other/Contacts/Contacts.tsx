@@ -10,7 +10,7 @@ import { z } from "zod";
 import "./contacts.scss";
 
 export const Contacts = () => {
-  const [contactsRef, contactsInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [contactsRef, contactsInView] = useInView({ threshold: 0.2 });
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -28,7 +28,7 @@ export const Contacts = () => {
       >
         <div className="container">
           <div className="section-header">
-            <h2>Контакты</h2>
+            <h1>Контакты</h1>
             <p className="section-subtitle">Свяжитесь с нами любым удобным способом</p>
           </div>
           <div className="contacts-content">

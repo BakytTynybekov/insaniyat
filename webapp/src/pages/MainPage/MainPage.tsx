@@ -80,7 +80,7 @@ const MainPage = () => {
             </div>
           </div>
           <div className="help-content">
-            <h2>Как помочь</h2>
+            <h1>Как помочь</h1>
             <div className="help-items">
               {helpItems.map((item, i) => (
                 <div key={i} className="help-item">

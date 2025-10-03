@@ -19,8 +19,8 @@
     "inlineSources": true,
     "isolatedModules": false,
     "lib": ["ES2021", "DOM"],
-    "module": "commonjs",
-    "moduleResolution": "Node",
+    "module": "node16",
+    "moduleResolution": "node16",
     "target": "ES2021"
   },
   "include": ["src"]

@@ -40,14 +40,14 @@ const news = [
 ];
 
 const StayUpdated = () => {
-  const [newsRef, newsView] = useInView({ threshold: 0.3, triggerOnce: true });
+  const [newsRef, newsView] = useInView({ threshold: 0.2 });
   return (
     <section
       id="news"
       className={`stay-updated ${newsView ? "visible" : ""}`}
       ref={newsRef}
     >
-      <h2 className="section-title">Быть в курсе</h2>
+      <h1 className="section-title">Быть в курсе</h1>
       <div className="news-grid">
         {news.map((item) => (
           <div key={item.id} className="news-card">
