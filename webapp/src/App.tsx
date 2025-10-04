@@ -26,7 +26,6 @@ import { MonthlyDonations } from "./pages/reports/MonthlyReceipts";
 import { MonthlyReports } from "./pages/reports/MonthlyReports";
 import { NewReportSpendings } from "./pages/reports/NewReportSpendings";
 import { NewReportIncomes } from "./pages/reports/NewReportIncomes";
-
 import { Contacts } from "./pages/other/Contacts/Contacts";
 import { News } from "./pages/other/News";
 
