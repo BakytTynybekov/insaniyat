@@ -22,15 +22,17 @@ model User {
 }
 
 model Donation {
-    id          String        @id @default(uuid())
-    userId      String?
-    email       String
-    name        String
-    amount      Float
-    paymentType paymentType   @default(ONE_TIME)
-    status      paymentStatus @default(LOADING)
-    user        User?         @relation(fields: [userId], references: [id])
-    createdAt   DateTime      @default(now())
+    id           String        @id @default(uuid())
+    userId       String?
+    email        String
+    name         String
+    amount       Float
+    paymentType  paymentType   @default(ONE_TIME)
+    status       paymentStatus @default(LOADING)
+    user         User?         @relation(fields: [userId], references: [id])
+    createdAt    DateTime      @default(now())
+    fundRaiserId String?
+    fundRaiser   FundRaiser?   @relation(fields: [fundRaiserId], references: [id])
 }
 
 model Subscription {
@@ -77,6 +79,7 @@ model FundRaiser {
     program      Program?   @relation(fields: [programTitle], references: [title])
     createdAt    DateTime   @default(now())
     updatedAt    DateTime   @updatedAt
+    donations    Donation[]
 }
 
 model IncomeReport {

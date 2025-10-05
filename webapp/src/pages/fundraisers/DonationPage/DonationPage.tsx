@@ -29,11 +29,10 @@ export const DonationPage = () => {
   const { data, error, isLoading, isFetching, isError } = trpc.getFundRaiser.useQuery({
     fundRaiser,
   });
-  const allDonations = trpc.getAllDonations.useQuery();
   const trpcUtils = trpc.useUtils();
   const deleteFundraiser = trpc.deleteFundRaiser.useMutation();
 
-  if (isLoading || isFetching || allDonations.isLoading) {
+  if (isLoading || isFetching) {
     return <Loader type="page" />;
   }
 
@@ -45,13 +44,11 @@ export const DonationPage = () => {
     return <NotFoundPage message="Сбор с таким именем не найден" />;
   }
 
-  const progress = (+data?.fundRaiser.raised / +data.fundRaiser.goal) * 100 || 0;
+  if (data.fundRaiser) {
+    console.log(data);
+  }
 
-  const donors = [
-    { name: "Иван Иванов", amount: 10000, date: "2023-10-01" },
-    { name: "Анна Петрова", amount: 5000, date: "2023-10-02" },
-    { name: "Сергей Сидоров", amount: 15000, date: "2023-10-03" },
-  ];
+  const progress = (+data?.fundRaiser.raised / +data.fundRaiser.goal) * 100 || 0;
 
   const handleDelete = async () => {
     try {
@@ -63,9 +60,6 @@ export const DonationPage = () => {
     }
   };
 
-  if (allDonations) {
-    console.log(allDonations.data, allDonations.isLoading, "all");
-  }
   return (
     <div className="donation-page page">
       <div className="hero-banner">
@@ -140,11 +134,11 @@ export const DonationPage = () => {
         <div className="donors-list">
           <h2>Последние доноры</h2>
           <ul>
-            {donors.map((donor, index) => (
+            {data.fundRaiser.donations?.map((donor, index) => (
               <li key={index}>
                 <span className="donor-name">{donor.name}</span>
                 <span className="donor-amount">{donor.amount.toLocaleString()} ₽</span>
-                <span className="donor-date">{donor.date}</span>
+                <span className="donor-date">{donor.createdAt}</span>
               </li>
             ))}
           </ul>

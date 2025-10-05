@@ -13,6 +13,7 @@ export const getFundRaiserTrpcRoute = trpc.procedure
       where: {
         title: input.fundRaiser,
       },
+      include: { donations: true },
     });
 
     return { fundRaiser };

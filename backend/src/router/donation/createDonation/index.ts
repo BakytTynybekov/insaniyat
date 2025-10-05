@@ -1,3 +1,4 @@
+import { connect } from "http2";
 import { trpc } from "../../../lib/trpc";
 import { zCreateDonationTrpcInput } from "./input";
 
@@ -28,39 +29,6 @@ export const createDonationTrpcRoute = trpc.procedure
       },
     });
 
-    if (!userId) {
-      const user = await ctx.prisma.user.findUnique({
-        where: {
-          email: input.email,
-        },
-      });
-
-      if (user) {
-        const donation = await ctx.prisma.donation.create({
-          data: {
-            amount: +input.amount,
-            email: input.email,
-            name: input.name,
-            userId: user.id,
-            paymentType: input.paymentType,
-          },
-        });
-
-        if (input.paymentType === "MONTHLY") {
-          await ctx.prisma.subscription.create({
-            data: {
-              amount: +input.amount,
-              email: userEmail || input.email,
-              name: userName || input.name,
-              userId: userId || null,
-            },
-          });
-        }
-
-        return donation;
-      }
-    }
-
     if (input.paymentType === "MONTHLY") {
       await ctx.prisma.subscription.create({
         data: {
@@ -72,6 +40,10 @@ export const createDonationTrpcRoute = trpc.procedure
       });
     }
 
+    if (!input.fundRaiserId) {
+      throw new Error("fundRaiserId is required");
+    }
+
     const donation = await ctx.prisma.donation.create({
       data: {
         amount: +input.amount,
@@ -79,6 +51,7 @@ export const createDonationTrpcRoute = trpc.procedure
         name: userName || input.name,
         userId: userId || null,
         paymentType: input.paymentType,
+        fundRaiserId: input.fundRaiserId,
       },
     });
 
