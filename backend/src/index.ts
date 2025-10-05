@@ -6,50 +6,32 @@ import { createAppContext } from "./lib/context";
 import { applyPassportToExpressApp } from "./lib/passport";
 import { env } from "./lib/env";
 import { presetDb } from "./scripts/presetDb";
-import { applyServeWebApp } from "./lib/serveWebApp";
 
 const startServer = async () => {
   const ctx = createAppContext();
   const expressApp = express();
 
-  // 1. Базовые middleware
   expressApp.use(cors());
   expressApp.use(express.json());
-
-  // 2. Тестовые роуты (должны работать сразу)
-  expressApp.get("/api/test", (req, res) => {
-    console.log("Test route hit"); // Добавьте это
-    res.json({ status: "API works" });
-  });
 
   expressApp.get("/ping", (req, res) => {
     res.send("pong");
   });
 
-  // 3. Инициализация базы данных
   try {
     await presetDb(ctx);
   } catch (error) {
     console.error("DB initialization failed:", error);
   }
 
-  // 4. Настройка аутентификации
   applyPassportToExpressApp(expressApp, ctx);
 
-  // 5. Настройка tRPC
   await applyTrpcToExpressApp(expressApp, ctx, trpcRouter);
 
-  // 6. Раздача фронтенда (должно быть последним)
-  await applyServeWebApp(expressApp);
-
-  // 7. Запуск сервера
   const port = env.PORT || 3000;
 
   expressApp.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
-    console.log("Test routes:");
-    console.log(`- http://localhost:${port}/api/test`);
-    console.log(`- http://localhost:${port}/ping`);
   });
 
   return { app: expressApp, context: ctx };
