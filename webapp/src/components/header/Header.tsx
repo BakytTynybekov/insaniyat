@@ -9,7 +9,6 @@ import { IoMdMenu } from "react-icons/io";
 import { CiUser } from "react-icons/ci";
 import { GeneralContext, useMe } from "../../lib/context";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { Loader } from "../Loader/Loader";
 import { env } from "../../lib/env";
 import { getCloudinaryUploadUrl } from "@insaniyat/backend/src/lib/cloudinaryShared";
 
@@ -50,10 +49,6 @@ export const Header = () => {
   useEffect(() => {
     setIsMenuOpen(false);
   }, [path]);
-
-  if (getProgramsResult.isLoading) {
-    return <Loader type="page" />;
-  }
 
   const menuItems = [
     {
